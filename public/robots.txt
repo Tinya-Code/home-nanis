@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloquear rutas de utilidad si existieran
+Disallow: /api/
+Disallow: /_astro/
+
+Sitemap: https://www.elhogardenanis.com/sitemap-index.xml

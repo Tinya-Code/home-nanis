@@ -1,0 +1,59 @@
+{
+  "seo": {
+    "title": "Nuestro Proceso de Selección Segura en Lima | El Hogar de Nanis",
+    "description": "El riguroso proceso de El Hogar de Nanis garantiza empleadas del hogar y niñeras en Lima con antecedentes verificados, evaluación psicológica y total confiabilidad para su familia."
+  },
+  "title": "Cómo Trabajamos: Nuestro Proceso de Selección",
+  "subtitle": "Un método riguroso diseñado para la tranquilidad y seguridad de tu familia en Lima.",
+  "description": "El objetivo principal de El Hogar de Nanis es brindarle absoluta paz mental cuando confía el cuidado de sus seres queridos y de su hogar peruano a nuestro personal. Implementamos un cuidadoso y detallado filtro de selección, evaluando con criterio profesional a la candidata ideal para cuidar de lo que más valora: su familia.",
+  "steps": [
+    {
+      "number": "01",
+      "title": "Diagnóstico de Necesidades",
+      "description": "Entrevista presencial o telefónica para definir el perfil (formación, personalidad y tareas) y explicar nuestros honorarios transparentes.",
+      "icon": "clipboard-list"
+    },
+    {
+      "number": "02",
+      "title": "Búsqueda Exhaustiva",
+      "description": "Activamos nuestra base de datos consolidada para encontrar candidatas que se ajusten milimétricamente al perfil solicitado.",
+      "icon": "search"
+    },
+    {
+      "number": "03",
+      "title": "Evaluación Multidimensional",
+      "description": "Pruebas psicométricas, entrevistas por psicólogas, comprobación de referencias y verificación minuciosa de antecedentes.",
+      "icon": "user-check"
+    },
+    {
+      "number": "04",
+      "title": "Presentación de Resultados",
+      "description": "Te entregamos un informe detallado con las 2 o 3 mejores candidatas preseleccionadas para tu revisión.",
+      "icon": "file-text"
+    },
+    {
+      "number": "05",
+      "title": "Entrevista con la Familia",
+      "description": "Coordina entrevistas a profundidad en nuestras oficinas o en la comodidad de tu hogar para conocer a las postulantes.",
+      "icon": "users"
+    },
+    {
+      "number": "06",
+      "title": "Formalización de Contrato",
+      "description": "Firma del contrato de prestación de servicios y asesoría completa en trámites de Seguridad Social y requisitos legales.",
+      "icon": "scroll"
+    },
+    {
+      "number": "07",
+      "title": "Acompañamiento y Garantía",
+      "description": "Seguimiento de adaptación durante los primeros meses y garantía de reposición de hasta un nuevo proceso gratuito si es necesario.",
+      "icon": "shield-check"
+    }
+  ],
+  "differentiators": [
+    "Evaluaciones de personalidad y confiabilidad por psicólogos colegiados en Perú.",
+    "Constatación domiciliaria y rigor en el cruzado de referencias nacionales.",
+    "Talleres y capacitaciones presenciales y online para niñeras y enfermeras técnicas.",
+    "Agencia de empleo debidamente inscrita y avalada por el Ministerio de Trabajo del Perú (RENAPE)."
+  ]
+}

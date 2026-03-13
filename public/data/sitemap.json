@@ -1,0 +1,77 @@
+{
+  "domain": "https://www.elhogardenanis.com",
+  "routes": [
+    {
+      "path": "/",
+      "priority": 1.0,
+      "changefreq": "weekly",
+      "seo": {
+        "title": "Agencia de Niñeras y Empleadas del Hogar en Lima | El Hogar de Nanis",
+        "description": "Agencia especializada en la selección de niñeras, empleadas del hogar y enfermeras técnicas en Lima, Perú. Personal altamente capacitado y de absoluta confianza."
+      }
+    },
+    {
+      "path": "/nuestros-servicios",
+      "priority": 0.9,
+      "changefreq": "monthly",
+      "seo": {
+        "title": "Nuestros Servicios de Personal Doméstico en Lima | El Hogar de Nanis",
+        "description": "Conoce nuestros servicios: niñeras cama adentro y afuera, asistentas del hogar todo servicio y de cuidado del adulto mayor en Lima."
+      }
+    },
+    {
+      "path": "/agencia-de-empleadas-del-hogar-lima",
+      "priority": 0.8,
+      "changefreq": "monthly",
+      "seo": {
+        "title": "Agencia de Empleadas del Hogar en Lima | El Hogar de Nanis",
+        "description": "Contrata empleadas del hogar de confianza en Lima. Personal evaluado psicológicamente y con referencias verificadas."
+      }
+    },
+    {
+      "path": "/agencia-de-nineras-y-nanas-lima",
+      "priority": 0.8,
+      "changefreq": "monthly",
+      "seo": {
+        "title": "Agencia de Niñeras y Nanas en Lima | El Hogar de Nanis",
+        "description": "Las mejores niñeras y nanas en Lima. Cuidado infantil con estimulación temprana y amor para tus hijos."
+      }
+    },
+    {
+      "path": "/quienes-somos",
+      "priority": 0.7,
+      "changefreq": "yearly",
+      "seo": {
+        "title": "¿Quiénes Somos? | Agencia de Personal Doméstico | El Hogar de Nanis",
+        "description": "Conoce la historia y el equipo detrás de El Hogar de Nanis, tu mejor aliado en la selección de personal doméstico seguro en el Perú."
+      }
+    },
+    {
+      "path": "/como-trabajamos",
+      "priority": 0.7,
+      "changefreq": "yearly",
+      "seo": {
+        "title": "Nuestro Proceso de Selección Segura | El Hogar de Nanis",
+        "description": "Descubre cómo evaluamos y seleccionamos rigurosamente a nuestras niñeras y empleadas del hogar para garantizar tu total tranquilidad."
+      }
+    },
+    {
+      "path": "/contacto",
+      "priority": 0.9,
+      "changefreq": "yearly",
+      "seo": {
+        "title": "Contacto | Agencia de Empleos del Hogar en Lima, Perú | El Hogar de Nanis",
+        "description": "Comunícate hoy con El Hogar de Nanis. Teléfonos, WhatsApp y dirección de nuestra agencia de empleos en Pueblo Libre, Lima."
+      }
+    },
+    {
+      "path": "/bolsa-de-trabajo",
+      "priority": 0.6,
+      "changefreq": "weekly",
+      "seo": {
+        "title": "Bolsa de Trabajo para Empleadas y Niñeras en Lima | El Hogar de Nanis",
+        "description": "Únete a El Hogar de Nanis. Ofrecemos las mejores oportunidades laborales para niñeras, enfermeras y empleadas del hogar formales en Lima y provincias."
+      }
+    }
+  ]
+}

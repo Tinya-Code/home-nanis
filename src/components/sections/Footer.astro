@@ -1,0 +1,114 @@
+---
+// src/components/sections/Footer.astro
+
+import { Icon } from 'astro-icon/components';
+import siteData from '../../../public/data/site.json';
+
+const year = new Date().getFullYear();
+const { contact, name, slogan } = siteData;
+
+const quickLinks = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '/nuestros-servicios' },
+  { label: 'Quiénes Somos', href: '/quienes-somos' },
+  { label: 'Contacto', href: '/contacto' }
+];
+
+const serviceLinks = [
+  { label: 'Niñeras y Nanas', href: '/agencia-de-nineras-y-nanas-lima' },
+  { label: 'Empleadas del Hogar', href: '/agencia-de-empleadas-del-hogar-lima' },
+  { label: 'Todos los Servicios', href: '/nuestros-servicios' },
+  { label: 'Bolsa de Trabajo', href: '/bolsa-de-trabajo' }
+];
+---
+
+<footer class="bg-white border-t border-border pt-16 pb-8 mt-20">
+  <div class="container-site">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      
+      {/* Columna 1: Marca */}
+      <div class="flex flex-col gap-4">
+        <a href="/" class="inline-block flex justify-center " aria-label={`Ir a inicio de ${name}`}>
+<img src="/images/logo2.webp" alt="Logo" class="w-32  mx-auto h-32" />
+        </a>
+        <p class="text-sm text-gray">{slogan}</p>
+        
+        {/* Redes sociales */}
+        <div class="flex items-center gap-3 mt-2">
+          {siteData.socialMedia && siteData.socialMedia.map(social => (
+            <a 
+              href={social.url} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="w-10 h-10 rounded-full bg-surface-alt flex items-center justify-center text-gray hover:text-white hover:bg-brand transition-colors"
+              aria-label={`Síguenos en ${social.platform}`}
+            >
+              <span class="sr-only">{social.platform}</span>
+              {/* Fallback simple si no definen icono */}
+              <Icon name="lucide:link" class="w-5 h-5" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Columna 2: Enlaces Rápidos */}
+      <div>
+        <h3 class="font-display font-bold text-dark mb-4">Enlaces Rápidos</h3>
+        <ul class="flex flex-col gap-2">
+          {quickLinks.map(link => (
+            <li>
+              <a href={link.href} class="text-sm text-gray hover:text-brand-alt transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Columna 3: Servicios */}
+      <div>
+        <h3 class="font-display font-bold text-dark mb-4">Servicios</h3>
+        <ul class="flex flex-col gap-2">
+          {serviceLinks.map(link => (
+            <li>
+              <a href={link.href} class="text-sm text-gray hover:text-brand-alt transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Columna 4: Contacto */}
+      <div>
+        <h3 class="font-display font-bold text-dark mb-4">Contacto</h3>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:phone" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
+            <span class="text-sm text-gray">{contact.phone}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:mail" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
+            <span class="text-sm text-gray">{contact.email}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="lucide:map-pin" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
+            <span class="text-sm text-gray">{contact.address}</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="divider mb-8"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-muted">
+      <p>&copy; {year} {name}. Todos los derechos reservados.</p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/politicas-de-cookies" class="hover:text-dark transition-colors">Política de cookies</a>
+        <a href="/privacidad" class="hover:text-dark transition-colors">Privacidad</a>
+        <a href="/terminos" class="hover:text-dark transition-colors">Términos</a>
+      </div>
+    </div>
+  </div>
+</footer>

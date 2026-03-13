@@ -1,0 +1,70 @@
+[
+  {
+    "id": "nineras-y-nanas",
+    "title": "Niñeras y Nanas en Lima",
+    "shortDescription": "Cuidadoras infantiles calificadas en Lima, especializadas en estimulación temprana y acompañamiento seguro.",
+    "longDescription": "Sabemos que dejar a tus hijos al cuidado de otra persona es una decisión importante. En El Hogar de Nanis, nuestras niñeras y nanas pasan por un riguroso proceso de selección en Lima que incluye evaluaciones psicológicas y verificación de antecedentes. Encontramos a la profesional ideal para la edad y necesidades de tu bebé, fomentando vínculos de confianza a largo plazo.",
+    "seoKeywords": ["niñeras lima", "nana cama adentro", "cuidado infantil", "nanas de confianza lima", "agencia de niñeras perú"],
+    "features": [
+      "Estimulación temprana adaptada a la edad",
+      "Apoyo en tareas escolares",
+      "Cuidado de la alimentación e higiene",
+      "Preparación de loncheras nutritivas"
+    ],
+    "image": {
+      "alt": "Servicio de Niñera exclusiva y de confianza en Lima",
+      "localPath": "images/ninerasexclusivas.jpg"
+    }
+  },
+  {
+    "id": "empleadas-del-hogar",
+    "title": "Empleadas del Hogar de Confianza",
+    "shortDescription": "Personal de limpieza, lavado y cocina con amplia experiencia para mantener tu hogar en Lima impecable.",
+    "longDescription": "Ofrecemos personal doméstico altamente capacitado para asistirte en todas las labores de la casa en distritos como Miraflores, San Isidro, Surco, y todo Lima. Nuestro equipo se encarga de la limpieza profunda, lavado, planchado y cocina (peruana e internacional), adaptándose a tus costumbres. Contamos con modalidades cama adentro, cama afuera y por horas.",
+    "seoKeywords": ["empleadas del hogar lima", "agencia de empleos domésticos", "señora de limpieza lima", "cocinera cama adentro", "personal de limpieza casa lima"],
+    "features": [
+      "Limpieza y mantenimiento general del hogar",
+      "Lavandería y planchado",
+      "Cocina peruana e internacional básica",
+      "Organización de espacios"
+    ],
+    "image": {
+      "alt": "Empleada del hogar profesional trabajando en Lima",
+      "localPath": "images/empleadasdelhogar.jpg"
+    }
+  },
+  {
+    "id": "cuidado-adulto-mayor",
+    "title": "Cuidado del Adulto Mayor (Enfermeras Técnicas)",
+    "shortDescription": "Enfermeras técnicas dedicadas a brindar compañía, cuidados geriátricos y amor a tus seres queridos en Lima.",
+    "longDescription": "El cuidado de los adultos mayores requiere empatía y conocimientos técnicos. Nuestras enfermeras técnicas en Lima están preparadas para administrar medicamentos, controlar signos vitales, asistir en higiene personal y terapias de rehabilitación básicas. Mejoramos su calidad de vida con un acompañamiento respetuoso y cálido.",
+    "seoKeywords": ["cuidado adulto mayor lima", "enfermera técnica a domicilio", "cuidado de ancianos lima", "asistencia geriátrica domicilio peru", "cuidadoras de abuelos"],
+    "features": [
+      "Control de medicación y signos vitales",
+      "Asistencia en higiene y alimentación",
+      "Acompañamiento a citas médicas en clínicas locales",
+      "Ejercicios de estimulación cognitiva"
+    ],
+    "image": {
+      "alt": "Enfermera técnica especializada cuidando adulto mayor en Lima",
+      "localPath": "images/enfermerastecnicas.jpg"
+    }
+  },
+  {
+    "id": "empleada-y-ninera",
+    "title": "Asistentes del Hogar (Todo Servicio)",
+    "shortDescription": "Personal doméstico versátil que combina las labores de limpieza del hogar con el cuidado infantil.",
+    "longDescription": "Para familias limeñas que buscan apoyo integral, ofrecemos asistentes 'todo servicio'. Trabajan manteniendo el orden, la limpieza y la buena sazón, sin descuidar el cuidado de los niños cuando los padres están fuera. Una solución práctica y segura para el ritmo de vida actual.",
+    "seoKeywords": ["empleada todo servicio lima", "nana y empleada del hogar", "asistenta del hogar lima", "señora cama adentro y afuera para niños", "niñera y limpieza"],
+    "features": [
+      "Combinación integral de tareas domésticas y cuidado infantil",
+      "Soporte indispensable para madres y padres trabajadores",
+      "Flexibilidad y adaptación a rutinas complejas",
+      "Supervisión constante de menores"
+    ],
+    "image": {
+      "alt": "Asistente del hogar todo servicio en vivienda",
+      "localPath": "images/empleadayninera.jpg"
+    }
+  }
+]

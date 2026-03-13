@@ -1,0 +1,49 @@
+---
+// src/pages/quienes-somos.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/quienes-somos.json';
+import type { QuienesSomosData } from '@/types';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import MissionVisionSection from '@/components/sections/MissionVisionSection.astro';
+import HistorySection from '@/components/sections/HistorySection.astro';
+import FounderSection from '@/components/sections/FounderSection.astro';
+import ValuesSection from '@/components/sections/ValuesSection.astro';
+import TeamSection from '@/components/sections/TeamSection.astro';
+
+// Assets
+import principalSedeImg from '@assets/hogarNanis.jpg';
+import redEmpleoImg from '@assets/redempleoseguro.jpg';
+import teamImg from '@assets/elmejor-300x241.png';
+import marcelaImg from '@assets/marcelacubillos.jpg';
+
+const data = dataRaw as QuienesSomosData;
+const { seo, title, subtitle, history, mission, vision, values, teamSection, founder } = data;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title={title} 
+      subtitle={subtitle}
+      variant ="image"
+      align= "left" 
+      breadcrumbs={[{ label: 'Quiénes Somos' }]}
+    />
+
+    <MissionVisionSection mission={mission} vision={vision} />
+
+    <HistorySection history={history} principalSedeImg={principalSedeImg} redEmpleoImg={redEmpleoImg} />
+
+    <FounderSection founder={founder} marcelaImg={marcelaImg} />
+
+    <ValuesSection values={values} />
+
+    <TeamSection teamSection={teamSection} teamImg={teamImg} />
+  </main>
+
+  <Footer />
+</Layout>

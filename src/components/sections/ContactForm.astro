@@ -1,0 +1,87 @@
+---
+// src/components/sections/ContactForm.astro
+import FormInput from '@/components/ui/FormInput.astro';
+import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { 
+  title = "Envíanos un mensaje", 
+  subtitle = "Completa este formulario y una asesora experta se comunicará contigo en la brevedad." 
+} = Astro.props;
+---
+
+<div class="card p-8 lg:p-12 shadow-brand/10 bg-white border-brand/10">
+  <div class="mb-10 text-center lg:text-left">
+    <h2 class="text-3xl font-bold text-dark mb-4">{title}</h2>
+    <p class="text-gray">{subtitle}</p>
+  </div>
+
+  <form class="grid grid-cols-1 md:grid-cols-2 gap-6" action="#" method="POST">
+    <FormInput 
+      label="Nombre Completo" 
+      id="name" 
+      required 
+      placeholder="Tu nombre" 
+    />
+    <FormInput 
+      label="Teléfono / WhatsApp" 
+      id="phone" 
+      type="tel" 
+      required 
+      placeholder="Ej: 999 999 999" 
+    />
+    <div class="md:col-span-2">
+      <FormInput 
+        label="Correo Electrónico" 
+        id="email" 
+        type="email" 
+        placeholder="correo@ejemplo.com" 
+      />
+    </div>
+    <div class="flex flex-col gap-2 md:col-span-2">
+      <label class="text-sm font-bold text-dark" for="service">Servicio de Interés</label>
+      <select id="service" name="service" class="form-input bg-white">
+        <option value="">Seleccione un servicio</option>
+        <option value="nineras">Niñeras y Nanas</option>
+        <option value="empleadas">Empleadas del Hogar</option>
+        <option value="adulto-mayor">Cuidado Adulto Mayor</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+    <div class="md:col-span-2">
+      <FormInput 
+        label="Mensaje / Requerimiento adicional" 
+        id="message" 
+        textarea 
+        placeholder="Cuéntanos qué perfil estás buscando..." 
+      />
+    </div>
+    <div class="md:col-span-2 mt-4">
+      <ButtonPrimary label="Enviar Solicitud" href="#" variant="gradient" size="lg" block={true} />
+      <p class="text-center text-[10px] text-gray mt-4">
+        Al enviar este formulario acepto el tratamiento de mis datos personales para fines de asesoría comercial según nuestra política de privacidad.
+      </p>
+    </div>
+  </form>
+</div>
+
+<style>
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-light-border);
+    background-color: var(--color-light-surface);
+    color: var(--color-dark);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  .form-input:focus {
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 2px rgba(var(--brand-rgb), 0.2);
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+// src/components/sections/WhyUsSection.astro
+import SectionHeader from '@/components/sections/SectionHeader.astro';
+import InfoCard from '@/components/ui/InfoCard.astro';
+
+const features = [
+  {
+    icon: 'lucide:shield-check',
+    title: 'Evaluación Rigurosa',
+    description: 'Antecedentes, exámen psicológico y referencias personales validadas estrictamente por nuestro equipo de RR.HH.',
+  },
+  {
+    icon: 'lucide:award',
+    title: 'Garantía del Servicio',
+    description: 'En caso el personal no se adapte, reemplazamos a la candidata sin costo adicional dentro de los primeros 30 a 60 días.',
+  },
+  {
+    icon: 'lucide:users',
+    title: 'Ternas Seleccionadas',
+    description: 'Presentamos hasta 3 opciones de candidatas que calcen exactamente con el perfil que su familia y hogar necesitan.',
+  },
+  {
+    icon: 'lucide:heart-handshake',
+    title: 'Agencia Formal',
+    description: 'Estamos debidamente autorizados por el Ministerio de Trabajo (MTPE), brindando seguridad legal y confianza total.',
+  },
+];
+---
+
+<section class="section-padding bg-surface" id="por-que-nosotros">
+  <div class="container-site relative z-10">
+    <SectionHeader 
+      title="¿Por qué elegir El Hogar de Nanis?" 
+      eyebrow="Tú tranquilidad es primero" 
+      align="center"
+      variant="accent"
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 justify-items-center">
+      {features.map(feature => (
+        <InfoCard 
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          centered
+        />
+      ))}
+    </div>
+  </div>
+</section>

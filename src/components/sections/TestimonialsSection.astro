@@ -1,0 +1,36 @@
+---
+// src/components/sections/TestimonialsSection.astro
+import SectionHeader from '@/components/sections/SectionHeader.astro';
+import TestimonialCard from '@/components/ui/TestimonialCard.astro';
+
+interface Props {
+  testimonios: any[]; // Or Review[]
+}
+
+const { testimonios } = Astro.props;
+// Mostrar un máximo de 3 testimonios en la home
+const featuredTestimonials = testimonios.slice(0, 3);
+---
+
+<section class="section-padding bg-light-surface" id="testimonios">
+  <div class="container-site">
+    <SectionHeader 
+      title="Lo que dicen nuestras Familias" 
+      eyebrow="Experiencias Reales" 
+      subtitle="Conoce de primera mano por qué cientos de familias limeñas confían en El Hogar de Nanis para el cuidado de sus seres queridos."
+       align="center"
+      variant="gradient"
+    />
+
+    <div class="grid-testimonials mt-16">
+      {featuredTestimonials.map(t => (
+        <TestimonialCard 
+          author={t.name}
+          text={t.comment}
+          rating={t.rating}
+          role={t.role}
+        />
+      ))}
+    </div>
+  </div>
+</section>

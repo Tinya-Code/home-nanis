@@ -1,0 +1,151 @@
+---
+// src/components/sections/SectionHeader.astro
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  subtitle?: string;
+  align?: 'left' | 'center' | 'right';
+  theme?: 'light' | 'dark' | 'brand';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'simple' | 'accent' | 'gradient';
+  eyebrowIcon?: string;
+  class?: string;
+}
+
+const { 
+  title, 
+  eyebrow, 
+  subtitle, 
+  align = 'left', 
+  theme = 'light', 
+  size = 'md',
+  variant = 'simple',
+  eyebrowIcon = 'lucide:arrow-right',
+  class: className = ''
+} = Astro.props;
+
+const alignClasses = {
+  left: 'text-left items-start',
+  center: 'text-center items-center mx-auto',
+  right: 'text-right items-end'
+};
+
+const themeClasses = {
+  light: 'text-dark',
+  dark: 'text-white',
+  brand: 'text-brand'
+};
+
+const titleSizes = {
+  sm: 'text-2xl md:text-3xl',
+  md: 'text-3xl md:text-4xl lg:text-5xl',
+  lg: 'text-4xl md:text-5xl lg:text-6xl'
+};
+
+// Función para resaltar y enlazar palabras clave
+const highlightKeywords = (text: string) => {
+  if (!text) return '';
+  
+  // 1. Definición de Enlaces (Primero para evitar conflictos)
+  const links = [
+    { pattern: /El Hogar de Nanis/gi, url: '/' },
+    { pattern: /Quiénes Somos/gi, url: '/quienes-somos' },
+    { pattern: /Cómo Trabajamos|proceso de selección|metodología/gi, url: '/como-trabajamos' },
+    { pattern: /nuestros servicios|servicios/gi, url: '/nuestros-servicios' },
+    { pattern: /niñeras?|nanas?|agencia de niñeras/gi, url: '/agencia-de-nineras-y-nanas-lima' },
+    { pattern: /empleadas? del hogar|agencia de empleadas/gi, url: '/agencia-de-empleadas-del-hogar-lima' },
+    { pattern: /contacto|escríbenos/gi, url: '/contacto' },
+    { pattern: /bolsa de trabajo|oportunidades laborales/gi, url: '/bolsa-de-trabajo' },
+  ];
+
+  // 2. Definición de Resaltados (Variantes morfológicas)
+  const highlights = [
+    /Lima/gi,
+    /familia[a-z]*/gi,
+    /hogar[a-z]*/gi,
+    /seguridad/gi,
+    /confiabilidad/gi,
+    /profesional[a-z]*/gi,
+    /riguroso[a-z]*/gi,
+    /cuidadosa?o?[a-z]*/gi,
+    /especializada?o?[a-z]*/gi,
+    /paz mental/gi,
+    /tranquilidad/gi,
+    /bienestar/gi
+  ];
+  
+  let processedText = text;
+
+  // Aplicar Enlaces
+  links.forEach(({ pattern, url }) => {
+    processedText = processedText.replace(pattern, `<a href="${url}" class="text-brand hover:underline font-semibold decoration-2 underline-offset-4 transition-all">$&</a>`);
+  });
+
+  // Aplicar Resaltados (Evitando romper los enlaces ya creados)
+  // Usamos un loop que ignore contenido dentro de etiquetas <a>
+  highlights.forEach(pattern => {
+    // Esta regex es más compleja para evitar reemplazar dentro de atributos de HTML
+    processedText = processedText.replace(pattern, (match, offset, fullText) => {
+      // Verificamos si estamos dentro de una etiqueta HTML (aproximación simple)
+      const prevText = fullText.slice(0, offset);
+      // Evitamos resaltar si estamos dentro de una etiqueta <a> o cualquier atributo
+      const isInsideTag = /<a[^>]*$|href="[^"]*$/.test(prevText);
+      const isPartofLinkText = /<a[^>]*>[^<]*$/.test(prevText);
+      
+      if (isInsideTag || isPartofLinkText) return match;
+      return `<strong class="font-bold text-dark/90">${match}</strong>`;
+    });
+  });
+  
+  return processedText;
+};
+
+const formattedSubtitle = subtitle ? highlightKeywords(subtitle) : '';
+---
+
+<header class:list={[
+  'flex flex-col gap-4 mb-10 lg:mb-14 max-w-4xl',
+  alignClasses[align],
+  className
+]}>
+  {eyebrow && (
+    <span class:list={[
+      'section-eyebrow flex items-center gap-2 text-xs font-bold uppercase tracking-widest',
+      theme === 'dark' ? 'text-brand-soft' : 'text-brand'
+    ]}>
+      <Icon name={eyebrowIcon} class="w-4 h-4" />
+      {eyebrow}
+    </span>
+  )}
+
+  <div class="relative">
+    <h2 class:list={[
+      'font-display font-semibold leading-tight tracking-tight',
+      titleSizes[size],
+      themeClasses[theme],
+      variant === 'gradient' ? 'bg-gradient-to-r from-brand to-brand-alt bg-clip-text text-transparent' : ''
+    ]}>
+      {title}
+    </h2>
+    
+    {variant === 'accent' && (
+      <div class:list={[
+        'h-1.5 w-12 rounded-full mt-4',
+        theme === 'brand' ? 'bg-brand-alt' : 'bg-brand'
+      ]}></div>
+    )}
+  </div>
+  
+  {subtitle && (
+    <p 
+      class:list={[
+        'text-base md:text-lg leading-relaxed max-w-[65ch]',
+        theme === 'dark' ? 'text-gray-light' : 'text-gray',
+        align === 'center' ? 'mx-auto' : ''
+      ]}
+      set:html={formattedSubtitle}
+    />
+  )}
+</header>

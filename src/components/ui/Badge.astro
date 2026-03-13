@@ -1,0 +1,30 @@
+---
+// src/components/ui/Badge.astro
+
+/**
+ * Badge
+ * ─────────────────
+ * Descripción: Etiqueta pequeña para destacar estados o categorías.
+ * Props obligatorias: text
+ */
+
+interface Props {
+  text: string;
+  variant?: 'brand' | 'success' | 'certified' | 'default';
+  icon?: string; // Optional icon name/svg string placeholder, usually passed via slot
+}
+
+const { text, variant = 'default' } = Astro.props;
+
+const variantClasses = {
+  brand: 'badge-brand',
+  success: 'badge-success',
+  certified: 'badge-certified',
+  default: 'badge',
+}[variant];
+---
+
+<span class={variantClasses}>
+  <slot name="icon" />
+  {text}
+</span>

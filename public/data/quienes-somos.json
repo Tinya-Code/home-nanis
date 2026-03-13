@@ -1,0 +1,60 @@
+{
+  "seo": {
+    "title": "Agencia de Empleos Confiable en Lima | El Hogar de Nanis",
+    "description": "Conoce a El Hogar de Nanis, la agencia peruana líder en personal doméstico y niñeras, destacada por sus estrictos procesos de evaluación en Lima."
+  },
+  "title": "¿Quiénes Somos?",
+  "subtitle": "Más que una agencia de empleos, tu mejor aliado en el hogar.",
+  "history": "El Hogar de Nanis nació de la experiencia personal de nuestra fundadora, Marcela Cubillos Forero, quien al buscar una niñera profesional para su hijo, identificó la necesidad de una agencia que centrara sus esfuerzos en perfiles de élite y absoluta confianza. Con una visión internacional y estándares de alta calidad, hemos construido una base de datos robusta con los perfiles más calificados de Lima: niñeras, enfermeras, empleadas del hogar, tutoras y personal de seguridad.",
+  "mission": "Ofrecer un servicio de reclutamiento de personal doméstico de la más alta calidad y profesionalismo en Lima Metropolitana. Entendemos que cada familia es un universo único y seleccionamos al personal ideal que se adapte perfectamente a su hogar.",
+  "vision": "Consolidarnos como la agencia número uno y más segura en selección de personal doméstico especializado en todo el Perú, garantizando la paz mental de nuestros clientes y promoviendo el empleo formal.",
+  "values": [
+    {
+      "icon": "shield",
+      "title": "Confianza",
+      "description": "El pilar de nuestra agencia. Garantizamos evaluaciones psicológicas y referencias 100% comprobadas localmente."
+    },
+    {
+      "icon": "heart",
+      "title": "Empatía",
+      "description": "Entendemos las costumbres y dinámicas de vida de las familias en los diversos distritos de Lima."
+    },
+    {
+      "icon": "award",
+      "title": "Profesionalismo",
+      "description": "Nuestro sólido equipo de recursos humanos recluta con criterio humano y estrictos estándares."
+    },
+    {
+      "icon": "users",
+      "title": "Compromiso",
+      "description": "Seguimiento y garantía efectiva durante la adaptación de su nuevo personal en casa."
+    }
+  ],
+  "founder": {
+    "name": "Marcela Cubillos Forero",
+    "role": "Fundadora y Directora",
+    "bio": "Graduada en Psicología por la Universidad Católica de Colombia y con experiencia previa como gerente de Recursos Humanos en prestigiosas empresas internacionales. Marcela se encarga personalmente de entender las necesidades de cada familia, proponiendo únicamente candidatas que ella misma consideraría adecuadas para su propio hogar. Su enfoque meticuloso y fluido garantiza que cada detalle en el proceso de selección sea perfecto.",
+    "image": {
+      "alt": "Marcela Cubillos Forero, fundadora de El Hogar de Nanis",
+      "localPath": "images/marcelacubillos.jpg"
+    }
+  },
+  "teamSection": {
+    "title": "Nuestros Equipo de Trabajo",
+    "description": "Somos un equipo multidisciplinario compuesto por psicólogos corporativos y profesionales con amplia experiencia en selección y seguridad. Nuestro criterio profesional nos permite evaluar no solo habilidades técnicas, sino también valores humanos y estabilidad emocional, garantizando que cada incorporación a su hogar sea un éxito rotundo.",
+    "image": {
+      "alt": "Equipo de profesionales de recursos humanos de la agencia El Hogar de Nanis en Lima",
+      "localPath": "images/elmejor-300x241.png"
+    }
+  },
+  "images": [
+    {
+      "alt": "Sede principal de la agencia de empleos El Hogar de Nanis",
+      "localPath": "images/hogarNanis.jpg"
+    },
+    {
+      "alt": "Certificación de Red de Empleo Seguro en Lima",
+      "localPath": "images/redempleoseguro.jpg"
+    }
+  ]
+}

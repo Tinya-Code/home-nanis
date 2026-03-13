@@ -1,0 +1,105 @@
+---
+// src/pages/agencia-de-empleadas-del-hogar-lima.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/servicios.json';
+import sitemapData from '../../public/data/sitemap.json';
+import type { Servicio } from '@/types';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import WhyUsSection from '@/components/sections/WhyUsSection.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import { Icon } from 'astro-icon/components';
+
+const servicios = dataRaw as Servicio[];
+const servicio = servicios.find(s => s.id === 'empleadas-del-hogar')!;
+
+const routeInfo = sitemapData.routes.find(r => r.path === '/agencia-de-empleadas-del-hogar-lima');
+const seo = routeInfo?.seo || {
+  title: "Agencia de Empleadas del Hogar en Lima | El Hogar de Nanis",
+  description: "Contrate empleadas del hogar de confianza y calificadas en Lima. Selección profesional, filtros de seguridad y garantía de reemplazo."
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title="Agencia de Empleadas del Hogar en Lima" 
+      subtitle={`${servicio.shortDescription} Ayudamos a las familias limeñas a encontrar el apoyo ideal para su hogar con absoluta seguridad.`}
+      align="left"
+      breadcrumbs={[{ label: 'Servicio Doméstico' }]}
+    />
+
+    {/* Detailed Feature Section */}
+    <section class="section-padding bg-white">
+       <div class="container-site">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+             <div class="flex flex-col gap-8">
+               <h2 class="section-title text-dark">Servicio Doméstico Profesional</h2>
+               <p class="text-lg text-gray leading-relaxed italic">
+                 "{servicio.longDescription}"
+               </p>
+               <ul class="flex flex-col gap-4">
+                 {servicio.features.map(feature => (
+                   <li class="flex items-center gap-3 p-4 rounded-xl bg-light-surface border border-light-border">
+                     <div class="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center text-brand">
+                       <Icon name="lucide:check" class="w-5 h-5" />
+                     </div>
+                     <span class="font-medium text-dark">{feature}</span>
+                   </li>
+                 ))}
+               </ul>
+             </div>
+             <div class="grid grid-cols-2 gap-4">
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3">
+                   <Icon name="lucide:home" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Todo Servicio</h3>
+                   <p class="text-xs text-gray">Limpieza profunda y mantenimiento</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 mt-8">
+                   <Icon name="lucide:utensils" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Buena Sazón</h3>
+                   <p class="text-xs text-gray">Cocina nacional e internacional</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3">
+                   <Icon name="lucide:calendar-check" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Flexibilidad</h3>
+                   <p class="text-xs text-gray">Cama adentro, afuera o por horas</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 mt-8">
+                   <Icon name="lucide:search" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Filtros Pro</h3>
+                   <p class="text-xs text-gray">Evaluación psicológica verificada</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <WhyUsSection />
+
+    <section class="section-padding bg-section-alt">
+       <div class="container-site">
+          <div class="max-w-3xl mx-auto text-center">
+             <h2 class="section-title text-white mb-6">Confianza en cada rincón de su hogar</h2>
+             <p class="text-gray text-lg mb-8">
+               Nuestro personal doméstico posee amplia experiencia en los distritos más exclusivos de Lima, garantizando un servicio de altura y absoluta discreción.
+             </p>
+             <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-muted">
+                <span class="px-4 py-2 rounded-full border border-border bg-surface">San Isidro</span>
+                <span class="px-4 py-2 rounded-full border border-border bg-surface">Miraflores</span>
+                <span class="px-4 py-2 rounded-full border border-border bg-surface">Santiago de Surco</span>
+                <span class="px-4 py-2 rounded-full border border-border bg-surface">La Molina</span>
+                <span class="px-4 py-2 rounded-full border border-border bg-surface">Pueblo Libre</span>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+</Layout>

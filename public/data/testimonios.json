@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "title": "Testimonios y Reseñas de Clientes en Lima | El Hogar de Nanis",
+    "description": "Lee las opiniones de familias peruanas satisfechas con nuestras empleadas del hogar, niñeras cama adentro y enfermeras en Miraflores, San Isidro y Lima."
+  },
+  "title": "Testimonios",
+  "subtitle": "Lo que dicen nuestras familias en Lima.",
+  "description": "La máxima satisfacción de la agencia El Hogar de Nanis es ver a padres e hijos tranquilos en su propia casa. Estas son algunas de las experiencias reales de familias peruanas que confiaron en nuestro estricto proceso de selección de personal doméstico.",
+  "reviews": [
+    {
+      "id": "testimonio-nana-miraflores",
+      "name": "Valeria C.",
+      "role": "Madre de dos hijos (Miraflores)",
+      "comment": "Estaba desesperada por encontrar a alguien de confianza luego de mi post-natal. Contacté a la agencia y en menos de una semana me presentaron a María. Ella no solo cuida a mi bebé, sino que lo estimula, le canta y es muy respetuosa. Mil gracias por la excelente selección de niñeras en Lima.",
+      "rating": 5
+    },
+    {
+      "id": "testimonio-enfermera-sanisidro",
+      "name": "Familia Rodríguez Mendoza",
+      "role": "Residentes en San Isidro",
+      "comment": "Nos recomendaron El Hogar de Nanis para contratar una persona que ayude con mi mamá que está en silla de ruedas. La enfermera técnica que nos enviaron tiene una paciencia increíble. Profesionalismo y puntualidad desde el primer momento.",
+      "rating": 5
+    },
+    {
+      "id": "testimonio-empleada-lamolina",
+      "name": "Carlos T.",
+      "role": "Padre trabajador (La Molina)",
+      "comment": "Ambos trabajamos todo el día y necesitábamos una nana que además nos ayude con la cocina y limpieza de la casa. El proceso de evaluación psicológica de la agencia nos dio mucha seguridad. Llevamos 8 meses con nuestra empleada todo servicio y estamos felices.",
+      "rating": 5
+    }
+  ],
+  "globalRating": {
+    "score": 4.8,
+    "totalReviews": "150+"
+  }
+}

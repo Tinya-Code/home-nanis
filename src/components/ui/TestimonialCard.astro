@@ -1,0 +1,46 @@
+---
+// src/components/ui/TestimonialCard.astro
+import { Icon } from 'astro-icon/components';
+import StarRating from '@/components/ui/StarRating.astro';
+
+/**
+ * TestimonialCard
+ * ─────────────────
+ * Descripción: Muestra un testimonio con estrellas de valoración.
+ * Props obligatorias: author, text, rating
+ */
+
+interface Props {
+  author: string;
+  role?: string;
+  text: string;
+  rating: number;
+}
+
+const { author, role, text, rating } = Astro.props;
+---
+
+<article class="card-testimonial group">
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-brand/20 flex flex-shrink-0 items-center justify-center text-brand-alt font-bold text-lg">
+        {author.charAt(0).toUpperCase()}
+      </div>
+      <div>
+        <p class="font-display font-bold text-white text-base leading-tight">{author}</p>
+        {role && <p class="text-xs text-gray-muted mt-0.5">{role}</p>}
+      </div>
+    </div>
+    
+    <!-- Quotes icon decoration -->
+    <Icon name="lucide:quote" class="w-8 h-8 text-border opacity-50 group-hover:text-brand/30 transition-colors" />
+  </div>
+
+  <div class="mb-4">
+    <StarRating rating={rating} />
+  </div>
+
+  <blockquote class="text-sm text-gray italic">
+    "{text}"
+  </blockquote>
+</article>

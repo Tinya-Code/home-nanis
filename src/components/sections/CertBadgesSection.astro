@@ -1,0 +1,31 @@
+---
+// src/components/sections/CertBadgesSection.astro
+import { Icon } from 'astro-icon/components';
+import siteData from '../../../public/data/site.json';
+
+const { certifications } = siteData;
+---
+
+<section class="py-12 bg-white border-y border-border">
+  <div class="container-site">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+      
+      <div class="flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+        <Icon name="lucide:building" class="w-10 h-10 text-brand" aria-hidden="true" />
+        <div class="text-sm font-medium text-dark max-w-[200px] leading-tight">
+          {certifications[0] || 'Autorizados por el Ministerio de Trabajo'}
+        </div>
+      </div>
+
+      <div class="hidden md:block w-px h-12 bg-border"></div>
+
+      <div class="flex items-center gap-4 opacity-70 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
+         <Icon name="lucide:file-signature" class="w-10 h-10 text-brand-alt" aria-hidden="true" />
+         <div class="text-sm font-medium text-dark max-w-[250px] leading-tight">
+            {certifications[1] || 'Resolución Sub-Directorial RENAPE'}
+         </div>
+      </div>
+
+    </div>
+  </div>
+</section>

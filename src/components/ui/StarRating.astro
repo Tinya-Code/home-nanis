@@ -1,0 +1,30 @@
+---
+// src/components/ui/StarRating.astro
+
+/**
+ * StarRating
+ * ─────────────────
+ * Descripción: Componente visual para pintar estrellas de calificación (1-5).
+ * Props obligatorias: rating (number)
+ */
+
+interface Props {
+  rating: number;
+  maxStars?: number;
+}
+
+import { Icon } from 'astro-icon/components';
+
+const { rating, maxStars = 5 } = Astro.props;
+const safeRating = Math.max(0, Math.min(maxStars, Math.round(rating)));
+---
+
+<div class="flex items-center gap-1" aria-label={`Calificación de ${safeRating} sobre ${maxStars} estrellas`}>
+  {Array.from({ length: maxStars }).map((_, i) => (
+    <Icon 
+      name="lucide:star" 
+      class={`w-5 h-5 ${i < safeRating ? 'star-filled fill-current' : 'star-empty'}`} 
+      aria-hidden="true"
+    />
+  ))}
+</div>

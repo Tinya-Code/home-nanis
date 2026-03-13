@@ -1,0 +1,132 @@
+---
+// src/pages/bolsa-de-trabajo.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/empleo.json';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
+import { Icon } from 'astro-icon/components';
+
+const data = dataRaw;
+const { seo, title, subtitle, description, requirements, benefits, jobOffers, applicationForm } = data;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title={title} 
+      subtitle={`${subtitle} ${description}`} 
+      breadcrumbs={[{ label: 'Bolsa de Trabajo' }]}
+    />
+
+    {/* Requirements & Benefits */}
+    <section class="section-padding bg-white">
+       <div class="container-site">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+             
+             {/* Requirements */}
+             <div class="flex flex-col gap-8">
+                <div class="flex items-center gap-4">
+                   <div class="w-12 h-12 rounded-2xl bg-brand/10 flex items-center justify-center text-brand">
+                      <Icon name="lucide:clipboard-check" class="w-7 h-7" />
+                   </div>
+                   <h2 class="text-2xl font-bold text-dark">Requisitos del Puesto</h2>
+                </div>
+                <ul class="flex flex-col gap-4">
+                  {requirements.map((req) => (
+                    <li class="flex gap-4 p-5 rounded-2xl bg-light-surface border border-light-border hover:border-brand/20 transition-colors">
+                       <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-1">
+                          <Icon name="lucide:check" class="w-4 h-4" />
+                       </div>
+                       <span class="text-gray text-sm leading-relaxed">{req}</span>
+                    </li>
+                  ))}
+                </ul>
+             </div>
+
+             {/* Benefits */}
+             <div class="flex flex-col gap-8">
+                <div class="flex items-center gap-4">
+                   <div class="w-12 h-12 rounded-2xl bg-brand-alt/10 flex items-center justify-center text-brand-alt">
+                      <Icon name="lucide:sparkles" class="w-7 h-7" />
+                   </div>
+                   <h2 class="text-2xl font-bold text-dark">¿Por qué trabajar con nosotros?</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                   {benefits.map((benefit) => (
+                      <div class="p-6 rounded-2xl border border-border bg-section-alt flex flex-col gap-3 group hover:bg-brand/5 transition-colors">
+                         <Icon name="lucide:heart" class="w-6 h-6 text-brand-alt group-hover:scale-110 transition-transform" />
+                         <p class="text-sm text-gray font-medium leading-relaxed">{benefit}</p>
+                      </div>
+                   ))}
+                </div>
+             </div>
+
+          </div>
+       </div>
+    </section>
+
+    {/* Job Offers / Current Openings */}
+    <section class="section-padding bg-section-alt">
+       <div class="container-site">
+          <div class="section-header-centered">
+             <span class="section-eyebrow">Vacantes Actuales</span>
+             <h2 class="section-title-gradient">Últimas Convocatorias</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+             {jobOffers.map((job) => (
+                <div class="card p-8 bg-surface border-border/50 hover:border-brand/50 transition-all flex flex-col gap-5">
+                   <div class="flex justify-between items-start">
+                      <span class="px-3 py-1 bg-success/10 text-success text-[10px] font-bold uppercase tracking-widest rounded-full">Activa</span>
+                      <Icon name="lucide:briefcase" class="text-gray-muted w-5 h-5" />
+                   </div>
+                   <h3 class="text-xl font-bold text-white">{job.position}</h3>
+                   <div class="flex items-center gap-2 text-brand-alt text-xs font-semibold">
+                      <Icon name="lucide:map-pin" />
+                      {job.location}
+                   </div>
+                   <p class="text-gray text-sm leading-relaxed flex-grow">
+                      {job.description}
+                   </p>
+                   <ButtonPrimary label="Postular por WhatsApp" href={`https://wa.me/51941141780?text=Hola,%20postulo%20para%20${job.position}`} variant="outline" size="sm" block={true} />
+                </div>
+             ))}
+          </div>
+       </div>
+    </section>
+
+    {/* CTA / Final Form */}
+    <section class="section-padding bg-white">
+       <div class="container-site">
+          <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden bg-brand/10 border border-brand/20 flex flex-col md:flex-row items-center">
+             <div class="p-10 md:w-3/5 text-center md:text-left">
+                <h2 class="text-2xl font-bold text-dark mb-4">{applicationForm.title}</h2>
+                <p class="text-gray mb-8">
+                   {applicationForm.description}
+                </p>
+                <a 
+                   href={applicationForm.link} 
+                   target="_blank" 
+                   class="inline-flex items-center gap-3 bg-brand text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-alt transition-all shadow-lg shadow-brand/20"
+                >
+                   Llenar Formulario Digital
+                   <Icon name="lucide:external-link" class="w-5 h-5" />
+                </a>
+             </div>
+             <div class="hidden md:flex md:w-2/5 justify-end p-8">
+                <div class="w-48 h-48 rounded-full bg-brand-alt/20 flex items-center justify-center animate-pulse">
+                   <Icon name="lucide:file-user" class="w-24 h-24 text-brand-alt" />
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

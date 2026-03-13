@@ -1,0 +1,92 @@
+---
+// src/pages/nuestros-servicios.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/servicios.json';
+import sitemapData from '../../public/data/sitemap.json';
+import type { Servicio } from '@/types';
+import ServiceCard from '@/components/ui/ServiceCard.astro';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import { Icon } from 'astro-icon/components';
+
+const servicios = dataRaw as Servicio[];
+const routeInfo = sitemapData.routes.find(r => r.path === '/nuestros-servicios');
+const seo = routeInfo?.seo || {
+  title: "Nuestros Servicios de Personal Doméstico | El Hogar de Nanis",
+  description: "Conoce nuestra gama completa de servicios de personal doméstico altamente calificado en Lima."
+};
+
+const benefits = [
+  {
+    icon: "lucide:shield-check",
+    title: "Seguridad Garantizada",
+    description: "Personal rigurosamente evaluado con filtros de seguridad y referencias verificadas."
+  },
+  {
+    icon: "lucide:refresh-cw",
+    title: "Garantía de Reemplazo",
+    description: "Si el personal no se adapta, realizamos una nueva búsqueda sin costo adicional."
+  },
+  {
+    icon: "lucide:clock",
+    title: "Rapidez y Eficiencia",
+    description: "Proceso ágil para cubrir sus necesidades en el menor tiempo posible."
+  }
+];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    {/* Hero Section */}
+    <section class="bg-hero pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <div class="container-site text-center">
+        <h1 class="section-title-gradient mb-6 animate-fade-in">Nuestros Servicios</h1>
+        <p class="section-subtitle mx-auto text-white/90 animate-fade-in-up">
+          Ofrecemos soluciones integrales y personal doméstico de confianza para cada necesidad de su hogar en Lima.
+        </p>
+      </div>
+    </section>
+
+    {/* Services Grid */}
+    <section class="section-padding bg-section-alt">
+      <div class="container-site">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {servicios.map((servicio) => (
+            <ServiceCard servicio={servicio} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Benefits / Why Choose Us */}
+    <section class="section-padding bg-white">
+      <div class="container-site">
+        <div class="section-header-centered">
+          <span class="section-eyebrow">¿Por qué elegirnos?</span>
+          <h2 class="section-title text-dark">La Diferencia de El Hogar de Nanis</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          {benefits.map((benefit) => (
+            <div class="flex flex-col items-center text-center p-8 rounded-2xl bg-light-surface border border-light-border hover:border-brand/30 transition-all duration-300">
+              <div class="w-16 h-16 rounded-full bg-brand/10 flex items-center justify-center text-brand mb-6 shadow-sm">
+                <Icon name={benefit.icon} class="w-8 h-8" />
+              </div>
+              <h3 class="text-xl font-bold text-dark mb-3">{benefit.title}</h3>
+              <p class="text-gray leading-relaxed text-sm">
+                {benefit.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+</Layout>

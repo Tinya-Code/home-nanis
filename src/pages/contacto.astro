@@ -1,0 +1,58 @@
+---
+// src/pages/contacto.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/contacto.json';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import ContactForm from '@/components/sections/ContactForm.astro';
+import ContactInfo from '@/components/sections/ContactInfo.astro';
+
+// Assets
+import libroReclamacionesImg from '@assets/libro_de_reclamaciones-300x206.png';
+
+const data = dataRaw;
+const { seo, title, subtitle, description, contactDetails, businessHours, legal } = data;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title={title} 
+      subtitle={`${subtitle} ${description}`} 
+      variant ="image"
+      align= "left" 
+      backgroundImage = "images/hogarNanis.jpg"
+      breadcrumbs={[
+        { label: 'Contacto' }
+      ]}
+    />
+
+    <section class="section-padding bg-white">
+      <div class="container-site">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Column Left: Map & Info */}
+          <div class="lg:col-span-5 xl:col-span-4">
+            <ContactInfo 
+              contactDetails={contactDetails}
+              businessHours={businessHours}
+              legal={legal}
+              libroReclamacionesImg={libroReclamacionesImg}
+            />
+          </div>
+
+          {/* Column Right: Form */}
+          <div class="lg:col-span-7 xl:col-span-8">
+            <ContactForm />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

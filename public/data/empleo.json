@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "Bolsa de Trabajo para Empleadas del Hogar y Niñeras en Lima | El Hogar de Nanis",
+    "description": "Postula a nuestra agencia. Tenemos excelentes ofertas de trabajo para niñeras cama adentro, asistentas del hogar y enfermeras técnicas en todos los distritos de Lima."
+  },
+  "title": "Bolsa de Trabajo Oficial en Lima",
+  "subtitle": "Únete a la gran familia de profesionales de El Hogar de Nanis.",
+  "description": "¿Buscas trabajo estable y seguro en Lima como empleada del hogar, nana o enfermera? Si tienes vocación de servicio y experiencia comprobada, postula hoy mismo a nuestra agencia. Te ofrecemos excelentes oportunidades laborales, ingresando a hogares previamente evaluados por nosotros.",
+  "requirements": [
+    "Experiencia mínima de 1 año comprobada en puestos similares (niñera, señora de limpieza, técnica en enfermería).",
+    "Referencias laborales verificables en Perú con teléfonos válidos (absolutamente no familiares).",
+    "Certificado de antecedentes policiales, penales o CERTiJOVEN vigente.",
+    "Copia simple de DNI actualizado o Carné de Extranjería / PTP.",
+    "Copia de recibo de servicios (agua o luz) de domicilio actual."
+  ],
+  "benefits": [
+    "Ingreso gratuito al programa continuo de capacitación 'El Hogar de Nanis Campus'.",
+    "Remuneraciones por encima del promedio del mercado laboral doméstico (sueldos justos).",
+    "Colocación en hogares seguros, respetuosos y previamente verificados en zonas céntricas de Lima.",
+    "Acompañamiento, defensa y soporte de nuestra área de asistencia social y psicológica."
+  ],
+  "jobOffers": [
+    {
+      "id": "ninera-cama-adentro-miraflores",
+      "position": "Niñera Experta (Cama Adentro)",
+      "location": "Miraflores / San Isidro, Lima",
+      "description": "Urgente: niñera con experiencia sólida en estimulación temprana para cuidado exclusivo de bebé de 1 año. Modalidad cama adentro libre domingos. Sueldo a tratar según calificaciones.",
+      "isActive": true
+    },
+    {
+      "id": "empleada-todo-servicio-surco",
+      "position": "Empleada Todo Servicio (Cama Afuera)",
+      "location": "La Molina / Surco, Lima",
+      "description": "Se solicita señora proactiva para mantenimiento de residencia y excelente cocina peruana criolla. Modalidad cama afuera (Lunes a Sábado). Trato directo, grato ambiente.",
+      "isActive": true
+    },
+    {
+      "id": "enfermera-tecnica-san-borja",
+      "position": "Enfermera Técnica Titulada",
+      "location": "San Borja, Lima",
+      "description": "Requerimos técnica en enfermería titulada o egresada para asistencia geriátrica de paciente en silla de ruedas. Turnos rotativos de 12 o 24 horas. Indispensable paciencia y vocación.",
+      "isActive": true
+    }
+  ],
+  "applicationForm": {
+    "title": "Registro Obligatorio de Hoja de Vida",
+    "description": "Si cumples el perfil, completa nuestro formulario digital con tu CV actualizado para entrar al proceso de selección masiva.",
+    "link": "https://forms.google.com/..."
+  }
+}

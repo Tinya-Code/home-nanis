@@ -1,11 +1,86 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/index.astro
+import Layout from '@/layouts/Layout.astro';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import ContactForm from '@/components/sections/ContactForm.astro';
+import ContactInfo from '@/components/sections/ContactInfo.astro';
+// Home Sections
+import HeroSection from '@/components/sections/HeroSection.astro';
+import CertBadgesSection from '@/components/sections/CertBadgesSection.astro';
+import ServicesSection from '@/components/sections/ServicesSection.astro';
+import WhyUsSection from '@/components/sections/WhyUsSection.astro';
+import ProcessSection from '@/components/sections/ProcessSection.astro';
+import TestimonialsSection from '@/components/sections/TestimonialsSection.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import FounderSection from '@/components/sections/FounderSection.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Data
+import siteData from '../../public/data/site.json';
+import serviciosRaw from '../../public/data/servicios.json';
+import testimoniosData from '../../public/data/testimonios.json';
+import contactDataRaw from '../../public/data/contacto.json';
+import quienesSomosRaw from '../../public/data/quienes-somos.json';
+
+// Assets
+import libroReclamacionesImg from '@assets/libro_de_reclamaciones-300x206.png';
+import marcelaImg from '@assets/marcelacubillos.jpg';
+
+import { buildLocalBusiness } from '@/lib/jsonld';
+
+const servicios = Array.isArray(serviciosRaw) ? serviciosRaw : Object.values(serviciosRaw);
+const { contactDetails, businessHours, legal } = contactDataRaw;
+const { founder } = quienesSomosRaw;
+
+// Preparar Schema LocalBusiness con AggregateRating para la Home
+const homeSchema = buildLocalBusiness(siteData.localSeo.schemaLocalBusiness, {
+  score: testimoniosData.globalRating.score.toString(),
+  count: testimoniosData.globalRating.totalReviews
+});
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title={siteData.name}
+  description={siteData.shortDescription}
+>
+  <script slot="head" type="application/ld+json" set:html={homeSchema} />
+
+  <NavBar />
+
+  <main id="main-content" tabindex="-1">
+    <HeroSection />
+    <CertBadgesSection />
+    <ServicesSection servicios={servicios as any[]} />
+    <WhyUsSection />
+    <ProcessSection />
+    <TestimonialsSection testimonios={testimoniosData.reviews} />
+    <CTASection />
+
+
+<FounderSection founder={founder} marcelaImg={marcelaImg} />
+    <section class="section-padding bg-white">
+      <div class="container-site">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Column Left: Map & Info */}
+          <div class="lg:col-span-5 xl:col-span-4">
+            <ContactInfo 
+              contactDetails={contactDetails}
+              businessHours={businessHours}
+              legal={legal}
+              libroReclamacionesImg={libroReclamacionesImg}
+            />
+          </div>
+
+          {/* Column Right: Form */}
+          <div class="lg:col-span-7 xl:col-span-8">
+            <ContactForm />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
 </Layout>

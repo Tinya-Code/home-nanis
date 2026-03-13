@@ -1,23 +1,83 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '@/styles/global.css';
+import '@/styles/global.css';
+import type { SEOMeta } from '@/lib/seo';
+import { buildTitle } from '@/lib/seo';
+import siteData from '../../public/data/site.json';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props extends SEOMeta {}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '/images/logo2.png',
+  noindex = false,
+} = Astro.props;
+
+const builtTitle = buildTitle(title);
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+
+// JSON-LD LocalBusiness desde el JSON de datos
+const schemaLD = JSON.stringify(siteData.localSeo.schemaLocalBusiness);
+---
+
+<!doctype html>
+<html lang="es-PE" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#810FC9" />
+
+    <!-- SEO Primary -->
+    <title>{builtTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={builtTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="es_PE" />
+    <meta property="og:site_name"   content={siteData.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={builtTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={new URL(ogImage, Astro.site).toString()} />
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/fonts/PlusJakartaSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/images/bannerfinal.png" as="image" />
+
+    <!-- Favicon -->
+    <link rel="icon"             href="/favicon.ico" sizes="any" />
+    <!-- <link rel="icon"             href="/favicon.svg" type="image/svg+xml" /> -->
+    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+
+    {/* LocalBusiness schema base si no se sobrecarga en el slot head */}
+    <script type="application/ld+json" set:html={schemaLD} />
+
+    <!-- Slot meta tags adicionales por página (BreadcrumbList, AggregateRating, etc.) -->
+    <slot name="head" />
+  </head>
+
+  <body class="bg-light-surface text-dark font-body antialiased">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4
+             focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand focus:text-white
+             focus:rounded-md focus:font-bold focus:shadow-lg"
+    >
+      Saltar al contenido principal
+    </a>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Capacitación para Niñeras y Empleadas del Hogar | El Hogar de Nanis, Lima",
+    "description": "Cursos presenciales y virtuales (campus online) en Lima de primeros auxilios pediátricos, estimulación temprana y etiqueta para personal doméstico y niñeras."
+  },
+  "title": "Capacitación y Talleres Especializados",
+  "subtitle": "Formando a la élite de profesionales del hogar en el Perú.",
+  "description": "En la agencia El Hogar de Nanis reclutamos y formamos. Sabemos que la excelencia en el servicio doméstico requiere actualización constante. Por ello, impartimos capacitaciones presenciales en nuestras oficinas de Lima y a través de un moderno campus virtual, elevando las competencias de nuestras niñeras, asistentas de limpieza y enfermeras técnicas.",
+  "programs": [
+    {
+      "id": "primeros-auxilios-pediatricos",
+      "title": "Certificación en Primeros Auxilios Pediátricos",
+      "description": "Taller intensivo para afrontar urgencias infantiles en el domicilio (atragantamiento en bebés, quemaduras, golpes, maniobra de Heimlich). Primordial para todas nuestras niñeras y nanas.",
+      "icon": "heart-pulse"
+    },
+    {
+      "id": "estimulacion-temprana-integral",
+      "title": "Estimulación Temprana y Neuromotora",
+      "description": "Desarrollo de habilidades para fomentar el progreso cognitivo y motriz del lactante en sus distintas etapas mediante material lúdico y cuentacuentos.",
+      "icon": "puzzle"
+    },
+    {
+      "id": "etiqueta-mesa-y-protocolo",
+      "title": "Protocolo, Etiqueta y Excelente Atención",
+      "description": "Formación dirigida a empleadas cama adentro y todo servicio. Aprenderán arreglo impecable de mesas formales, trato distinguido a invitados y protocolos de cortesía general.",
+      "icon": "coffee"
+    },
+    {
+      "id": "nutricion-loncheras-saludables",
+      "title": "Alta Nutrición y Preparación de Loncheras",
+      "description": "Taller dinámico sobre pirámide nutricional infantil y cocina saludable peruana para armar loncheras divertidas, combatiendo la anemia y fomentando el sano crecimiento.",
+      "icon": "apple"
+    }
+  ],
+  "campusVirtual": {
+    "title": "El Hogar de Nanis Campus 24/7",
+    "description": "Plataforma e-learning pionera para agencias en Perú. Nuestras colaboradoras ingresan con su DNI para repasar clases grabadas, rendir exámenes de certificación y mantenerse en la cima del mercado laboral doméstico.",
+    "link": "https://campus.elhogardenanis.com/",
+    "image": {
+      "alt": "Plataforma de estudio El Hogar de Nanis Campus OnLine para empleadas",
+      "localPath": "images/elhogardenaniscampus-1-300x223.png"
+    }
+  }
+}

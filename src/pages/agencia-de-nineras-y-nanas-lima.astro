@@ -1,0 +1,111 @@
+---
+// src/pages/agencia-de-nineras-y-nanas-lima.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/servicios.json';
+import sitemapData from '../../public/data/sitemap.json';
+import type { Servicio } from '@/types';
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import WhyUsSection from '@/components/sections/WhyUsSection.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import { Icon } from 'astro-icon/components';
+
+const servicios = dataRaw as Servicio[];
+const servicio = servicios.find(s => s.id === 'nineras-y-nanas')!;
+
+const routeInfo = sitemapData.routes.find(r => r.path === '/agencia-de-nineras-y-nanas-lima');
+const seo = routeInfo?.seo || {
+  title: "Agencia de Niñeras y Nanas en Lima | El Hogar de Nanis",
+  description: "Las mejores niñeras y nanas de confianza en Lima. Cuidado infantil especializado, estimulación temprana y seguridad para sus hijos."
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title="Agencia de Niñeras y Nanas en Lima" 
+      subtitle={`${servicio.shortDescription} Su tranquilidad y el bienestar de sus pequeños son nuestra máxima prioridad.`}
+      align="left"
+    />
+
+    {/* Detailed Feature Section */}
+    <section class="section-padding bg-white">
+       <div class="container-site">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+             <div class="flex flex-col gap-8">
+               <h2 class="section-title text-dark">Cuidado Infantil de Confianza</h2>
+               <p class="text-lg text-gray leading-relaxed italic">
+                 "{servicio.longDescription}"
+               </p>
+               <ul class="flex flex-col gap-4">
+                 {servicio.features.map(feature => (
+                   <li class="flex items-center gap-3 p-4 rounded-xl bg-light-surface border border-light-border">
+                     <div class="w-10 h-10 rounded-full bg-brand-alt/10 flex items-center justify-center text-brand-alt">
+                       <Icon name="lucide:heart" class="w-5 h-5" />
+                     </div>
+                     <span class="font-medium text-dark">{feature}</span>
+                   </li>
+                 ))}
+               </ul>
+             </div>
+             <div class="grid grid-cols-2 gap-4">
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 shadow-pink/5">
+                   <Icon name="lucide:baby" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Recién Nacidos</h3>
+                   <p class="text-xs text-gray">Especialistas en cuidados neonatales</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 mt-8 shadow-brand/5">
+                   <Icon name="lucide:book-open" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Estimulación</h3>
+                   <p class="text-xs text-gray">Actividades lúdicas y educativas</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 shadow-pink/5">
+                   <Icon name="lucide:clock" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Horarios</h3>
+                   <p class="text-xs text-gray">Cama adentro y cama afuera</p>
+                </div>
+                <div class="bg-section-alt p-6 rounded-2xl border border-border flex flex-col items-center text-center gap-3 mt-8 shadow-brand/5">
+                   <Icon name="lucide:user-check" class="w-10 h-10 text-brand-alt" />
+                   <h3 class="font-bold text-white">Filtradas</h3>
+                   <p class="text-xs text-gray">Test psicológicos de confiabilidad</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <WhyUsSection />
+
+    <section class="section-padding bg-section-alt text-center">
+       <div class="container-site">
+          <div class="max-w-3xl mx-auto">
+             <h2 class="section-title-gradient mb-6">Expertas cuidando lo que más quieres</h2>
+             <p class="text-gray text-lg mb-8">
+               Nuestras nanas son seleccionadas no solo por su experiencia técnica, sino por su vocación y valores, para que tus hijos crezcan en un entorno seguro y amoroso.
+             </p>
+             <div class="flex flex-wrap justify-center gap-6">
+                <div class="flex items-center gap-2">
+                   <Icon name="lucide:award" class="text-brand w-5 h-5" />
+                   <span class="text-white text-sm font-semibold">Referencias de Lima Top</span>
+                </div>
+                <div class="flex items-center gap-2">
+                   <Icon name="lucide:shield" class="text-brand w-5 h-5" />
+                   <span class="text-white text-sm font-semibold">Garantía de Reemplazo</span>
+                </div>
+                <div class="flex items-center gap-2">
+                   <Icon name="lucide:check-circle" class="text-brand w-5 h-5" />
+                   <span class="text-white text-sm font-semibold">Certificadas en RCP</span>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <CTASection />
+  </main>
+
+  <Footer />
+</Layout>

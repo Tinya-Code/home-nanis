@@ -1,0 +1,45 @@
+---
+// src/components/sections/TeamSection.astro
+import { Image } from 'astro:assets';
+import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
+
+interface Props {
+  teamSection: {
+    title: string;
+    description: string;
+    image: {
+      alt: string;
+    };
+  };
+  teamImg: any;
+}
+
+const { teamSection, teamImg } = Astro.props;
+---
+
+<section class="section-padding bg-white overflow-hidden">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="flex flex-col gap-6">
+        <span class="section-eyebrow">{teamSection.title}</span>
+        <h2 class="section-title text-dark">Expertos Reclutando para tu Hogar</h2>
+        <p class="text-lg text-gray leading-relaxed">
+          {teamSection.description}
+        </p>
+        <div class="mt-4">
+           <ButtonPrimary label="Contáctanos" href="/contacto" variant="gradient" />
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute inset-0 bg-brand/5 scale-125 blur-3xl"></div>
+        <Image 
+          src={teamImg} 
+          alt={teamSection.image.alt} 
+          class="relative rotate-3 z-10 "
+          width={500}
+          height={400}
+        />
+      </div>
+    </div>
+  </div>
+</section>

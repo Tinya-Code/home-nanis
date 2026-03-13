@@ -1,0 +1,92 @@
+---
+// src/components/sections/MethodologySection.astro
+import { Icon } from 'astro-icon/components';
+import SectionHeader from '@/components/sections/SectionHeader.astro';
+
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface Props {
+  steps: Step[];
+  differentiators: string[];
+}
+
+const { steps, differentiators } = Astro.props;
+---
+
+<section class="section-padding bg-section-alt relative">
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      
+      {/* Columna Izquierda: Pasos */}
+      <div class="flex flex-col gap-8">
+         <SectionHeader 
+            title="Nuestra Metodología" 
+            eyebrow="Paso a Paso" 
+            subtitle="Seguimos un protocolo estricto para garantizar que solo el mejor personal llegue a tu hogar."
+            variant="accent"
+         />
+
+         <div class="flex flex-col gap-0 mt-8">
+           {steps.map((step, idx) => (
+             <div class="flex gap-6 group animate-fade-right" style={`animation-delay: ${idx * 100}ms`}>
+               <div class="flex flex-col items-center">
+                  <div class="step-number group-hover:scale-110 transition-transform duration-300">
+                    {step.number}
+                  </div>
+                  {idx !== steps.length - 1 && <div class="step-connector"></div>}
+               </div>
+               <div class="pb-10 pt-2">
+                 <div class="flex items-center gap-3 mb-3">
+                   <Icon name={`lucide:${step.icon}`} class="w-6 h-6 text-brand-alt" />
+                   <h3 class="text-xl font-bold text-dark">{step.title}</h3>
+                 </div>
+                 <p class="text-gray leading-relaxed text-base max-w-xl">
+                   {step.description}
+                 </p>
+               </div>
+             </div>
+           ))}
+         </div>
+      </div>
+
+      {/* Columna Derecha: Diferenciadores (Sticky) */}
+      <div class="lg:sticky lg:top-32">
+        <div class="card p-8 lg:p-10 bg-gradient-to-br from-surface to-surface-alt border-brand/20 shadow-brand/10">
+          <h2 class="text-2xl font-bold text-dark mb-8 flex items-center gap-3">
+            <Icon name="lucide:sparkles" class="text-brand-alt" />
+            ¿Qué nos diferencia?
+          </h2>
+          
+          <ul class="flex flex-col gap-6">
+            {differentiators.map((diff) => (
+              <li class="flex gap-4">
+                <div class="flex-shrink-0 w-6 h-6 rounded-full bg-success/20 flex items-center justify-center text-success mt-1">
+                  <Icon name="lucide:check" class="w-4 h-4" />
+                </div>
+                <span class="text-gray leading-snug">{diff}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-10 pt-8 border-t border-border/50">
+             <div class="flex items-center gap-4 p-4 rounded-xl bg-brand/5 border border-brand/10">
+               <div class="w-12 h-12 rounded-full bg-brand/20 flex items-center justify-center text-brand">
+                 <Icon name="lucide:shield-check" class="w-7 h-7" />
+               </div>
+               <div>
+                 <p class="text-sm font-bold text-dark">Seguridad Certificada</p>
+                 <p class="text-xs text-gray">Validación por RENAPE y MTPE</p>
+               </div>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

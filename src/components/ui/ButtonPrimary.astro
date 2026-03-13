@@ -1,0 +1,84 @@
+---
+// src/components/ui/ButtonPrimary.astro
+
+/**
+ * ButtonPrimary
+ * ─────────────────
+ * Descripción: Botón principal de la aplicación. Puede funcionar como `<button>` o `<a>`.
+ * Props obligatorias: label
+ */
+
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  label: string;
+  href?: string;
+  variant?: 'primary' | 'gradient' | 'secondary' | 'outline' | 'ghost' | 'whatsapp';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  loading?: boolean;
+  fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  href,
+  variant = 'primary',
+  size = 'md',
+  loading = false,
+  fullWidth = false,
+  type = 'button',
+  external = false,
+  class: className = '',
+} = Astro.props;
+
+const variantClass = {
+  primary: 'btn-primary',
+  gradient: 'btn-gradient',
+  secondary: 'btn-secondary',
+  outline: 'btn-outline-brand',
+  ghost: 'btn-ghost',
+  whatsapp: 'btn-whatsapp',
+}[variant];
+
+const sizeClass = {
+  sm: 'btn-sm',
+  md: '',
+  lg: 'btn-lg',
+  xl: 'btn-xl',
+}[size];
+
+const classes = [variantClass, sizeClass, fullWidth ? 'w-full' : '', className].filter(Boolean).join(' ');
+const isLoading = loading;
+---
+
+{href ? (
+  <a
+    href={href}
+    class={classes}
+    aria-label={label}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+  >
+    <slot name="icon-left" />
+    {label}
+    <slot name="icon-right" />
+  </a>
+) : (
+  <button
+    type={type}
+    class={classes}
+    aria-busy={isLoading}
+    disabled={isLoading}
+  >
+    {isLoading && (
+      <Icon name="lucide:loader-2" class="w-4 h-4 animate-spin" aria-hidden="true" />
+    )}
+    {!isLoading && <slot name="icon-left" />}
+    <span class={isLoading ? 'sr-only' : ''}>{isLoading ? 'Procesando...' : label}</span>
+    {isLoading && <span aria-live="polite" class="ml-2">Cargando...</span>}
+    {!isLoading && <slot name="icon-right" />}
+  </button>
+)}

@@ -1,0 +1,103 @@
+{
+  "id": "5sudscn0usx",
+  "config": {
+    "url": "https://elhogardenanis.com",
+    "depth": 2,
+    "maxPages": 20,
+    "includeImages": true,
+    "downloadImages": true,
+    "includeLinks": true,
+    "timeout": 30000,
+    "delay": 1500,
+    "respectRobots": true
+  },
+  "status": "success",
+  "createdAt": "2026-03-12T21:15:41.248Z",
+  "pagesScraped": 16,
+  "pages": [
+    {
+      "url": "https://elhogardenanis.com/",
+      "file": "index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/quienes-somos/",
+      "file": "quienes-somos/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/como-trabajamos/",
+      "file": "como-trabajamos/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/nuestros-servicios/",
+      "file": "nuestros-servicios/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/capacitacion/",
+      "file": "capacitacion/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/empleo/",
+      "file": "empleo/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/registro-de-hojas-de-vida/",
+      "file": "registro-de-hojas-de-vida/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/registro-de-clientes/",
+      "file": "registro-de-clientes/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/2018/07/28/hola-mundo/",
+      "file": "2018/07/28/hola-mundo/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/category/uncategorized/",
+      "file": "category/uncategorized/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/author/admin-2/",
+      "file": "author/admin-2/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/2018/07/28/hello-world/",
+      "file": "2018/07/28/hello-world/index.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/imagenes/redempleoseguro.jpg",
+      "file": "imagenes/redempleoseguro.jpg.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/ofertastrabajo",
+      "file": "ofertastrabajo.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/wp-login.php?redirect_to=https%3a%2f%2felhogardenanis.com%2f2018%2f07%2f28%2fhola-mundo%2f",
+      "file": "wp-login.php.json",
+      "status": "success"
+    },
+    {
+      "url": "https://elhogardenanis.com/wp-login.php?redirect_to=https%3a%2f%2felhogardenanis.com%2f2018%2f07%2f28%2fhello-world%2f",
+      "file": "wp-login.php.json",
+      "status": "success"
+    }
+  ],
+  "errors": [],
+  "outputPath": "/Users/alejandro/Desktop/trabajo/scraping-app/scrape-output/5sudscn0usx--elhogardenanis.com",
+  "imagesDownloaded": 97,
+  "completedAt": "2026-03-12T21:18:35.572Z"
+}

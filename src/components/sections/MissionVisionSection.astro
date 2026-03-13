@@ -1,0 +1,20 @@
+---
+// src/components/sections/MissionVisionSection.astro
+import InfoCard from '@/components/ui/InfoCard.astro';
+
+interface Props {
+  mission: string;
+  vision: string;
+}
+
+const { mission, vision } = Astro.props;
+---
+
+<section class="section-padding bg-light-surface">
+  <div class="container-site">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+      <InfoCard title="Nuestra Misión" description={mission} icon="target" variant="accent" />
+      <InfoCard title="Nuestra Visión" description={vision} icon="eye" variant="accent" />
+    </div>
+  </div>
+</section>

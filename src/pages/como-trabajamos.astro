@@ -1,0 +1,36 @@
+---
+// src/pages/como-trabajamos.astro
+import Layout from '@/layouts/Layout.astro';
+import dataRaw from '../../public/data/como-trabajamos.json';
+import type { ComoTrabajamosData } from '@/types';
+
+import NavBar from '@/components/sections/NavBar.astro';
+import Footer from '@/components/sections/Footer.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import MethodsIntro from '@/components/sections/MethodsIntro.astro';
+import MethodologySection from '@/components/sections/MethodologySection.astro';
+
+const data = dataRaw as ComoTrabajamosData;
+const { seo, title, subtitle, description, steps, differentiators } = data;
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <NavBar />
+  
+  <main id="main-content">
+    <PageHeader 
+      title={title} 
+      subtitle={subtitle} 
+      breadcrumbs={[{ label: 'Cómo Trabajamos' }]}
+    />
+    
+    <MethodsIntro description={description} />
+    
+    <MethodologySection steps={steps} differentiators={differentiators} />
+
+    <CTASection />
+  </main>
+
+  <Footer />
+</Layout>

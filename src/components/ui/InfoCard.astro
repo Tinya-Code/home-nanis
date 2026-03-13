@@ -1,0 +1,178 @@
+---
+// src/components/ui/InfoCard.astro
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  variant?: 'light' | 'dark' | 'accent' | 'primary';
+  centered?: boolean;
+}
+
+const { title, description, icon, variant = 'light', centered = false } = Astro.props;
+---
+
+<div class:list={[
+  'card-feature',
+  variant,
+  { 'centered': centered }
+]}>
+  <div class="overlay"></div>
+  
+  {icon && (
+    <div class="circle">
+      <Icon name={icon.includes(':') ? icon : `lucide:${icon}`} class="w-10 h-10 relative z-10" />
+    </div>
+  )}
+
+  <div class:list={["content-wrapper z-10", { "items-center text-center": centered }]}>
+    <h3 class="card-title">{title}</h3>
+    <p class="card-description">
+      {description}
+    </p>
+  </div>
+</div>
+
+<style>
+  .card-feature {
+    --bg-color: #810FC9;
+    --bg-color-light: #9D4EDD;
+    --text-color-hover: #ffffff;
+    --box-shadow-color: rgba(129, 15, 201, 0.2);
+    
+    width: 100%;
+    /* max-width: 280px; Removing fixed max-width to let grid control it */
+    min-height: 340px;
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 24px;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+  }
+
+  .card-feature.centered {
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-feature:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.05),
+      0 10px 20px var(--box-shadow-color);
+    border-color: transparent;
+  }
+
+  .card-feature:hover .overlay {
+    transform: scale(8); /* Ajustado para cubrir toda la card si es más grande */
+  }
+
+  .card-feature:hover .circle {
+    border-color: var(--bg-color-light);
+    background: var(--bg-color);
+    color: #ffffff;
+  }
+
+  .card-feature:hover .circle:after {
+    background: var(--bg-color-light);
+  }
+
+  .card-feature:hover .card-title,
+  .card-feature:hover .card-description {
+    color: var(--text-color-hover);
+  }
+
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid var(--bg-color);
+    color: var(--color-brand);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease-out;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .circle:after {
+    content: "";
+    width: 86px;
+    height: 86px;
+    display: block;
+    position: absolute;
+    background: var(--bg-color);
+    opacity: 0.1;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    transition: all 0.3s ease-out;
+  }
+
+  .card-feature:hover .circle:after {
+    opacity: 1;
+    background: var(--bg-color-light);
+  }
+
+  .overlay {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    position: absolute;
+    top: 50px;
+    left: 50px; /* Default for non-centered */
+    z-index: 0;
+    transition: transform 0.4s ease-out;
+    pointer-events: none;
+  }
+
+  .card-feature.centered .overlay {
+    left: 50%;
+    margin-left: -40px;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-dark);
+    transition: color 0.3s ease;
+    margin: 0;
+  }
+
+  .card-description {
+    font-size: 0.875rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+    margin: 0;
+  }
+
+  /* Support for dark variant if needed */
+  .card-feature.dark {
+    background: var(--color-dark);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .card-feature.dark .card-title { color: white; }
+  .card-feature.dark .card-description { color: rgba(255,255,255,0.7); }
+</style>

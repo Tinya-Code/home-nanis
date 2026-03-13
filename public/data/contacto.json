@@ -1,0 +1,65 @@
+{
+  "seo": {
+    "title": "Oficinas y Contacto en Lima | Agencia El Hogar de Nanis",
+    "description": "Contacta a El Hogar de Nanis hoy. Nuestra central en Pueblo Libre, Lima, te atiende por WhatsApp o teléfono para conseguir a la mejor niñera o empleada."
+  },
+  "title": "Ponte en Contacto en Lima, Perú",
+  "subtitle": "Estamos listos para asesorarte personalmente.",
+  "description": "¿Tienes urgencia por contratar a una niñera, empleada cama adentro o enfermera técnica geriátrica para un distrito de Lima Metropolitana? Llena el formulario o contáctanos por WhatsApp. Un especialista en reclutamiento doméstico te atenderá de inmediato.",
+  "contactDetails": [
+    {
+      "id": "tel-fijo",
+      "type": "Phone",
+      "label": "Central Telefónica (Lima)",
+      "value": "01-2282987",
+      "icon": "phone",
+      "link": "tel:+5112282987"
+    },
+    {
+      "id": "celulares-nacionales",
+      "type": "Mobile",
+      "label": "Celulares",
+      "value": "941 141 780 / 967 247 519",
+      "icon": "smartphone",
+      "link": "tel:+51941141780"
+    },
+    {
+      "id": "whatsapp-atencion",
+      "type": "WhatsApp",
+      "label": "Atención Inmediata WhatsApp",
+      "value": "941 141 780",
+      "icon": "message-circle",
+      "link": "https://wa.me/51941141780?text=Hola,%20busco%20personal%20dom%C3%A9stico%20en%20Lima"
+    },
+    {
+      "id": "correo-oficial",
+      "type": "Email",
+      "label": "Correo de Recursos Humanos",
+      "value": "info@elhogardenanis.com",
+      "icon": "mail",
+      "link": "mailto:info@elhogardenanis.com"
+    },
+    {
+      "id": "direccion-pueblo-libre",
+      "type": "Location",
+      "label": "Oficina Central en Lima",
+      "value": "Calle Alfredo Maldonado 654 Oficina 1 A – Pueblo Libre – Lima – Perú",
+      "icon": "map-pin",
+      "link": "https://maps.google.com/?q=-12.073453,-77.062031"
+    }
+  ],
+  "businessHours": {
+    "title": "Horarios de Atención y Entrevistas",
+    "days": "Lunes a Viernes: 8:00 AM a 7:00 PM",
+    "weekends": "Sábados: 8:00 AM a 2:00 PM (-05:00 PET/ECT)"
+  },
+  "legal": {
+    "libroReclamaciones": {
+      "text": "Libro de Reclamaciones Oficial",
+      "image": {
+        "alt": "Libro de reclamaciones virtual INDECOPI",
+        "localPath": "images/libro_de_reclamaciones-300x206.png"
+      }
+    }
+  }
+}

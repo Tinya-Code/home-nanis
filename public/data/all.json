@@ -1,0 +1,572 @@
+{
+  "site": {
+    "name": "El Hogar de Nanis",
+    "slogan": "Confianza y Seguridad para tu familia. Evaluamos y seleccionamos con criterio profesional.",
+    "shortDescription": "Somos una agencia autorizada especializada en la selección rigurosa de personal doméstico en Lima Central, Sur y Norte: niñeras exclusivas, enfermeras técnicas para adulto mayor y empleadas del hogar.",
+    "localSeo": {
+      "targetLocations": [
+        "Lima",
+        "Miraflores",
+        "San Isidro",
+        "Surco",
+        "La Molina",
+        "San Borja",
+        "Pueblo Libre"
+      ],
+      "mainKeywords": [
+        "agencia de niñeras",
+        "empleadas del hogar lima",
+        "agencia de empleos domésticos",
+        "cuidado de adulto mayor lima",
+        "nanas cama adentro"
+      ],
+      "schemaLocalBusiness": {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "El Hogar de Nanis",
+        "image": "https://www.elhogardenanis.com/images/logo2.png",
+        "@id": "https://www.elhogardenanis.com",
+        "url": "https://www.elhogardenanis.com",
+        "telephone": "+51012282987",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Alfredo Maldonado 654 Oficina 1 A",
+          "addressLocality": "Pueblo Libre",
+          "addressRegion": "Lima",
+          "postalCode": "15084",
+          "addressCountry": "PE"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -12.073453,
+          "longitude": -77.062031
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Saturday"
+            ],
+            "opens": "08:00",
+            "closes": "14:00"
+          }
+        ]
+      }
+    },
+    "contact": {
+      "phone": "01-2282987",
+      "mobile": [
+        "941141780",
+        "967247519"
+      ],
+      "email": "info@elhogardenanis.com",
+      "address": "Calle Alfredo Maldonado 654 Oficina 1 A – Pueblo Libre – Lima – Perú",
+      "whatsapp": "941141780"
+    },
+    "businessHours": "Lunes a Viernes: 8:00 am a 7:00 pm | Sábados: 8:00 am a 2:00 pm",
+    "certifications": [
+      "Autorizados por el Ministerio de Trabajo",
+      "Resolución Sub-Directorial Nro. 070-2018-MTPE/1/20.52-RENAPE"
+    ],
+    "socialMedia": [
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/elhogardenanis"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/channel/UCgnO_a1zEyIdnJKmR1xhEYQ"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/elhogardenanis"
+      }
+    ],
+    "images": {
+      "logo": {
+        "alt": "Agencia de Niñeras y Empleadas del Hogar - El Hogar de Nanis",
+        "localPath": "images/logo2.png"
+      },
+      "hero": {
+        "alt": "Familia de Lima feliz gracias a la agencia El Hogar de Nanis",
+        "localPath": "images/bannerfinal.png"
+      }
+    }
+  },
+  "servicios": [
+    {
+      "id": "nineras-y-nanas",
+      "title": "Niñeras y Nanas en Lima",
+      "shortDescription": "Cuidadoras infantiles calificadas en Lima, especializadas en estimulación temprana y acompañamiento seguro.",
+      "longDescription": "Sabemos que dejar a tus hijos al cuidado de otra persona es una decisión importante. En El Hogar de Nanis, nuestras niñeras y nanas pasan por un riguroso proceso de selección en Lima que incluye evaluaciones psicológicas y verificación de antecedentes. Encontramos a la profesional ideal para la edad y necesidades de tu bebé, fomentando vínculos de confianza a largo plazo.",
+      "seoKeywords": [
+        "niñeras lima",
+        "nana cama adentro",
+        "cuidado infantil",
+        "nanas de confianza lima",
+        "agencia de niñeras perú"
+      ],
+      "features": [
+        "Estimulación temprana adaptada a la edad",
+        "Apoyo en tareas escolares",
+        "Cuidado de la alimentación e higiene",
+        "Preparación de loncheras nutritivas"
+      ],
+      "image": {
+        "alt": "Servicio de Niñera exclusiva y de confianza en Lima",
+        "localPath": "images/ninerasexclusivas.jpg"
+      }
+    },
+    {
+      "id": "empleadas-del-hogar",
+      "title": "Empleadas del Hogar de Confianza",
+      "shortDescription": "Personal de limpieza, lavado y cocina con amplia experiencia para mantener tu hogar en Lima impecable.",
+      "longDescription": "Ofrecemos personal doméstico altamente capacitado para asistirte en todas las labores de la casa en distritos como Miraflores, San Isidro, Surco, y todo Lima. Nuestro equipo se encarga de la limpieza profunda, lavado, planchado y cocina (peruana e internacional), adaptándose a tus costumbres. Contamos con modalidades cama adentro, cama afuera y por horas.",
+      "seoKeywords": [
+        "empleadas del hogar lima",
+        "agencia de empleos domésticos",
+        "señora de limpieza lima",
+        "cocinera cama adentro",
+        "personal de limpieza casa lima"
+      ],
+      "features": [
+        "Limpieza y mantenimiento general del hogar",
+        "Lavandería y planchado",
+        "Cocina peruana e internacional básica",
+        "Organización de espacios"
+      ],
+      "image": {
+        "alt": "Empleada del hogar profesional trabajando en Lima",
+        "localPath": "images/empleadasdelhogar.jpg"
+      }
+    },
+    {
+      "id": "cuidado-adulto-mayor",
+      "title": "Cuidado del Adulto Mayor (Enfermeras Técnicas)",
+      "shortDescription": "Enfermeras técnicas dedicadas a brindar compañía, cuidados geriátricos y amor a tus seres queridos en Lima.",
+      "longDescription": "El cuidado de los adultos mayores requiere empatía y conocimientos técnicos. Nuestras enfermeras técnicas en Lima están preparadas para administrar medicamentos, controlar signos vitales, asistir en higiene personal y terapias de rehabilitación básicas. Mejoramos su calidad de vida con un acompañamiento respetuoso y cálido.",
+      "seoKeywords": [
+        "cuidado adulto mayor lima",
+        "enfermera técnica a domicilio",
+        "cuidado de ancianos lima",
+        "asistencia geriátrica domicilio peru",
+        "cuidadoras de abuelos"
+      ],
+      "features": [
+        "Control de medicación y signos vitales",
+        "Asistencia en higiene y alimentación",
+        "Acompañamiento a citas médicas en clínicas locales",
+        "Ejercicios de estimulación cognitiva"
+      ],
+      "image": {
+        "alt": "Enfermera técnica especializada cuidando adulto mayor en Lima",
+        "localPath": "images/enfermerastecnicas.jpg"
+      }
+    },
+    {
+      "id": "empleada-y-ninera",
+      "title": "Asistentes del Hogar (Todo Servicio)",
+      "shortDescription": "Personal doméstico versátil que combina las labores de limpieza del hogar con el cuidado infantil.",
+      "longDescription": "Para familias limeñas que buscan apoyo integral, ofrecemos asistentes 'todo servicio'. Trabajan manteniendo el orden, la limpieza y la buena sazón, sin descuidar el cuidado de los niños cuando los padres están fuera. Una solución práctica y segura para el ritmo de vida actual.",
+      "seoKeywords": [
+        "empleada todo servicio lima",
+        "nana y empleada del hogar",
+        "asistenta del hogar lima",
+        "señora cama adentro y afuera para niños",
+        "niñera y limpieza"
+      ],
+      "features": [
+        "Combinación integral de tareas domésticas y cuidado infantil",
+        "Soporte indispensable para madres y padres trabajadores",
+        "Flexibilidad y adaptación a rutinas complejas",
+        "Supervisión constante de menores"
+      ],
+      "image": {
+        "alt": "Asistente del hogar todo servicio en vivienda",
+        "localPath": "images/empleadayninera.jpg"
+      }
+    }
+  ],
+  "quienesSomos": {
+    "seo": {
+      "title": "Agencia de Empleos Confiable en Lima | El Hogar de Nanis",
+      "description": "Conoce a El Hogar de Nanis, la agencia peruana líder en personal doméstico y niñeras, destacada por sus estrictos procesos de evaluación en Lima."
+    },
+    "title": "¿Quiénes Somos?",
+    "subtitle": "Más que una agencia de empleos, tu mejor aliado en el hogar.",
+    "history": "Fundamos 'El Hogar de Nanis' en Lima, Perú, con la visión de aportar soluciones confiables para las familias. Hemos construido una base de datos con los perfiles más calificados: niñeras, enfermeras técnicas, empleadas del hogar, asistentas personales, cocineros y mayordomos. Cada integrante de nuestra red ha pasado por estrictos filtros de seguridad.",
+    "mission": "Ofrecer un servicio de reclutamiento de personal doméstico de la más alta calidad y profesionalismo en Lima Metropolitana. Entendemos que cada familia es un universo único y seleccionamos al personal ideal que se adapte perfectamente a su hogar.",
+    "vision": "Consolidarnos como la agencia número uno y más segura en selección de personal doméstico especializado en todo el Perú, garantizando la paz mental de nuestros clientes y promoviendo el empleo formal.",
+    "values": [
+      {
+        "icon": "shield",
+        "title": "Confianza",
+        "description": "El pilar de nuestra agencia. Garantizamos evaluaciones psicológicas y referencias 100% comprobadas localmente."
+      },
+      {
+        "icon": "heart",
+        "title": "Empatía",
+        "description": "Entendemos las costumbres y dinámicas de vida de las familias en los diversos distritos de Lima."
+      },
+      {
+        "icon": "award",
+        "title": "Profesionalismo",
+        "description": "Nuestro sólido equipo de recursos humanos recluta con criterio humano y estrictos estándares."
+      },
+      {
+        "icon": "users",
+        "title": "Compromiso",
+        "description": "Seguimiento y garantía efectiva durante la adaptación de su nuevo personal en casa."
+      }
+    ],
+    "teamSection": {
+      "title": "Nuestros Profesionales en Reclutamiento",
+      "description": "Contamos con psicólogos corporativos y especialistas en recursos humanos dedicados a filtrar a cientos de candidatas, asegurando que solo el personal doméstico más capaz, honrado y saludable llegue a la puerta de tu casa.",
+      "image": {
+        "alt": "Equipo de profesionales de recursos humanos de la agencia El Hogar de Nanis en Lima",
+        "localPath": "images/elmejor-300x241.png"
+      }
+    },
+    "images": [
+      {
+        "alt": "Sede principal de la agencia de empleos El Hogar de Nanis",
+        "localPath": "images/hogarNanis.jpg"
+      },
+      {
+        "alt": "Certificación de Red de Empleo Seguro en Lima",
+        "localPath": "images/redempleoseguro.jpg"
+      }
+    ]
+  },
+  "comoTrabajamos": {
+    "seo": {
+      "title": "Nuestro Proceso de Selección Segura en Lima | El Hogar de Nanis",
+      "description": "El riguroso proceso de El Hogar de Nanis garantiza empleadas del hogar y niñeras en Lima con antecedentes verificados, evaluación psicológica y total confiabilidad para su familia."
+    },
+    "title": "Cómo Trabajamos: Nuestro Proceso de Selección",
+    "subtitle": "Un método riguroso diseñado para la tranquilidad y seguridad de tu familia en Lima.",
+    "description": "El objetivo principal de El Hogar de Nanis es brindarle absoluta paz mental cuando confía el cuidado de sus seres queridos y de su hogar peruano a nuestro personal. Implementamos un cuidadoso y detallado filtro de selección, evaluando con criterio profesional a la candidata ideal para cuidar de lo que más valora: su familia.",
+    "steps": [
+      {
+        "stepNumber": 1,
+        "title": "Análisis del Perfil Familiar",
+        "description": "Nos entrevistamos para comprender a fondo la dinámica de tu hogar limeño, las edades de tus hijos y horarios. Esta información es vital para emparejarte con la niñera o empleada ideal.",
+        "icon": "clipboard-list"
+      },
+      {
+        "stepNumber": 2,
+        "title": "Búsqueda Especializada en Lima",
+        "description": "Buscamos dentro de nuestra consolidada base de datos a los prospectos que encajen con exactitud en la jornada y responsabilidades requeridas.",
+        "icon": "database"
+      },
+      {
+        "stepNumber": 3,
+        "title": "Filtro Psicológico y Antecedentes (CERTiJOVEN)",
+        "description": "Aplicamos evaluaciones psicológicas especializadas y auditamos los antecedentes penales, judiciales, policiales y referencias laborales en el Perú con total meticulosidad.",
+        "icon": "user-check"
+      },
+      {
+        "stepNumber": 4,
+        "title": "Ronda de Entrevistas Finales",
+        "description": "Presentamos los CVs más aptos para que entrevistes personalmente o por videollamada a las candidatas y selecciones a la que te genere mayor confianza.",
+        "icon": "users"
+      },
+      {
+        "stepNumber": 5,
+        "title": "Contratación y Respaldo Continuo",
+        "description": "Monitoreamos la adaptación durante los primeros meses. Ofrecemos garantía de reemplazo dentro del plazo establecido para garantizar su satisfacción al 100%.",
+        "icon": "shield-check"
+      }
+    ],
+    "differentiators": [
+      "Evaluaciones de personalidad y confiabilidad por psicólogos colegiados en Perú.",
+      "Constatación domiciliaria y rigor en el cruzado de referencias nacionales.",
+      "Talleres y capacitaciones presenciales y online para niñeras y enfermeras técnicas.",
+      "Agencia de empleo debidamente inscrita y avalada por el Ministerio de Trabajo del Perú (RENAPE)."
+    ]
+  },
+  "capacitacion": {
+    "seo": {
+      "title": "Capacitación para Niñeras y Empleadas del Hogar | El Hogar de Nanis, Lima",
+      "description": "Cursos presenciales y virtuales (campus online) en Lima de primeros auxilios pediátricos, estimulación temprana y etiqueta para personal doméstico y niñeras."
+    },
+    "title": "Capacitación y Talleres Especializados",
+    "subtitle": "Formando a la élite de profesionales del hogar en el Perú.",
+    "description": "En la agencia El Hogar de Nanis reclutamos y formamos. Sabemos que la excelencia en el servicio doméstico requiere actualización constante. Por ello, impartimos capacitaciones presenciales en nuestras oficinas de Lima y a través de un moderno campus virtual, elevando las competencias de nuestras niñeras, asistentas de limpieza y enfermeras técnicas.",
+    "programs": [
+      {
+        "id": "primeros-auxilios-pediatricos",
+        "title": "Certificación en Primeros Auxilios Pediátricos",
+        "description": "Taller intensivo para afrontar urgencias infantiles en el domicilio (atragantamiento en bebés, quemaduras, golpes, maniobra de Heimlich). Primordial para todas nuestras niñeras y nanas.",
+        "icon": "heart-pulse"
+      },
+      {
+        "id": "estimulacion-temprana-integral",
+        "title": "Estimulación Temprana y Neuromotora",
+        "description": "Desarrollo de habilidades para fomentar el progreso cognitivo y motriz del lactante en sus distintas etapas mediante material lúdico y cuentacuentos.",
+        "icon": "puzzle"
+      },
+      {
+        "id": "etiqueta-mesa-y-protocolo",
+        "title": "Protocolo, Etiqueta y Excelente Atención",
+        "description": "Formación dirigida a empleadas cama adentro y todo servicio. Aprenderán arreglo impecable de mesas formales, trato distinguido a invitados y protocolos de cortesía general.",
+        "icon": "coffee"
+      },
+      {
+        "id": "nutricion-loncheras-saludables",
+        "title": "Alta Nutrición y Preparación de Loncheras",
+        "description": "Taller dinámico sobre pirámide nutricional infantil y cocina saludable peruana para armar loncheras divertidas, combatiendo la anemia y fomentando el sano crecimiento.",
+        "icon": "apple"
+      }
+    ],
+    "campusVirtual": {
+      "title": "El Hogar de Nanis Campus 24/7",
+      "description": "Plataforma e-learning pionera para agencias en Perú. Nuestras colaboradoras ingresan con su DNI para repasar clases grabadas, rendir exámenes de certificación y mantenerse en la cima del mercado laboral doméstico.",
+      "link": "https://campus.elhogardenanis.com/",
+      "image": {
+        "alt": "Plataforma de estudio El Hogar de Nanis Campus OnLine para empleadas",
+        "localPath": "images/elhogardenaniscampus-1-300x223.png"
+      }
+    }
+  },
+  "empleo": {
+    "seo": {
+      "title": "Bolsa de Trabajo para Empleadas del Hogar y Niñeras en Lima | El Hogar de Nanis",
+      "description": "Postula a nuestra agencia. Tenemos excelentes ofertas de trabajo para niñeras cama adentro, asistentas del hogar y enfermeras técnicas en todos los distritos de Lima."
+    },
+    "title": "Bolsa de Trabajo Oficial en Lima",
+    "subtitle": "Únete a la gran familia de profesionales de El Hogar de Nanis.",
+    "description": "¿Buscas trabajo estable y seguro en Lima como empleada del hogar, nana o enfermera? Si tienes vocación de servicio y experiencia comprobada, postula hoy mismo a nuestra agencia. Te ofrecemos excelentes oportunidades laborales, ingresando a hogares previamente evaluados por nosotros.",
+    "requirements": [
+      "Experiencia mínima de 1 año comprobada en puestos similares (niñera, señora de limpieza, técnica en enfermería).",
+      "Referencias laborales verificables en Perú con teléfonos válidos (absolutamente no familiares).",
+      "Certificado de antecedentes policiales, penales o CERTiJOVEN vigente.",
+      "Copia simple de DNI actualizado o Carné de Extranjería / PTP.",
+      "Copia de recibo de servicios (agua o luz) de domicilio actual."
+    ],
+    "benefits": [
+      "Ingreso gratuito al programa continuo de capacitación 'El Hogar de Nanis Campus'.",
+      "Remuneraciones por encima del promedio del mercado laboral doméstico (sueldos justos).",
+      "Colocación en hogares seguros, respetuosos y previamente verificados en zonas céntricas de Lima.",
+      "Acompañamiento, defensa y soporte de nuestra área de asistencia social y psicológica."
+    ],
+    "jobOffers": [
+      {
+        "id": "ninera-cama-adentro-miraflores",
+        "position": "Niñera Experta (Cama Adentro)",
+        "location": "Miraflores / San Isidro, Lima",
+        "description": "Urgente: niñera con experiencia sólida en estimulación temprana para cuidado exclusivo de bebé de 1 año. Modalidad cama adentro libre domingos. Sueldo a tratar según calificaciones.",
+        "isActive": true
+      },
+      {
+        "id": "empleada-todo-servicio-surco",
+        "position": "Empleada Todo Servicio (Cama Afuera)",
+        "location": "La Molina / Surco, Lima",
+        "description": "Se solicita señora proactiva para mantenimiento de residencia y excelente cocina peruana criolla. Modalidad cama afuera (Lunes a Sábado). Trato directo, grato ambiente.",
+        "isActive": true
+      },
+      {
+        "id": "enfermera-tecnica-san-borja",
+        "position": "Enfermera Técnica Titulada",
+        "location": "San Borja, Lima",
+        "description": "Requerimos técnica en enfermería titulada o egresada para asistencia geriátrica de paciente en silla de ruedas. Turnos rotativos de 12 o 24 horas. Indispensable paciencia y vocación.",
+        "isActive": true
+      }
+    ],
+    "applicationForm": {
+      "title": "Registro Obligatorio de Hoja de Vida",
+      "description": "Si cumples el perfil, completa nuestro formulario digital con tu CV actualizado para entrar al proceso de selección masiva.",
+      "link": "https://forms.google.com/..."
+    }
+  },
+  "testimonios": {
+    "seo": {
+      "title": "Testimonios y Reseñas de Clientes en Lima | El Hogar de Nanis",
+      "description": "Lee las opiniones de familias peruanas satisfechas con nuestras empleadas del hogar, niñeras cama adentro y enfermeras en Miraflores, San Isidro y Lima."
+    },
+    "title": "Testimonios",
+    "subtitle": "Lo que dicen nuestras familias en Lima.",
+    "description": "La máxima satisfacción de la agencia El Hogar de Nanis es ver a padres e hijos tranquilos en su propia casa. Estas son algunas de las experiencias reales de familias peruanas que confiaron en nuestro estricto proceso de selección de personal doméstico.",
+    "reviews": [
+      {
+        "id": "testimonio-nana-miraflores",
+        "name": "Valeria C.",
+        "role": "Madre de dos hijos (Miraflores)",
+        "comment": "Estaba desesperada por encontrar a alguien de confianza luego de mi post-natal. Contacté a la agencia y en menos de una semana me presentaron a María. Ella no solo cuida a mi bebé, sino que lo estimula, le canta y es muy respetuosa. Mil gracias por la excelente selección de niñeras en Lima.",
+        "rating": 5
+      },
+      {
+        "id": "testimonio-enfermera-sanisidro",
+        "name": "Familia Rodríguez Mendoza",
+        "role": "Residentes en San Isidro",
+        "comment": "Nos recomendaron El Hogar de Nanis para contratar una persona que ayude con mi mamá que está en silla de ruedas. La enfermera técnica que nos enviaron tiene una paciencia increíble. Profesionalismo y puntualidad desde el primer momento.",
+        "rating": 5
+      },
+      {
+        "id": "testimonio-empleada-lamolina",
+        "name": "Carlos T.",
+        "role": "Padre trabajador (La Molina)",
+        "comment": "Ambos trabajamos todo el día y necesitábamos una nana que además nos ayude con la cocina y limpieza de la casa. El proceso de evaluación psicológica de la agencia nos dio mucha seguridad. Llevamos 8 meses con nuestra empleada todo servicio y estamos felices.",
+        "rating": 5
+      }
+    ],
+    "globalRating": {
+      "score": 4.8,
+      "totalReviews": "150+"
+    }
+  },
+  "contacto": {
+    "seo": {
+      "title": "Oficinas y Contacto en Lima | Agencia El Hogar de Nanis",
+      "description": "Contacta a El Hogar de Nanis hoy. Nuestra central en Pueblo Libre, Lima, te atiende por WhatsApp o teléfono para conseguir a la mejor niñera o empleada."
+    },
+    "title": "Ponte en Contacto en Lima, Perú",
+    "subtitle": "Estamos listos para asesorarte personalmente.",
+    "description": "¿Tienes urgencia por contratar a una niñera, empleada cama adentro o enfermera técnica geriátrica para un distrito de Lima Metropolitana? Llena el formulario o contáctanos por WhatsApp. Un especialista en reclutamiento doméstico te atenderá de inmediato.",
+    "contactDetails": [
+      {
+        "id": "tel-fijo",
+        "type": "Phone",
+        "label": "Central Telefónica (Lima)",
+        "value": "01-2282987",
+        "icon": "phone",
+        "link": "tel:+5112282987"
+      },
+      {
+        "id": "celulares-nacionales",
+        "type": "Mobile",
+        "label": "Celulares",
+        "value": "941 141 780 / 967 247 519",
+        "icon": "smartphone",
+        "link": "tel:+51941141780"
+      },
+      {
+        "id": "whatsapp-atencion",
+        "type": "WhatsApp",
+        "label": "Atención Inmediata WhatsApp",
+        "value": "941 141 780",
+        "icon": "message-circle",
+        "link": "https://wa.me/51941141780?text=Hola,%20busco%20personal%20dom%C3%A9stico%20en%20Lima"
+      },
+      {
+        "id": "correo-oficial",
+        "type": "Email",
+        "label": "Correo de Recursos Humanos",
+        "value": "info@elhogardenanis.com",
+        "icon": "mail",
+        "link": "mailto:info@elhogardenanis.com"
+      },
+      {
+        "id": "direccion-pueblo-libre",
+        "type": "Location",
+        "label": "Oficina Central en Lima",
+        "value": "Calle Alfredo Maldonado 654 Oficina 1 A – Pueblo Libre – Lima – Perú",
+        "icon": "map-pin",
+        "link": "https://maps.google.com/?q=-12.073453,-77.062031"
+      }
+    ],
+    "businessHours": {
+      "title": "Horarios de Atención y Entrevistas",
+      "days": "Lunes a Viernes: 8:00 AM a 7:00 PM",
+      "weekends": "Sábados: 8:00 AM a 2:00 PM (-05:00 PET/ECT)"
+    },
+    "legal": {
+      "libroReclamaciones": {
+        "text": "Libro de Reclamaciones Oficial",
+        "image": {
+          "alt": "Libro de reclamaciones virtual INDECOPI",
+          "localPath": "images/libro_de_reclamaciones-300x206.png"
+        }
+      }
+    }
+  },
+  "sitemap": {
+    "domain": "https://www.elhogardenanis.com",
+    "routes": [
+      {
+        "path": "/",
+        "priority": 1,
+        "changefreq": "weekly",
+        "seo": {
+          "title": "Agencia de Niñeras y Empleadas del Hogar en Lima | El Hogar de Nanis",
+          "description": "Agencia especializada en la selección de niñeras, empleadas del hogar y enfermeras técnicas en Lima, Perú. Personal altamente capacitado y de absoluta confianza."
+        }
+      },
+      {
+        "path": "/nuestros-servicios",
+        "priority": 0.9,
+        "changefreq": "monthly",
+        "seo": {
+          "title": "Nuestros Servicios de Personal Doméstico en Lima | El Hogar de Nanis",
+          "description": "Conoce nuestros servicios: niñeras cama adentro y afuera, asistentas del hogar todo servicio y de cuidado del adulto mayor en Lima."
+        }
+      },
+      {
+        "path": "/agencia-de-empleadas-del-hogar-lima",
+        "priority": 0.8,
+        "changefreq": "monthly",
+        "seo": {
+          "title": "Agencia de Empleadas del Hogar en Lima | El Hogar de Nanis",
+          "description": "Contrata empleadas del hogar de confianza en Lima. Personal evaluado psicológicamente y con referencias verificadas."
+        }
+      },
+      {
+        "path": "/agencia-de-nineras-y-nanas-lima",
+        "priority": 0.8,
+        "changefreq": "monthly",
+        "seo": {
+          "title": "Agencia de Niñeras y Nanas en Lima | El Hogar de Nanis",
+          "description": "Las mejores niñeras y nanas en Lima. Cuidado infantil con estimulación temprana y amor para tus hijos."
+        }
+      },
+      {
+        "path": "/quienes-somos",
+        "priority": 0.7,
+        "changefreq": "yearly",
+        "seo": {
+          "title": "¿Quiénes Somos? | Agencia de Personal Doméstico | El Hogar de Nanis",
+          "description": "Conoce la historia y el equipo detrás de El Hogar de Nanis, tu mejor aliado en la selección de personal doméstico seguro en el Perú."
+        }
+      },
+      {
+        "path": "/como-trabajamos",
+        "priority": 0.7,
+        "changefreq": "yearly",
+        "seo": {
+          "title": "Nuestro Proceso de Selección Segura | El Hogar de Nanis",
+          "description": "Descubre cómo evaluamos y seleccionamos rigurosamente a nuestras niñeras y empleadas del hogar para garantizar tu total tranquilidad."
+        }
+      },
+      {
+        "path": "/contacto",
+        "priority": 0.9,
+        "changefreq": "yearly",
+        "seo": {
+          "title": "Contacto | Agencia de Empleos del Hogar en Lima, Perú | El Hogar de Nanis",
+          "description": "Comunícate hoy con El Hogar de Nanis. Teléfonos, WhatsApp y dirección de nuestra agencia de empleos en Pueblo Libre, Lima."
+        }
+      },
+      {
+        "path": "/bolsa-de-trabajo",
+        "priority": 0.6,
+        "changefreq": "weekly",
+        "seo": {
+          "title": "Bolsa de Trabajo para Empleadas y Niñeras en Lima | El Hogar de Nanis",
+          "description": "Únete a El Hogar de Nanis. Ofrecemos las mejores oportunidades laborales para niñeras, enfermeras y empleadas del hogar formales en Lima y provincias."
+        }
+      }
+    ]
+  }
+}
