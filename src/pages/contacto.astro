@@ -2,29 +2,25 @@
 // src/pages/contacto.astro
 import Layout from '@/layouts/Layout.astro';
 import dataRaw from '../../public/data/contacto.json';
-import NavBar from '@/components/sections/NavBar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import PageHeader from '@/components/sections/PageHeader.astro';
 import ContactForm from '@/components/sections/ContactForm.astro';
 import ContactInfo from '@/components/sections/ContactInfo.astro';
+import type { ContactData } from '@/types';
 
-// Assets
-import libroReclamacionesImg from '@assets/libro_de_reclamaciones-300x206.png';
-
-const data = dataRaw;
-const { seo, title, subtitle, description, contactDetails, businessHours, legal } = data;
+const data = dataRaw as unknown as ContactData;
+const { seo, title, subtitle, description, contactDetails, businessHours } = data;
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <NavBar />
-  
+    
   <main id="main-content">
     <PageHeader 
       title={title} 
       subtitle={`${subtitle} ${description}`} 
-      variant ="image"
-      align= "left" 
-      backgroundImage = "images/hogarNanis.jpg"
+      variant="image"
+      align="left" 
+      backgroundImage="images/hogarNanis.jpg"
       breadcrumbs={[
         { label: 'Contacto' }
       ]}
@@ -39,8 +35,6 @@ const { seo, title, subtitle, description, contactDetails, businessHours, legal 
             <ContactInfo 
               contactDetails={contactDetails}
               businessHours={businessHours}
-              legal={legal}
-              libroReclamacionesImg={libroReclamacionesImg}
             />
           </div>
 

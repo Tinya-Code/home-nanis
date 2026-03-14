@@ -3,7 +3,7 @@
 /* FUENTES LOCALES */
 @font-face {
   font-family: 'Pencil Child';
-  src: url('/fonts/Calistoga-Regular.ttf') format('woff2');
+  src: url('/fonts/Calistoga-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

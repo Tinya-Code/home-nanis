@@ -3,7 +3,6 @@
 import Layout from '@/layouts/Layout.astro';
 import dataRaw from '../../public/data/quienes-somos.json';
 import type { QuienesSomosData } from '@/types';
-import NavBar from '@/components/sections/NavBar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import PageHeader from '@/components/sections/PageHeader.astro';
 import MissionVisionSection from '@/components/sections/MissionVisionSection.astro';
@@ -23,8 +22,7 @@ const { seo, title, subtitle, history, mission, vision, values, teamSection, fou
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <NavBar />
-  
+    
   <main id="main-content">
     <PageHeader 
       title={title} 

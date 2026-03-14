@@ -1,9 +1,15 @@
 ---
 import '@/styles/global.css';
-import '@/styles/global.css';
 import type { SEOMeta } from '@/lib/seo';
 import { buildTitle } from '@/lib/seo';
-import siteData from '../../public/data/site.json';
+import siteDataRaw from '../../public/data/site.json';
+import type { SiteData } from '@/types';
+const siteData = siteDataRaw as SiteData;
+import NavBar from '@/components/sections/NavBar.astro';
+import WhatsAppButton from '@/components/ui/WhatsAppButton.astro';
+import ScrollToTop from '@/components/ui/ScrollToTop.astro';
+import SkipLink from '@/components/ui/SkipLink.astro';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props extends SEOMeta {}
 
@@ -11,7 +17,7 @@ const {
   title,
   description,
   canonical,
-  ogImage = '/images/logo2.png',
+  ogImage = '/images/logo2.webp',
   noindex = false,
 } = Astro.props;
 
@@ -28,6 +34,7 @@ const schemaLD = JSON.stringify(siteData.localSeo.schemaLocalBusiness);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#810FC9" />
+    <ClientRouter />
 
     <!-- SEO Primary -->
     <title>{builtTitle}</title>
@@ -53,8 +60,8 @@ const schemaLD = JSON.stringify(siteData.localSeo.schemaLocalBusiness);
     <meta name="twitter:image"       content={new URL(ogImage, Astro.site).toString()} />
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="/fonts/PlusJakartaSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/fonts/Nunito-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Inter-VariableFont_opsz,wght.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/Calistoga-Regular.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="/images/bannerfinal.png" as="image" />
 
     <!-- Favicon -->
@@ -62,22 +69,19 @@ const schemaLD = JSON.stringify(siteData.localSeo.schemaLocalBusiness);
     <!-- <link rel="icon"             href="/favicon.svg" type="image/svg+xml" /> -->
     <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
 
-    {/* LocalBusiness schema base si no se sobrecarga en el slot head */}
-    <script type="application/ld+json" set:html={schemaLD} />
+    <!-- LocalBusiness schema base si no se sobrecarga en el slot head -->
+    <script is:inline type="application/ld+json" set:html={schemaLD}></script>
 
     <!-- Slot meta tags adicionales por página (BreadcrumbList, AggregateRating, etc.) -->
     <slot name="head" />
   </head>
 
   <body class="bg-light-surface text-dark font-body antialiased">
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4
-             focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand focus:text-white
-             focus:rounded-md focus:font-bold focus:shadow-lg"
-    >
-      Saltar al contenido principal
-    </a>
+    <SkipLink />
+    <NavBar />
     <slot />
+    <WhatsAppButton position="bottom-right" />
+
+    <ScrollToTop position="right" />
   </body>
 </html>

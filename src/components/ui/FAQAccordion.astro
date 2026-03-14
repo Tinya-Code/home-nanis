@@ -1,0 +1,61 @@
+---
+// src/components/ui/FAQAccordion.astro
+import { Icon } from 'astro-icon/components';
+import type { FAQItem } from '@/types';
+
+interface Props {
+  items: FAQItem[];
+  class?: string;
+}
+
+const { items, class: className = '' } = Astro.props;
+---
+
+<div class={`space-y-3 ${className}`}>
+  {items.map((item) => (
+    <details 
+      class="group bg-white border border-border rounded-xl transition-all duration-300 hover:border-brand/30 open:ring-1 open:ring-brand/20 open:shadow-sm"
+    >
+      <summary 
+        class="flex items-center justify-between p-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden"
+        aria-label={item.question}
+      >
+        <span class="text-sm font-semibold text-dark pr-4 group-open:text-brand transition-colors">
+          {item.question}
+        </span>
+        <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand/5 flex items-center justify-center text-brand transition-transform duration-300 group-open:rotate-180 group-open:bg-brand group-open:text-white">
+          <Icon name="lucide:chevron-down" class="w-4 h-4" />
+        </div>
+      </summary>
+      
+      <div class="px-4 pb-4 overflow-hidden animate-slide-down">
+        <div class="pt-2 border-t border-border/10 text-sm text-gray-muted leading-relaxed">
+          {item.answer}
+        </div>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  /* Animación suave para el contenido */
+  @keyframes slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Quitar marcador por defecto en Safari */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

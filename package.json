@@ -20,6 +20,7 @@
     "@fontsource-variable/nunito": "^5.2.7",
     "@fontsource-variable/plus-jakarta-sans": "^5.2.8",
     "@iconify-json/lucide": "^1.2.97",
+    "@iconify-json/mdi": "^1.2.3",
     "astro": "^6.0.4",
     "astro-compress": "^2.3.9",
     "astro-icon": "^1.1.5",

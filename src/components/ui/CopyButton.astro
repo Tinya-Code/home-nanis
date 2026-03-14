@@ -1,0 +1,80 @@
+---
+// src/components/ui/CopyButton.astro
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  textToCopy: string;
+  label?: string;
+  class?: string;
+  size?: 'sm' | 'md';
+}
+
+const { 
+  textToCopy, 
+  label = 'Copiar', 
+  class: className = '',
+  size = 'sm'
+} = Astro.props;
+
+const sizeClasses = size === 'sm' ? 'w-8 h-8' : 'w-10 h-10';
+const iconSize = size === 'sm' ? 'w-4 h-4' : 'w-5 h-5';
+---
+
+<copy-button 
+  data-text={textToCopy}
+  class={`inline-flex items-center justify-center rounded-sm bg-surface-alt border border-border text-gray-muted hover:text-brand hover:border-brand/40 transition-all duration-200 group active:scale-95 ${sizeClasses} ${className}`}
+  title={label}
+>
+  <div class="relative flex items-center justify-center w-full h-full">
+    {/* Icono de copiado */}
+    <Icon 
+      name="lucide:copy" 
+      class={`copy-icon transition-all duration-300 ${iconSize} group-hover:scale-110`} 
+    />
+    {/* Icono de éxito (check) */}
+    <Icon 
+      name="lucide:check" 
+      class={`check-icon absolute opacity-0 scale-50 transition-all duration-300 text-success ${iconSize}`} 
+    />
+  </div>
+</copy-button>
+
+<script>
+  class CopyButton extends HTMLElement {
+    constructor() {
+      super();
+      const text = this.dataset.text;
+      const copyIcon = this.querySelector('.copy-icon');
+      const checkIcon = this.querySelector('.check-icon');
+
+      this.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!text) return;
+
+        try {
+          await navigator.clipboard.writeText(text);
+          
+          // Feedback visual
+          if (copyIcon && checkIcon) {
+            copyIcon.classList.add('opacity-0', 'scale-50');
+            checkIcon.classList.remove('opacity-0', 'scale-50');
+            checkIcon.classList.add('opacity-100', 'scale-100');
+
+            setTimeout(() => {
+              checkIcon.classList.remove('opacity-100', 'scale-100');
+              checkIcon.classList.add('opacity-0', 'scale-50');
+              copyIcon.classList.remove('opacity-0', 'scale-50');
+              copyIcon.classList.add('opacity-100', 'scale-100');
+            }, 2000);
+          }
+        } catch (err) {
+          console.error('Falló al copiar: ', err);
+        }
+      });
+    }
+  }
+
+  customElements.define('copy-button', CopyButton);
+</script>

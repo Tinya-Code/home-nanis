@@ -36,18 +36,18 @@ const {
 
 const variantClass = {
   primary: 'btn-primary',
-  gradient: 'btn-gradient',
+  gradient: 'btn-primary !bg-[image:var(--gradient-brand)] hover:opacity-90 !border-0 text-white',
   secondary: 'btn-secondary',
   outline: 'btn-outline-brand',
-  ghost: 'btn-ghost',
+  ghost: 'btn-primary !bg-transparent !text-white hover:!bg-surface-alt hover:!text-dark !shadow-none',
   whatsapp: 'btn-whatsapp',
 }[variant];
 
 const sizeClass = {
-  sm: 'btn-sm',
-  md: '',
-  lg: 'btn-lg',
-  xl: 'btn-xl',
+  sm: '!px-4 !py-2 !text-sm !min-h-[36px] !min-w-[36px]',
+  md: '', // usa el por defecto del global.css
+  lg: '!px-8 !py-4 !text-lg !min-h-[56px] !min-w-[56px]',
+  xl: '!px-10 !py-5 !text-xl !min-h-[64px] !min-w-[64px]',
 }[size];
 
 const classes = [variantClass, sizeClass, fullWidth ? 'w-full' : '', className].filter(Boolean).join(' ');

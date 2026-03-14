@@ -4,6 +4,7 @@
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import { Icon } from 'astro-icon/components';
 import siteData from '../../../public/data/site.json';
+import CopyButton from '@/components/ui/CopyButton.astro';
 
 const links = [
   { label: 'Inicio', href: '/' },
@@ -17,13 +18,14 @@ const currentPath = Astro.url.pathname;
 const phone = siteData.contact.phone;
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border">
+<header-nav class="contents">
+<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border transition-colors duration-300">
   <div class="container-site h-20 flex items-center justify-between">
     
     {/* Logo */}
-    <a href="/" class="flex items-center gap-2 group" aria-label={`Ir a inicio de ${siteData.name}`}>
+    <a href="/" class="flex items-center  group" aria-label={`Ir a inicio de ${siteData.name}`}>
   <img src ="images/logo2.webp" alt="Logo El Hogar de Nanis" class="w-12 h-12"/>
-      <span class="font-display font-bold text-lg text-dark group-hover:text-brand-alt transition-colors hidden sm:block">
+      <span class="font-display leading-none w-15 font-semibold text-sm text-dark group-hover:text-brand-alt transition-colors hidden sm:flex">
         El Hogar de Nanis
       </span>
     </a>
@@ -52,8 +54,15 @@ const phone = siteData.contact.phone;
 
     {/* CTAs y Mobile toggler */}
     <div class="flex items-center gap-4">
-      <div class="hidden sm:block text-brand-alt font-display font-bold">
-        {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
+      <div class="hidden sm:flex items-center gap-2 group/nav-phone">
+        <div class="text-brand-alt font-display font-bold">
+          {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
+        </div>
+        <CopyButton 
+          textToCopy={phone.replace(/\s/g, '')} 
+          label="Copiar teléfono" 
+          class="opacity-0 group-hover/nav-phone:opacity-100 transition-opacity"
+        />
       </div>
       <ButtonPrimary label="Contacto" href="/contacto" size="sm" variant="gradient" />
       
@@ -70,6 +79,7 @@ const phone = siteData.contact.phone;
     </div>
 
   </div>
+</header>
 
   {/* Mobile Menu Drawer */}
   <div 
@@ -80,13 +90,13 @@ const phone = siteData.contact.phone;
 
   <div 
     id="mobile-menu" 
-    class="fixed top-0 right-0 bottom-0 w-[280px] bg-white z-50 translate-x-full transition-transform duration-300 ease-spring lg:hidden border-l border-border flex flex-col"
-    aria-label="Menú lateral"
+    class="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-white z-50 translate-x-full transition-transform duration-300 ease-spring lg:hidden border-l border-border flex flex-col shadow-2xl"
+    aria-labelledby="mobile-menu-title"
     role="dialog"
     aria-modal="true"
   >
-    <div class="h-20 flex items-center justify-between px-6 border-b border-border">
-      <span class="font-display font-bold text-brand uppercase tracking-wider">Menú</span>
+    <div class="h-20 flex items-center justify-between px-6 border-b border-border bg-light-surface/50">
+      <span id="mobile-menu-title" class="font-display font-bold text-brand uppercase tracking-wider">Menú</span>
       <button 
         id="mobile-menu-close" 
         class="p-2 text-gray-muted hover:text-brand-alt transition-colors" 
@@ -115,59 +125,73 @@ const phone = siteData.contact.phone;
       </ul>
       
       <div class="mt-8 pt-8 border-t border-border flex flex-col gap-6">
-        <div class="flex flex-col gap-1">
-          <span class="text-xs font-bold text-gray-muted uppercase tracking-widest">Llámanos</span>
-          <a href={`tel:${phone}`} class="text-lg font-display font-bold text-dark">
-            {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
-          </a>
+        <div class="flex items-center justify-between group/mobile-phone">
+          <div class="flex flex-col gap-1">
+            <span class="text-xs font-bold text-gray-muted uppercase tracking-widest">Llámanos</span>
+            <a href={`tel:${phone}`} class="text-lg font-display font-bold text-dark">
+              {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
+            </a>
+          </div>
+          <CopyButton 
+            textToCopy={phone.replace(/\s/g, '')} 
+            label="Copiar teléfono" 
+            size="md"
+          />
         </div>
         <ButtonPrimary label="Contacto" href="/contacto" variant="gradient" fullWidth />
       </div>
     </nav>
   </div>
-</header>
+</header-nav>
 
 <script>
-  function initMobileMenu() {
-    const button = document.getElementById('mobile-menu-button');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const menu = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('mobile-menu-overlay');
-    
-    if (!button || !menu || !overlay || !closeBtn) return;
+  class HeaderNav extends HTMLElement {
+    constructor() {
+      super();
+      const button = this.querySelector('#mobile-menu-button') as HTMLButtonElement | null;
+      const closeBtn = this.querySelector('#mobile-menu-close') as HTMLButtonElement | null;
+      const menu = this.querySelector('#mobile-menu') as HTMLElement | null;
+      const overlay = this.querySelector('#mobile-menu-overlay') as HTMLElement | null;
+      
+      if (!button || !menu || !overlay || !closeBtn) return;
 
-    const toggleMenu = (show: boolean) => {
-      button.setAttribute('aria-expanded', show.toString());
-      if (show) {
-        menu.classList.remove('translate-x-full');
-        overlay.classList.remove('opacity-0', 'pointer-events-none');
-        document.body.style.overflow = 'hidden';
-      } else {
-        menu.classList.add('translate-x-full');
-        overlay.classList.add('opacity-0', 'pointer-events-none');
-        document.body.style.overflow = '';
-      }
-    };
+      const toggleMenu = (show: boolean) => {
+        button.setAttribute('aria-expanded', show.toString());
+        if (show) {
+          menu.classList.remove('translate-x-full');
+          overlay.classList.remove('opacity-0', 'pointer-events-none');
+          document.body.style.overflow = 'hidden';
+          // Manejo de foco para accesibilidad
+          setTimeout(() => closeBtn.focus(), 100);
+        } else {
+          menu.classList.add('translate-x-full');
+          overlay.classList.add('opacity-0', 'pointer-events-none');
+          document.body.style.overflow = '';
+        }
+      };
 
-    button.addEventListener('click', () => toggleMenu(true));
-    closeBtn.addEventListener('click', () => toggleMenu(false));
-    overlay.addEventListener('click', () => toggleMenu(false));
-
-    // Cerrar al presionar Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+      button.addEventListener('click', () => toggleMenu(true));
+      closeBtn.addEventListener('click', () => {
         toggleMenu(false);
-      }
-    });
+        button.focus();
+      });
+      overlay.addEventListener('click', () => toggleMenu(false));
 
-    // Cerrar al hacer clic en un enlace
-    const navLinks = menu.querySelectorAll('a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => toggleMenu(false));
-    });
+      // Cerrar al presionar Escape
+      this.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+          toggleMenu(false);
+          button.focus();
+        }
+      });
+
+      // Cerrar al hacer clic en un enlace
+      const navLinks = menu.querySelectorAll('a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+    }
   }
 
-  // Ejecutar al cargar y tras navegaciones de Astro (View Transitions)
-  initMobileMenu();
-  document.addEventListener('astro:after-swap', initMobileMenu);
+  customElements.define('header-nav', HeaderNav);
 </script>

@@ -1,0 +1,61 @@
+---
+// src/components/sections/JobListingSection.astro
+import type { JobOffer } from '@/types';
+import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  jobOffers: JobOffer[];
+}
+
+const { jobOffers } = Astro.props;
+---
+
+<section class="section-padding bg-section-alt">
+  <div class="container-site">
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-widest mb-4">
+        <Icon name="lucide:briefcase" class="w-3.5 h-3.5" />
+        Vacantes Actuales
+      </span>
+      <h2 class="h2 mb-4 section-title-gradient">Últimas Convocatorias</h2>
+      <p class="text-gray-muted text-sm max-w-xl mx-auto">
+        Únete a nuestro equipo y forma parte de la agencia líder en cuidado del hogar en el Perú.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {jobOffers.map((job) => (
+        <div class="group bg-white p-8 rounded-3xl border border-border hover:border-brand/40 hover:shadow-xl hover:shadow-brand/5 transition-all duration-500 flex flex-col gap-5">
+          <div class="flex justify-between items-start">
+            <span class="px-3 py-1 bg-success/10 text-success text-[10px] font-bold uppercase tracking-widest rounded-full">Activa</span>
+            <div class="w-10 h-10 rounded-full bg-gray-light/5 flex items-center justify-center text-gray-muted group-hover:bg-brand/10 group-hover:text-brand transition-colors">
+              <Icon name="lucide:briefcase" class="w-5 h-5" />
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <h3 class="text-xl font-bold text-dark group-hover:text-brand transition-colors">{job.position}</h3>
+            <div class="flex items-center gap-2 text-brand-alt text-xs font-semibold">
+              <Icon name="lucide:map-pin" class="w-3.5 h-3.5" />
+              {job.location}
+            </div>
+          </div>
+
+          <p class="text-gray-muted text-sm leading-relaxed flex-grow">
+            {job.description}
+          </p>
+          
+          <ButtonPrimary 
+            label="Postular por WhatsApp" 
+            href={`https://wa.me/51941141780?text=Hola,%20postulo%20para%20la%20vacante%20de%20${encodeURIComponent(job.position)}`} 
+            variant="outline" 
+            size="sm" 
+            fullWidth={true} 
+            class="group-hover:bg-brand group-hover:text-white group-hover:border-brand"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

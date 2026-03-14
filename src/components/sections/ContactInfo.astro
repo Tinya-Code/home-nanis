@@ -1,73 +1,78 @@
 ---
 // src/components/sections/ContactInfo.astro
 import { Icon } from 'astro-icon/components';
-import { Image } from 'astro:assets';
+import type { ContactItem, BusinessHours } from '@/types';
+import CopyButton from '@/components/ui/CopyButton.astro';
 
 interface Props {
-  contactDetails: any[];
-  businessHours: {
-    title: string;
-    days: string;
-    weekends: string;
-  };
-  legal: {
-    libroReclamaciones: {
-      text: string;
-      image: {
-        alt: string;
-      };
-    };
-  };
-  libroReclamacionesImg: any;
+  contactDetails: ContactItem[];
+  businessHours: BusinessHours;
 }
 
-const { contactDetails, businessHours, legal, libroReclamacionesImg } = Astro.props;
+const { 
+  contactDetails, 
+  businessHours 
+} = Astro.props;
+
+// Filtrar para mostrar solo los que no son teléfonos principales (que se manejan diferente o se muestran aquí con copiado)
+// A petición del layout anterior: se filtraban WhatsApp y Phone. 
+// Pero aquí los mostraremos todos para que la info sea completa, pero con opción de copiar.
 ---
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-4">
   {/* Map Integration */}
-  <div class="rounded-2xl overflow-hidden h-[300px] border border-border shadow-sm group grayscale hover:grayscale-0 transition-all duration-500">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448.9575563883479!2d-77.0606550265366!3d-12.07451287413223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c91cc1b5990f%3A0x6948e4034f5609c9!2sC.%20Alfredo%20Maldonado%20654%2C%20Pueblo%20Libre%2015084!5e1!3m2!1ses-419!2spe!4v1773383036583!5m2!1ses-419!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="rounded-2xl overflow-hidden h-[200px] border border-border shadow-sm group transition-all duration-500">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448.9575563883479!2d-77.0606550265366!3d-12.07451287413223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c91cc1b5990f%3A0x6948e4034f5609c9!2sC.%20Alfredo%20Maldonado%20654%2C%20Pueblo%20Libre%2015084!5e1!3m2!1ses-419!2spe!4v1773383036583!5m2!1ses-419!2spe" 
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación de El Hogar de Nanis en Google Maps"
+    ></iframe>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-    {contactDetails.filter(d => d.type !== 'WhatsApp' && d.type !== 'Phone').map((item) => (
-      <div class="flex items-center gap-4 p-4 rounded-xl bg-light-surface border border-light-border hover:border-brand/30 transition-colors">
-        <div class="w-10 h-10 flex-shrink-0 rounded-full bg-brand/10 flex items-center justify-center text-brand">
-          <Icon name={`lucide:${item.icon}`} class="w-5 h-5" />
+  <div class="grid grid-cols-1 gap-3">
+    {contactDetails.map((item: ContactItem) => (
+      <div class="flex items-center justify-between p-3 rounded-xl bg-surface border border-border hover:border-brand/30 transition-all duration-300 shadow-sm hover:shadow-md group/item">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 flex-shrink-0 rounded-full bg-brand/5 flex items-center justify-center text-brand group-hover/item:bg-brand group-hover/item:text-white transition-colors duration-300">
+            <Icon name={`lucide:${item.icon}`} class="w-4.5 h-4.5" />
+          </div>
+          <div>
+            <p class="text-[10px] font-bold text-gray-muted uppercase tracking-wider leading-none mb-0.5">{item.label}</p>
+            <a 
+              href={item.link} 
+              target={item.type === 'Location' || item.type === 'WhatsApp' ? "_blank" : "_self"} 
+              class="text-sm text-dark font-medium hover:text-brand-alt transition-colors block leading-tight"
+            >
+              {item.value}
+            </a>
+          </div>
         </div>
-        <div>
-          <p class="text-[10px] font-bold text-gray uppercase tracking-wider leading-none mb-1">{item.label}</p>
-          <a href={item.link} target={item.type === 'Location' ? "_blank" : "_self"} class="text-sm text-dark font-medium hover:text-brand transition-colors block leading-tight">
-            {item.value}
-          </a>
-        </div>
+
+        {/* Botón de copiar para Email, Phone, Mobile */}
+        {(item.type === 'Email' || item.type === 'Phone' || item.type === 'Mobile') && (
+          <CopyButton 
+            textToCopy={item.value.split('/')[0].trim()} 
+            label={`Copiar ${item.label}`}
+            class="opacity-100 lg:opacity-0 lg:group-hover/item:opacity-100 focus-within:opacity-100 transition-opacity"
+          />
+        )}
       </div>
     ))}
 
-    <div class="p-5 rounded-xl bg-dark border border-white/5">
-      <h3 class="text-white text-sm font-bold mb-3 flex items-center gap-2">
-        <Icon name="lucide:clock" class="text-brand-alt w-4 h-4" />
+    <div class="p-4 rounded-xl bg-dark border border-white/5 shadow-xl">
+      <h3 class="text-white text-xs font-bold mb-2 flex items-center gap-2">
+        <Icon name="lucide:clock" class="text-brand-alt w-3.5 h-3.5" />
         {businessHours.title}
       </h3>
-      <div class="text-[13px] space-y-1">
-        <p class="text-white/90">{businessHours.days}</p>
-        <p class="text-gray-light/70">{businessHours.weekends}</p>
+      <div class="text-[12px] space-y-0.5">
+        <p class="text-white/90 font-medium">{businessHours.days}</p>
+        <p class="text-gray-light/60">{businessHours.weekends}</p>
       </div>
     </div>
-  </div>
-
-  <div class="flex items-center justify-between p-4 rounded-xl border border-dashed border-border/60">
-    <div class="flex flex-col">
-      <p class="text-xs font-bold text-gray-muted uppercase tracking-widest mb-1">{legal.libroReclamaciones.text}</p>
-      <span class="text-[10px] text-gray">Atención Virtual 24/7</span>
-    </div>
-    <Image 
-      src={libroReclamacionesImg} 
-      alt={legal.libroReclamaciones.image.alt}
-      class="h-12 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer"
-      width={100}
-      height={60}
-    />
   </div>
 </div>
