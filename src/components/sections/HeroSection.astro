@@ -1,11 +1,13 @@
 ---
 // src/components/sections/HeroSection.astro
-import { Image } from 'astro:assets';
+
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
-import heroImg from '@assets/bannerfinal.png';
+import heroBg from '@assets/hero-bg.jpeg';
+import { Image } from 'astro:assets';
 import siteData from '../../../public/data/site.json';
 
 const { slogan } = siteData;
+
 const {
   description = slogan,
   primaryCta = "Contratar Personal",
@@ -13,102 +15,223 @@ const {
   secondaryCta = "Nuestros Servicios",
   secondaryCtaLink = "/nuestros-servicios",
 } = Astro.props;
-
-interface Props {
-  title?: string;
-  description?: string;
-  primaryCta?: string;
-  primaryCtaLink?: string;
-  secondaryCta?: string;
-  secondaryCtaLink?: string;
-}
 ---
 
-<section class="relative bg-white pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
-  {/* Background decorative elements */}
-  <div class="absolute inset-0 bg-gradient-to-br from-brand/5 to-brand-alt/5 -z-10"></div>
-  <div class="absolute top-0 right-0 w-1/2 h-full bg-surface-alt/50 -skew-x-12 origin-top-right -z-10 hidden lg:block"></div>
+<section class="hero-wrapper">
 
-  <div class="container-site relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-      
-      {/* Text Content */}
-      <div class="flex flex-col gap-6 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-dark leading-tight">
-          <span class="block">Confianza y Seguridad</span>
-          <span class="block text-brand">para tu Familia</span>
+  <div class="hero flex flex-col">
+
+    <!-- Background Image -->
+    <div class="hero-bg">
+      <Image
+        src={heroBg}
+        alt="Servicios domésticos profesionales"
+        width={1920}
+        height={1080}
+        format="webp"
+        quality={85}
+        class="hero-bg-img object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class=" relative z-2 md:px-16 px-6 flex justify-start h-full flex-1 items-center">
+      <!-- TEXT -->
+      <div class="hero-content flex flex-col gap-4">
+        <h1 class="hero-title">
+          Confianza y Seguridad
+          <span>para tu Familia</span>
         </h1>
-        
-        <p class="text-lg sm:text-xl text-gray max-w-xl mx-auto lg:mx-0">
+        <p class="hero-description">
           {description}
         </p>
-        
-        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-4">
-          <ButtonPrimary 
-            label={primaryCta} 
-            href={primaryCtaLink} 
-            variant="gradient" 
-            size="lg" 
-            fullWidth={true}
-            class="sm:w-auto"
+        <div class="hero-buttons">
+          <ButtonPrimary
+            label={primaryCta}
+            href={primaryCtaLink}
+            variant="outline"
+            size="lg"
+            class="font-medium"
           />
-          <ButtonPrimary 
-            label={secondaryCta} 
-            href={secondaryCtaLink} 
-            variant="outline" 
-            size="lg" 
-            fullWidth={true}
-            class="sm:w-auto"
+          <ButtonPrimary
+            label={secondaryCta}
+            href={secondaryCtaLink}
+            variant="primary"
+            size="lg"
+            class="font-medium"
           />
         </div>
 
-        {/* Trust Indicators */}
-        <div class="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 text-sm text-gray font-medium">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-success/10 flex items-center justify-center text-success">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <!-- Trust indicators -->
+
+        <div class="hero-trust">
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2"/>
+              </svg>
+
             </div>
-            <span>Personal Evaluado</span>
+
+            <span>Personal verificado</span>
+
           </div>
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center text-brand">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+
+          <div class="trust-item">
+
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2"/>
+              </svg>
             </div>
-            <span>Garantía de Servicio</span>
+            <span>Garantía de servicio</span>
           </div>
         </div>
       </div>
-
-      {/* Image Content */}
-      <div class="relative mx-auto lg:ml-auto w-full max-w-lg lg:max-w-none">
-        {/* Decorative background behind image */}
-        <div class="absolute inset-0 bg-gradient-to-tr from-brand to-brand-alt rounded-2xl transform rotate-3 scale-105 opacity-20 blur-lg"></div>
-        <div class="absolute inset-0 bg-brand rounded-2xl transform -rotate-3 scale-105 opacity-10"></div>
-        
-        <Image
-          src={heroImg}
-          alt="Familia feliz gracias a los servicios de El Hogar de Nanis en Lima"
-          width={800}
-          height={600}
-          format="webp"
-          quality={85}
-          loading="eager"
-          fetchpriority="high"
-          class="relative w-full h-auto object-cover rounded-2xl shadow-xl z-10 border border-border/50"
-        />
-        
-        {/* Floating badge */}
-        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-border/50 z-20 flex items-center gap-3 animate-fade-in-up">
-          <div class="bg-brand/10 p-2 rounded-lg text-brand">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-          </div>
-          <div>
-            <p class="text-sm font-bold text-dark">+10 Años</p>
-            <p class="text-xs text-gray">de experiencia</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
+
+<style>
+
+/* WRAPPER (MARCO BLANCO) */
+
+.hero-wrapper{
+  background:white;
+  padding:20px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:85vh;
+  border-radius:28px;
+  overflow:hidden;
+}
+
+/* BACKGROUND */
+.hero-bg{
+  position:absolute;
+  height:100%;
+  inset:0;
+}
+
+.hero-bg-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* CONTENT */
+.hero-content{
+  max-width:560px;
+}
+
+/* TITLE */
+.hero-title{
+  font-size:clamp(2.6rem,4vw,3.8rem);
+  font-weight:800;
+  line-height:1.1;
+  color:var(--color-dark);
+  margin-bottom:20px;
+}
+.hero-title span{
+  display:block;
+  color:var(--color-brand);
+}
+/* DESCRIPTION */
+.hero-description{
+  font-size:1.15rem;
+  line-height:1.7;
+  color:var(--color-gray);
+  margin-bottom:34px;
+}
+
+/* BUTTONS */
+
+.hero-buttons{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:32px;
+}
+
+/* TRUST */
+.hero-trust{
+  display:flex;
+  gap:26px;
+}
+
+.trust-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:.95rem;
+  font-weight:500;
+  color:#374151;
+}
+
+/* ICON */
+.trust-icon{
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f4f6;
+  color:var(--color-brand);
+}
+
+.trust-icon svg{
+  width:18px;
+  height:18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+  .hero{
+    min-height:70vh;
+  }
+  .hero-content{
+    text-align:center;
+    margin:auto;
+  }
+
+  .hero-buttons{
+    justify-content:center;
+  }
+  .hero-trust{
+    justify-content:center;
+  }
+
+  .hero-overlay{
+    height:100%;
+    position:absolute;
+    inset:0;
+    background:
+    rgba(255,255,255,0.5); 
+  }
+
+  .hero-wrapper{
+  background:white;
+  padding:0px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:85vh;
+  border-radius:0px;
+  overflow:hidden;
+}
+}
+
+
+</style>
