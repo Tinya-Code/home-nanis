@@ -1,6 +1,7 @@
 ---
 // src/components/ui/FounderCard.astro
 import { Image } from 'astro:assets';
+import Planta from '@/components/elements/Planta.astro';
 
 interface Props {
   imageSrc: any;
@@ -10,24 +11,34 @@ interface Props {
 const { imageSrc, altText } = Astro.props;
 ---
 
-<div class="card mx-auto sm:mx-0">
-  <div class="shine">
-    <div class="shine-effect"></div>
-    <div class="pattern-1">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248.1 144.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><path d="M-0 101.69c3.87,24.91 27.23,42.84 55.21,42.84 28.05,0 13.24,-14.35 23.04,-42.64 18.22,-6.31 57.88,20.73 59.39,-14.47 0.19,-4.46 -28.08,-55.58 20.75,-55.58 30.25,0 24.2,12.13 62.74,-8.44 8.07,-4.31 32.04,-6.02 26.02,-23.41l-247.14 0 0 101.69z" class="fil-pattern-1"></path></svg>
+<div class="group relative bg-[#a68b8a] cursor-pointer transition-all duration-[0.3s] ease-out overflow-visible shadow-[0px_1px_5px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[1.02] active:translate-y-[5%] mx-auto sm:mx-0 w-80 -rotate-12 h-80 shrink-0">
+  <div class="relative w-full h-full overflow-hidden">
+    <!-- Shine Effect -->
+    <div class="absolute -top-[15%] left-[150%] w-[25px] h-[400px] bg-[#ffffff2a] shadow-[0_0_15px_2px_#ffffff42] rotate-[25deg] transition-all duration-1000 ease-[cubic-bezier(0.78,0.02,0.5,0.77)] z-[5] group-hover:-left-full"></div>
+    
+    <!-- Pattern 1 -->
+    <div class="absolute top-0 left-0 w-[125px] h-auto z-[2]">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248.1 144.53" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><path d="M-0 101.69c3.87,24.91 27.23,42.84 55.21,42.84 28.05,0 13.24,-14.35 23.04,-42.64 18.22,-6.31 57.88,20.73 59.39,-14.47 0.19,-4.46 -28.08,-55.58 20.75,-55.58 30.25,0 24.2,12.13 62.74,-8.44 8.07,-4.31 32.04,-6.02 26.02,-23.41l-247.14 0 0 101.69z" fill="#f3dfde"></path></svg>
     </div>
-    <div class="pattern-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463.79 245.8" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><path d="M1.24 213.24c10.61,3.04 20.12,9.07 29.16,14.79 4.79,3.03 9.45,5.99 14.01,8.32 17.17,8.76 33.58,8.5 53.96,-31.44 3.21,-6.29 14.73,-22.72 25.19,-35.42 7.93,-9.64 15.51,-17.24 19.14,-17.24 32.08,0 48.71,14.44 60.13,24.36 4.12,3.58 7.52,6.53 10.51,7.77 7.62,3.14 14.59,-5.57 31.57,-46.74 5.13,-12.43 13.8,-14.8 25.61,-18.01 16.48,-4.5 39.57,-10.79 67.6,-52.2 12.14,-17.94 26.21,-14.56 40.15,-11.22 15.27,3.66 30.37,7.29 41.56,-24.24 2.89,-8.15 9.35,-16.72 17.85,-22.91 7.44,-5.42 16.47,-9.05 26.09,-9.05l0 4.54c-8.6,0 -16.72,3.28 -23.43,8.17 -7.76,5.65 -13.63,13.42 -16.24,20.76 -12.56,35.37 -29.63,31.27 -46.88,27.13 -12.43,-2.98 -24.97,-5.99 -35.36,9.35 -28.98,42.82 -53.01,49.36 -70.16,54.03 -10.57,2.87 -18.33,4.99 -22.61,15.36 -18.38,44.56 -26.83,53.61 -37.48,49.21 -3.68,-1.52 -7.33,-4.69 -11.75,-8.53 -10.9,-9.46 -26.77,-23.25 -57.17,-23.25 -2.08,0 -8.49,6.87 -15.65,15.57 -10.26,12.47 -21.53,28.52 -24.64,34.61 -22.14,43.39 -40.59,43.36 -60.07,33.42 -4.74,-2.42 -9.5,-5.43 -14.39,-8.53 -8.77,-5.56 -17.99,-11.4 -27.97,-14.26l1.24 -4.36z" class="fil-pattern-2"></path></svg>
+    
+    <!-- Pattern 2 -->
+    <div class="absolute -top-[10%] -left-[10%] w-[200px] h-auto z-[2]">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463.79 245.8" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><path d="M1.24 213.24c10.61,3.04 20.12,9.07 29.16,14.79 4.79,3.03 9.45,5.99 14.01,8.32 17.17,8.76 33.58,8.5 53.96,-31.44 3.21,-6.29 14.73,-22.72 25.19,-35.42 7.93,-9.64 15.51,-17.24 19.14,-17.24 32.08,0 48.71,14.44 60.13,24.36 4.12,3.58 7.52,6.53 10.51,7.77 7.62,3.14 14.59,-5.57 31.57,-46.74 5.13,-12.43 13.8,-14.8 25.61,-18.01 16.48,-4.5 39.57,-10.79 67.6,-52.2 12.14,-17.94 26.21,-14.56 40.15,-11.22 15.27,3.66 30.37,7.29 41.56,-24.24 2.89,-8.15 9.35,-16.72 17.85,-22.91 7.44,-5.42 16.47,-9.05 26.09,-9.05l0 4.54c-8.6,0 -16.72,3.28 -23.43,8.17 -7.76,5.65 -13.63,13.42 -16.24,20.76 -12.56,35.37 -29.63,31.27 -46.88,27.13 -12.43,-2.98 -24.97,-5.99 -35.36,9.35 -28.98,42.82 -53.01,49.36 -70.16,54.03 -10.57,2.87 -18.33,4.99 -22.61,15.36 -18.38,44.56 -26.83,53.61 -37.48,49.21 -3.68,-1.52 -7.33,-4.69 -11.75,-8.53 -10.9,-9.46 -26.77,-23.25 -57.17,-23.25 -2.08,0 -8.49,6.87 -15.65,15.57 -10.26,12.47 -21.53,28.52 -24.64,34.61 -22.14,43.39 -40.59,43.36 -60.07,33.42 -4.74,-2.42 -9.5,-5.43 -14.39,-8.53 -8.77,-5.56 -17.99,-11.4 -27.97,-14.26l1.24 -4.36z" fill="#333333" fill-rule="nonzero"></path></svg>
     </div>
-  </div>
-  <div class="tape-1">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.92 299.32" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><g id="_2766174952096"><path d="M10.86 9.67c43.35,-3.22 86.71,-6.45 130.06,-9.67 -6.64,101.67 -12.54,203.13 0,299.32 -46.32,-2.04 -92.65,-4.07 -138.97,-6.11 -5.07,-190.99 0.39,-255.64 8.91,-283.54z" class="fil-tape-10"></path><path d="M25.58 18.62c-0.02,0.34 -8.14,117.07 -7.13,155.71 1.02,38.7 0,102.67 0,102.85l-1.44 -0.02c0,-0.18 1.02,-64.13 0,-102.8 -1.02,-38.74 7.1,-155.5 7.13,-155.83l1.44 0.1zm88.58 53.95c-0.03,0.54 -11.21,187.47 -16.35,198.78l-1.31 -0.59c5.04,-11.08 16.2,-197.74 16.23,-198.28l1.44 0.08zm-18.32 -54l0 62.1 -1.44 0 0 -62.1 1.44 0zm-24.44 -1c-0.02,0.71 -7.5,249.12 -8.14,263.7l-1.44 -0.06c0.64,-14.62 8.12,-262.96 8.14,-263.68l1.44 0.04zm-25.45 -0.01l-1.02 59.07c-0.03,0.52 -9.16,181.13 -7.14,191.23l-1.42 0.28c-2.05,-10.26 7.09,-191.06 7.12,-191.58l1.02 -59.03 1.44 0.02z" class="fil-tape-11"></path></g></svg>
-  </div>
-  <div class="tape-2">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178.8 470.05" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><g id="_2766172114016"><path d="M12 0c55.6,8.84 111.2,17.69 166.79,26.54 -14.35,216.21 -8.24,321.98 -5.05,443.52 -57.91,-2.74 -115.83,-5.48 -173.74,-8.21 13.79,-254.59 21.83,-450.07 12,-461.84z" class="fil-tape-20"></path><path d="M46.38 22.01c0.04,0.33 12.64,115.04 11.38,149.23l-1.78 -0.06c1.26,-34.04 -11.33,-148.64 -11.37,-148.97l1.78 -0.2zm94.77 78.46c-0.02,0.79 -6.32,275.54 -11.38,308.43l-1.77 -0.27c5.05,-32.82 11.35,-307.41 11.37,-308.2l1.78 0.04zm-25.27 -69.45c-0.08,1.13 -27.78,392.77 -21.55,407.73l-1.65 0.69c-6.4,-15.36 21.33,-407.42 21.41,-408.54l1.78 0.13zm-89.71 245.07c0,0.42 1.26,147.7 5.01,158.94l-1.69 0.56c-3.83,-11.5 -5.1,-159.06 -5.1,-159.48l1.78 -0.01zm50.17 -227.37c-0.04,0.98 -13.9,340.03 -20.22,391.85l-3.55 -0.42c6.31,-51.79 20.17,-390.6 20.21,-391.57l3.57 0.14z" class="fil-tape-21"></path></g></svg>
   </div>
   
-  <div class="product ">
+  <!-- Tape 1 -->
+  <div class="absolute -top-[20%] left-[2%] w-[35px] h-auto drop-shadow-[1px_3px_3px_#18181870] z-[6] transition-transform duration-300 group-active:origin-[0_100%] group-active:scale-y-[1.1]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.92 299.32" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><g id="_2766174952096"><path d="M10.86 9.67c43.35,-3.22 86.71,-6.45 130.06,-9.67 -6.64,101.67 -12.54,203.13 0,299.32 -46.32,-2.04 -92.65,-4.07 -138.97,-6.11 -5.07,-190.99 0.39,-255.64 8.91,-283.54z" fill="#A99473"></path><path d="M25.58 18.62c-0.02,0.34 -8.14,117.07 -7.13,155.71 1.02,38.7 0,102.67 0,102.85l-1.44 -0.02c0,-0.18 1.02,-64.13 0,-102.8 -1.02,-38.74 7.1,-155.5 7.13,-155.83l1.44 0.1zm88.58 53.95c-0.03,0.54 -11.21,187.47 -16.35,198.78l-1.31 -0.59c5.04,-11.08 16.2,-197.74 16.23,-198.28l1.44 0.08zm-18.32 -54l0 62.1 -1.44 0 0 -62.1 1.44 0zm-24.44 -1c-0.02,0.71 -7.5,249.12 -8.14,263.7l-1.44 -0.06c0.64,-14.62 8.12,-262.96 8.14,-263.68l1.44 0.04zm-25.45 -0.01l-1.02 59.07c-0.03,0.52 -9.16,181.13 -7.14,191.23l-1.42 0.28c-2.05,-10.26 7.09,-191.06 7.12,-191.58l1.02 -59.03 1.44 0.02z" fill="#BBAA88" fill-rule="nonzero"></path></g></svg>
+  </div>
+  
+  <!-- Tape 2 -->
+  <div class="absolute -top-[25%] right-[2%] w-[35px] h-auto drop-shadow-[1px_3px_3px_#18181870] z-[6] transition-transform duration-300 group-active:origin-[0_100%] group-active:scale-y-[1.1]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 178.8 470.05" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xml:space="preserve"><g id="_2766172114016"><path d="M12 0c55.6,8.84 111.2,17.69 166.79,26.54 -14.35,216.21 -8.24,321.98 -5.05,443.52 -57.91,-2.74 -115.83,-5.48 -173.74,-8.21 13.79,-254.59 21.83,-450.07 12,-461.84z" fill="#A99473"></path><path d="M46.38 22.01c0.04,0.33 12.64,115.04 11.38,149.23l-1.78 -0.06c1.26,-34.04 -11.33,-148.64 -11.37,-148.97l1.78 -0.2zm94.77 78.46c-0.02,0.79 -6.32,275.54 -11.38,308.43l-1.77 -0.27c5.05,-32.82 11.35,-307.41 11.37,-308.2l1.78 0.04zm-25.27 -69.45c-0.08,1.13 -27.78,392.77 -21.55,407.73l-1.65 0.69c-6.4,-15.36 21.33,-407.42 21.41,-408.54l1.78 0.13zm-89.71 245.07c0,0.42 1.26,147.7 5.01,158.94l-1.69 0.56c-3.83,-11.5 -5.1,-159.06 -5.1,-159.48l1.78 -0.01zm50.17 -227.37c-0.04,0.98 -13.9,340.03 -20.22,391.85l-3.55 -0.42c6.31,-51.79 20.17,-390.6 20.21,-391.57l3.57 0.14z" fill="#BBAA88" fill-rule="nonzero"></path></g></svg>
+  </div>
+  
+  <!-- Image Container -->
+  <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-60 h-60 bg-[#faf3e8] z-[1]">
     <Image 
       src={imageSrc} 
       alt={altText} 
@@ -36,167 +47,11 @@ const { imageSrc, altText } = Astro.props;
       height={350}
     />
   </div>
+  <div class="absolute  h-42 -bottom-10 right-0 w-20 z-10 overflow-hidden rounded-b-md">
+   <Planta 
+      fill="#faf3e8" 
+ 
+      class="w-full h-auto opacity-80 translate-y-3 group-hover:translate-y-1 transition-transform duration-300 ease-out" 
+    />
+  </div>
 </div>
-
-<style>
-.card {
-  position: relative;
-  background: #a68b8a;
-
-  cursor: pointer;
-  transition: all .3 ease;
-  overflow: visible;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, .3);
-}
-
-.product {
-  content: "";
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 150px;
-  height: 150px;
-  background-color: #faf3e8;
-  z-index: 1;
-}
-
-.product p {
-  font-size: 17px;
-  text-align: center;
-  color: #181818;
-  line-height: 150px;
-}
-
-.shine {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 190px;
-  height: 265px;
-  overflow: hidden;
-}
-
-.shine-effect {
-  position: absolute;
-  top: -15%;
-  left: 150%;
-  width: 25px;
-  height: 400px;
-  background-color: #ffffff2a;
-  box-shadow: 0 0 15px 2px #ffffff42;
-  transform: rotate(25deg);
-  transition: all 1s cubic-bezier(0.78, 0.02, 0.5, 0.77);
-  z-index: 5;
-}
-
-.pattern-1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 125px;
-  height: auto;
-  z-index: 2;
-}
-
-.pattern-2 {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 200px;
-  height: auto;
-  z-index: 2;
-}
-
-.tree {
-  position: absolute;
-  bottom: 1%;
-  right: -2%;
-  width: 100px;
-  height: auto;
-  transform-origin: 100% 0;
-  transform: rotate(-15deg);
-  z-index: 3;
-}
-
-.tape-1 {
-  position: absolute;
-  top: -20%;
-  left: 2%;
-  width: 35px;
-  height: auto;
-  filter: drop-shadow(1px 3px 3px #18181870);
-  z-index: 6;
-}
-
-.tape-2 {
-  position: absolute;
-  top: -25%;
-  right: 2%;
-  width: 35px;
-  height: auto;
-  filter: drop-shadow(1px 3px 3px #18181870);
-  z-index: 6;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card:hover .tape-1 {
-  transform: scale(1);
-}
-
-.card:hover .tape-2 {
-  transform: scale(1);
-}
-
-.card:hover .shine-effect {
-  left: -100%;
-}
-
-.card:active {
-  transform: scale(1.02) translate(0, 5%);
-}
-
-.card:active .tape-1 {
-  transform-origin: 0 100%;
-  transform: scaleY(1.1);
-}
-
-.card:active .tape-2 {
-  transform-origin: 0 100%;
-  transform: scaleY(1.1);
-}
-
-.fil-tape-10 {
-  fill: #A99473
-}
-
-.fil-tape-11 {
-  fill: #BBAA88;
-  fill-rule: nonzero
-}
-
-.fil-tape-20 {
-  fill: #A99473
-}
-
-.fil-tape-21 {
-  fill: #BBAA88;
-  fill-rule: nonzero
-}
-
-.fil-pattern-1 {
-  fill: #f3dfde
-}
-
-.fil-pattern-2 {
-  fill: #333333;
-  fill-rule: nonzero
-}
-
-.fil0 {
-  fill: #333333
-}
-</style>

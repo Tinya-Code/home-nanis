@@ -5,7 +5,6 @@ import dataRaw from '../../public/data/servicios.json';
 import sitemapData from '../../public/data/sitemap.json';
 import type { Servicio } from '@/types';
 import ServiceCard from '@/components/ui/ServiceCard.astro';
-import NavBar from '@/components/sections/NavBar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import CTASection from '@/components/sections/CTASection.astro';
 import { Icon } from 'astro-icon/components';
@@ -37,8 +36,7 @@ const benefits = [
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <NavBar />
-  
+    
   <main id="main-content">
     {/* Hero Section */}
     <section class="bg-hero pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">

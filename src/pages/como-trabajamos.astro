@@ -4,7 +4,6 @@ import Layout from '@/layouts/Layout.astro';
 import dataRaw from '../../public/data/como-trabajamos.json';
 import type { ComoTrabajamosData } from '@/types';
 
-import NavBar from '@/components/sections/NavBar.astro';
 import Footer from '@/components/sections/Footer.astro';
 import CTASection from '@/components/sections/CTASection.astro';
 import PageHeader from '@/components/sections/PageHeader.astro';
@@ -16,8 +15,7 @@ const { seo, title, subtitle, description, steps, differentiators } = data;
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <NavBar />
-  
+    
   <main id="main-content">
     <PageHeader 
       title={title} 

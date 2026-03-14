@@ -61,7 +61,22 @@
     "mobile": ["941141780", "967247519"],
     "email": "info@elhogardenanis.com",
     "address": "Calle Alfredo Maldonado 654 Oficina 1 A – Pueblo Libre – Lima – Perú",
-    "whatsapp": "941141780"
+    "whatsapp": "941141780",
+    "libroReclamacionesLink": "https://docs.google.com/forms/d/e/1FAIpQLSfR5KHhHyapI0dpJpaYWQXKTSbS9Meg9inEslkYQiw80Ucg6Q/viewform?pli=1",
+    "whatsappLines": [
+      {
+        "name": "Línea 1",
+        "phone": "51941141780",
+        "description": "Niñeras y cuidado infantil",
+        "message": "¡Hola! Me gustaría obtener información sobre sus servicios de niñeras."
+      },
+      {
+        "name": "Línea 2",
+        "phone": "51967247519",
+        "description": "Empleadas del hogar",
+        "message": "¡Hola! Quisiera consultar sobre empleadas del hogar."
+      }
+    ]
   },
   "businessHours": "Lunes a Viernes: 8:00 am a 7:00 pm | Sábados: 8:00 am a 2:00 pm",
   "certifications": [
@@ -85,11 +100,29 @@
   "images": {
     "logo": {
       "alt": "Agencia de Niñeras y Empleadas del Hogar - El Hogar de Nanis",
-      "localPath": "images/logo2.png"
+      "localPath": "images/logo2.webp"
     },
     "hero": {
       "alt": "Familia de Lima feliz gracias a la agencia El Hogar de Nanis",
       "localPath": "images/bannerfinal.png"
     }
-  }
+  },
+  "videos": [
+
+    {
+      "id": "N9ItxskD4Zg",
+      "title": "Nosotros y Procesos de Selección",
+      "description": "Presentación detallada de servicios, aliados y procesos de selección de recursos humanos.",
+      "duration": "15 min",
+      "type": "long"
+    },
+    {
+      "id": "rfhwBuGkO4U",
+      "title": "¿Cómo identificar una agencia eficiente?",
+      "description": "Guía para identificar una oficina de selección de nanas y niñeras profesional.",
+      "duration": "8 min",
+      "type": "intermediate"
+    }
+  ]
 }
+

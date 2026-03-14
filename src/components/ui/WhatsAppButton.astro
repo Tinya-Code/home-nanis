@@ -1,0 +1,156 @@
+---
+// src/components/ui/WhatsAppButton.astro
+import { Icon } from 'astro-icon/components';
+import type { SiteData } from '@/types';
+import siteDataRaw from '../../../public/data/site.json';
+const siteData = siteDataRaw as SiteData;
+
+interface Props {
+  position?: 'bottom-right' | 'bottom-left';
+  popupTitle?: string;
+  popupSubtitle?: string;
+  class?: string;
+}
+
+const {
+  position = 'bottom-right',
+  popupTitle = '¿En qué podemos ayudarte?',
+  popupSubtitle = 'Elige una opción para chatear:',
+  class: className = '',
+} = Astro.props;
+
+const contacts = siteData.contact.whatsappLines;
+const posClass = position === 'bottom-left' ? 'bottom-6 left-6' : 'bottom-6 right-6';
+const isSingle = contacts.length === 1;
+const singleUrl = isSingle
+  ? `https://wa.me/${contacts[0].phone}?text=${encodeURIComponent(contacts[0].message ?? '')}`
+  : '#';
+
+const btnClass = `w-14 h-14 rounded-full bg-green-600 flex items-center justify-center
+  shadow-[0_4px_20px_rgba(18,140,126,0.45)]
+  hover:scale-110 active:scale-95
+  transition-all duration-200 cursor-pointer`;
+---
+
+<div
+  id="wa-root"
+  class={`fixed z-50 flex flex-col items-end gap-3 ${posClass} ${className}`}
+>
+
+  {/* ── Popup  ─────────────────────────────────────────────────────── */}
+  {!isSingle && (
+    <div
+      id="wa-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="wa-popup-title"
+      aria-hidden="true"
+      class="hidden opacity-0 -translate-y-2 pointer-events-none
+             w-72 rounded-2xl bg-white border border-gray-100 shadow-2xl
+             overflow-hidden transition-all duration-250 origin-bottom-right"
+    >
+      {/* Header */}
+      <div class="bg-green-600 px-4 py-3 flex items-center gap-3">
+        <Icon name="mdi:whatsapp" class="w-7 h-7 text-white shrink-0" aria-hidden="true" />
+        <div>
+          <p id="wa-popup-title" class="text-white font-bold text-sm leading-tight">{popupTitle}</p>
+          <p class="text-white/80 text-xs mt-0.5">{popupSubtitle}</p>
+        </div>
+      </div>
+
+      {/* Opciones */}
+      <ul class="divide-y divide-gray-100">
+        {contacts.map((c) => {
+          const url = `https://wa.me/${c.phone}?text=${encodeURIComponent(c.message ?? '')}`;
+          return (
+            <li>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 px-4 py-3.5 hover:bg-gray-50 transition-colors group"
+                aria-label={`Chatear con ${c.name} por WhatsApp`}
+              >
+                <span class="w-9 h-9 rounded-full bg-green-600/10 flex items-center justify-center shrink-0 group-hover:bg-green-600/20 transition-colors">
+                  <Icon name="mdi:whatsapp" class="w-5 h-5 text-green-600" aria-hidden="true" />
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-semibold text-sm text-dark truncate">{c.name}</p>
+                  {c.description && <p class="text-xs text-gray-400 truncate">{c.description}</p>}
+                </div>
+                <Icon name="mdi:chevron-right" class="w-4 h-4 text-gray-300 shrink-0 group-hover:text-green-600 transition-colors" aria-hidden="true" />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )}
+
+  {/* ── Botón principal ─────────────────────────────────────────────── */}
+  {isSingle ? (
+    <a
+      href={singleUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contáctanos por WhatsApp"
+      class={btnClass}
+    >
+      <Icon name="mdi:whatsapp" class="w-8 h-8 text-white" aria-hidden="true" />
+    </a>
+  ) : (
+    <button
+      id="wa-toggle"
+      aria-expanded="false"
+      aria-controls="wa-popup"
+      aria-label="Ver opciones de WhatsApp"
+      class={`${btnClass} focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-green-600/50`}
+    >
+      <Icon name="mdi:whatsapp" class="w-8 h-8 text-white" aria-hidden="true" />
+    </button>
+  )}
+
+</div>
+
+<script>
+  function initWa() {
+    const root = document.getElementById('wa-root');
+    const toggle = document.getElementById('wa-toggle');
+    const popup = document.getElementById('wa-popup');
+    if (!root || !toggle || !popup) return;
+
+    let open = false;
+
+    const show = () => {
+      open = true;
+      toggle.setAttribute('aria-expanded', 'true');
+      popup.classList.remove('hidden', 'pointer-events-none');
+      requestAnimationFrame(() => {
+        popup.classList.remove('opacity-0', '-translate-y-2');
+        popup.classList.add('opacity-100', 'translate-y-0');
+      });
+      popup.removeAttribute('aria-hidden');
+    };
+
+    const hide = () => {
+      open = false;
+      toggle.setAttribute('aria-expanded', 'false');
+      popup.classList.add('opacity-0', '-translate-y-2');
+      popup.classList.remove('opacity-100', 'translate-y-0');
+      popup.setAttribute('aria-hidden', 'true');
+      popup.classList.add('pointer-events-none');
+      setTimeout(() => { if (!open) popup.classList.add('hidden'); }, 250);
+    };
+
+    toggle.addEventListener('click', () => (open ? hide() : show()));
+    document.addEventListener('click', (e) => {
+      if (open && !root.contains(e.target as Node)) hide();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && open) { hide(); (toggle as HTMLElement).focus(); }
+    });
+  }
+
+  initWa();
+  document.addEventListener('astro:after-swap', initWa);
+</script>

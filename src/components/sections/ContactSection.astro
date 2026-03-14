@@ -1,0 +1,53 @@
+---
+// src/components/sections/ContactSection.astro
+import ContactInfo from './ContactInfo.astro';
+import ContactForm from './ContactForm.astro';
+import type { ContactData } from '@/types';
+
+interface Props {
+  contactData: ContactData;
+  title?: string;
+  subtitle?: string;
+  bgClass?: string;
+}
+
+const { 
+  contactData, 
+  title = contactData.title, 
+  subtitle = contactData.subtitle,
+  bgClass = 'bg-white' 
+} = Astro.props;
+---
+
+<section id="contacto" class={`section-padding ${bgClass} relative overflow-hidden`}>
+  <div class="container-site relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      {/* Column Left: Map & Info */}
+      <div class="lg:col-span-5 xl:col-span-4 space-y-8" data-aos="fade-right">
+        <div class="mb-2">
+          <h2 class="text-3xl sm:text-4xl font-display font-bold text-dark mb-4 leading-tight">
+            {title}
+          </h2>
+          <p class="text-gray leading-relaxed">
+            {subtitle}
+          </p>
+        </div>
+
+        <ContactInfo 
+          contactDetails={contactData.contactDetails}
+          businessHours={contactData.businessHours}
+        />
+      </div>
+
+      {/* Column Right: Form */}
+      <div class="lg:col-span-7 xl:col-span-8" data-aos="fade-left">
+        <ContactForm 
+          title="Envíanos un mensaje"
+          subtitle="Completa este formulario y una asesora experta se comunicará contigo en la brevedad."
+        />
+      </div>
+
+    </div>
+  </div>
+</section>

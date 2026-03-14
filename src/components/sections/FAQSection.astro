@@ -1,0 +1,64 @@
+---
+// src/components/sections/FAQSection.astro
+import type { FAQData } from '@/types';
+import FAQAccordion from '@/components/ui/FAQAccordion.astro';
+import SectionHeader from '@/components/sections/SectionHeader.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  faqData: FAQData;
+  showAll?: boolean;
+  limit?: number;
+}
+
+const { faqData, showAll = false, limit } = Astro.props;
+
+// Obtener todas las preguntas o solo una categoría si es para el index
+const allItems = faqData.categories.flatMap(cat => cat.items);
+const itemsToShow = limit ? allItems.slice(0, limit) : allItems;
+---
+
+<section class="section-padding bg-light-surface position-relative overflow-hidden">
+  {/* Decoración sutil */}
+
+  <div class="container-site">
+    <div class="max-w-3xl mx-auto">
+    <SectionHeader 
+      title={faqData.title}
+      eyebrow="Preguntas Frecuentes"
+      eyebrowIcon="lucide:help-circle"
+      eyebrowStyle="pill"
+      subtitle={faqData.subtitle}
+      align="center"
+    />
+
+      {!showAll ? (
+        <FAQAccordion items={itemsToShow} />
+      ) : (
+        <div class="space-y-12">
+          {faqData.categories.map(category => (
+            <div id={category.slug}>
+              <h3 class="flex items-center gap-3 text-lg font-bold text-dark mb-6 pl-2 border-l-4 border-brand">
+                <Icon name={`lucide:${category.icon}`} class="w-5 h-5 text-brand" />
+                {category.title}
+              </h3>
+              <FAQAccordion items={category.items} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {limit && allItems.length > limit && (
+        <div class="mt-10 text-center">
+          <a 
+            href="/preguntas-frecuentes" 
+            class="inline-flex items-center gap-2 text-sm font-bold text-brand hover:text-brand-alt transition-colors group"
+          >
+            Ver todas las preguntas 
+            <Icon name="lucide:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -2,10 +2,27 @@
 // src/components/sections/Footer.astro
 
 import { Icon } from 'astro-icon/components';
-import siteData from '../../../public/data/site.json';
+import siteDataRaw from '../../../public/data/site.json';
+import type { SiteData } from '@/types';
+import CopyButton from '@/components/ui/CopyButton.astro';
+const siteData = siteDataRaw as SiteData;
 
 const year = new Date().getFullYear();
 const { contact, name, slogan } = siteData;
+
+const iconMap: Record<string, string> = {
+  facebook: 'mdi:facebook',
+  instagram: 'mdi:instagram',
+  tiktok: 'mdi:music-note',
+  youtube: 'mdi:youtube',
+  twitter: 'mdi:twitter',
+  x: 'mdi:alpha-x',
+  linkedin: 'mdi:linkedin',
+  whatsapp: 'mdi:whatsapp',
+};
+
+const getSocialIcon = (platform: string) =>
+  iconMap[platform?.toLowerCase()] ?? 'mdi:link-variant';
 
 const quickLinks = [
   { label: 'Inicio', href: '/' },
@@ -28,7 +45,7 @@ const serviceLinks = [
       
       {/* Columna 1: Marca */}
       <div class="flex flex-col gap-4">
-        <a href="/" class="inline-block flex justify-center " aria-label={`Ir a inicio de ${name}`}>
+        <a href="/" class="flex justify-center" aria-label={`Ir a inicio de ${name}`}>
 <img src="/images/logo2.webp" alt="Logo" class="w-32  mx-auto h-32" />
         </a>
         <p class="text-sm text-gray">{slogan}</p>
@@ -43,9 +60,7 @@ const serviceLinks = [
               class="w-10 h-10 rounded-full bg-surface-alt flex items-center justify-center text-gray hover:text-white hover:bg-brand transition-colors"
               aria-label={`Síguenos en ${social.platform}`}
             >
-              <span class="sr-only">{social.platform}</span>
-              {/* Fallback simple si no definen icono */}
-              <Icon name="lucide:link" class="w-5 h-5" />
+              <Icon name={getSocialIcon(social.platform)} class="w-5 h-5" aria-hidden="true" />
             </a>
           ))}
         </div>
@@ -82,20 +97,54 @@ const serviceLinks = [
       {/* Columna 4: Contacto */}
       <div>
         <h3 class="font-display font-bold text-dark mb-4">Contacto</h3>
-        <ul class="flex flex-col gap-3">
-          <li class="flex items-start gap-3">
-            <Icon name="lucide:phone" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
-            <span class="text-sm text-gray">{contact.phone}</span>
+        <ul class="flex flex-col gap-3 mb-6">
+          <li class="flex items-start justify-between group/contact">
+            <div class="flex items-start gap-3">
+              <Icon name="lucide:phone" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
+              <span class="text-sm text-gray">{contact.phone}</span>
+            </div>
+            <CopyButton 
+              textToCopy={contact.phone.replace(/\s/g, '')} 
+              label="Copiar teléfono" 
+              class="opacity-0 group-hover/contact:opacity-100 transition-opacity"
+            />
           </li>
-          <li class="flex items-start gap-3">
-            <Icon name="lucide:mail" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
-            <span class="text-sm text-gray">{contact.email}</span>
+          <li class="flex items-start justify-between group/contact">
+            <div class="flex items-start gap-3">
+              <Icon name="lucide:mail" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
+              <span class="text-sm text-gray">{contact.email}</span>
+            </div>
+            <CopyButton 
+              textToCopy={contact.email} 
+              label="Copiar correo" 
+              class="opacity-0 group-hover/contact:opacity-100 transition-opacity"
+            />
           </li>
           <li class="flex items-start gap-3">
             <Icon name="lucide:map-pin" class="w-5 h-5 text-brand shrink-0 mt-0.5" aria-hidden="true" />
             <span class="text-sm text-gray">{contact.address}</span>
           </li>
         </ul>
+
+        {/* Libro de Reclamaciones */}
+        <div class="pt-4 border-t border-border/50">
+          <a 
+            href={contact.libroReclamacionesLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-3 p-3 rounded-xl border border-dashed border-border/60 hover:border-brand/40 group/libro transition-colors"
+          >
+            <img 
+              src="/images/libro_de_reclamaciones-300x206.png" 
+              alt="Libro de Reclamaciones Virtual" 
+              class="w-12 h-auto grayscale group-hover/libro:grayscale-0 transition-all"
+            />
+            <div class="flex flex-col">
+              <span class="text-[10px] font-bold text-gray-muted uppercase tracking-widest">Libro de</span>
+              <span class="text-xs font-bold text-dark group-hover:text-brand transition-colors">Reclamaciones</span>
+            </div>
+          </a>
+        </div>
       </div>
 
     </div>

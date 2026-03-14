@@ -1,0 +1,81 @@
+---
+// src/components/ui/VideoCard.astro
+import { Icon } from 'astro-icon/components';
+import type { Video } from '@/types';
+
+interface Props {
+  video: Video;
+  idx?: number;
+}
+
+const { video, idx = 0 } = Astro.props;
+---
+
+<div 
+  class="group flex flex-col bg-white rounded-3xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:shadow-brand/5 transition-all duration-500 animate-fade-up"
+  style={`animation-delay: ${idx * 150}ms;`}
+  data-video-card
+>
+  {/* Video Placeholder / Thumbnail Area */}
+  <div class="relative aspect-video bg-dark overflow-hidden">
+    <iframe
+      class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 pointer-events-none"
+      src={`https://www.youtube.com/embed/${video.id}?autoplay=0&rel=0&modestbranding=1`}
+      title={video.title}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      data-video-iframe
+    ></iframe>
+    
+    {/* Custom Overlay / Play Button */}
+    <div class="absolute inset-0 bg-dark/20 group-hover:bg-dark/40 transition-colors duration-500 flex items-center justify-center cursor-pointer" data-video-overlay>
+      <div class="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-brand shadow-lg transform group-hover:scale-110 transition-transform duration-500">
+        <Icon name="mdi:play" class="w-10 h-10 translate-x-0.5" aria-hidden="true" />
+      </div>
+      
+      {/* Thumbnail */}
+      <img 
+        src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`} 
+        alt={video.title}
+        class="absolute inset-0 w-full h-full object-cover -z-10 group-hover:scale-105 transition-transform duration-700"
+        loading="lazy"
+      />
+    </div>
+
+    {/* Duration Tag */}
+    {video.duration && (
+      <div class="absolute top-4 right-4 px-3 py-1 bg-dark/60 backdrop-blur-md rounded-lg text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
+        {video.duration}
+      </div>
+    )}
+  </div>
+
+  {/* Content Area */}
+  <div class="p-6 grow flex flex-col">
+    <h3 class="text-xl font-bold text-dark mb-3 group-hover:text-brand transition-colors duration-300">
+      {video.title}
+    </h3>
+    {video.description && (
+      <p class="text-gray text-sm leading-relaxed mb-6 line-clamp-3">
+        {video.description}
+      </p>
+    )}
+    
+    <div class="mt-auto pt-4 border-t border-border flex items-center justify-between">
+      <span class="text-[10px] font-bold text-gray-muted uppercase tracking-wider flex items-center gap-2">
+        <Icon name="mdi:youtube" class="w-4 h-4 text-red-600" aria-hidden="true" />
+        YouTube Channel
+      </span>
+      <button 
+        class="text-brand font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all duration-300 cursor-pointer"
+        data-video-trigger
+        aria-label={`Reproducir video: ${video.title}`}
+      >
+        Reproducir ahora
+        <Icon name="mdi:chevron-right" class="w-4 h-4" aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</div>

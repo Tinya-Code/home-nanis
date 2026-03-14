@@ -1,0 +1,51 @@
+---
+// src/pages/preguntas-frecuentes.astro
+import Layout from '@/layouts/Layout.astro';
+import Footer from '@/components/sections/Footer.astro';
+import PageHeader from '@/components/sections/PageHeader.astro';
+import FAQSection from '@/components/sections/FAQSection.astro';
+import type { FAQData } from '@/types';
+import faqsDataRaw from '../../public/data/faqs.json';
+
+const faqData = faqsDataRaw as FAQData;
+
+// SEO Schema FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.categories.flatMap(cat => 
+    cat.items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  )
+};
+---
+
+<Layout 
+  title="Preguntas Frecuentes | EL Hogar de Nanis" 
+  description="Encuentra respuestas a las dudas más comunes sobre nuestro proceso de selección de nanas, técnicas en enfermería y personal del hogar en Perú."
+>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <main id="main-content">
+    <PageHeader 
+      title={faqData.title}
+      subtitle={faqData.subtitle}
+      variant="image"
+      align="left"
+      breadcrumbs={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Preguntas Frecuentes' }
+      ]}
+    />
+
+    <FAQSection faqData={faqData} showAll={true} />
+  </main>
+
+  <Footer />
+</Layout>

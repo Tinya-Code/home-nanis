@@ -1,0 +1,108 @@
+---
+// src/components/sections/VideoSection.astro
+import SectionHeader from '@/components/sections/SectionHeader.astro';
+import VideoCard from '@/components/ui/VideoCard.astro';
+import type { Video } from '@/types';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  eyebrow?: string;
+  videos: Video[];
+  class?: string;
+}
+
+const {
+  title = "Nuestros Videos",
+  subtitle = "Conoce más sobre nuestro compromiso, procesos y la calidad de nuestro servicio a través de nuestro canal de YouTube.",
+  eyebrow = "Multimedia",
+  videos,
+  class: className = ""
+} = Astro.props;
+
+const videoCount = videos.length;
+const gridColsClass = videoCount === 1 
+  ? "max-w-4xl mx-auto grid-cols-1" 
+  : videoCount === 2 
+    ? "grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto" 
+    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
+---
+
+<section class={`section-padding bg-white relative overflow-hidden ${className}`}>
+  {/* Elementos decorativos sutiles */}
+  <div class="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-alt/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl pointer-events-none"></div>
+
+  <div class="container-site relative z-10">
+    <SectionHeader 
+      title={title}
+      subtitle={subtitle}
+      eyebrow={eyebrow}
+      align="center"
+    />
+
+    <div class={`grid gap-8 mt-16 ${gridColsClass}`}>
+      {videos.map((video, idx) => (
+        <VideoCard video={video} idx={idx} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initVideos() {
+    const cards = document.querySelectorAll('[data-video-card]');
+    
+    cards.forEach(card => {
+      const overlay = card.querySelector('[data-video-overlay]');
+      const iframe = card.querySelector('[data-video-iframe]') as HTMLIFrameElement;
+      const trigger = card.querySelector('[data-video-trigger]');
+
+      const playVideo = () => {
+        if (iframe && overlay) {
+          // Play behavior: Show iframe, hide overlay
+          iframe.classList.remove('opacity-0', 'pointer-events-none');
+          iframe.src += "&autoplay=1";
+          overlay.classList.add('hidden');
+        }
+      };
+
+      overlay?.addEventListener('click', (e) => {
+        e.preventDefault();
+        playVideo();
+      });
+
+      trigger?.addEventListener('click', (e) => {
+        e.preventDefault();
+        playVideo();
+      });
+    });
+  }
+
+  // Initialize on load and after view transitions
+  initVideos();
+  document.addEventListener('astro:after-swap', initVideos);
+</script>
+
+<style>
+  /* Las animaciones se mantienen aquí o se mueven a global si son frecuentes */
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fade-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

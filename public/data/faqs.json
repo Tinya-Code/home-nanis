@@ -1,0 +1,59 @@
+{
+  "title": "Preguntas Frecuentes",
+  "subtitle": "Todo lo que necesitas saber sobre nuestro servicio de cuidado en el hogar",
+  "categories": [
+    {
+      "title": "Proceso de Selección",
+      "slug": "proceso-seleccion",
+      "icon": "search",
+      "items": [
+        {
+          "question": "¿Cómo seleccionan al personal de El Hogar de Nanis?",
+          "answer": "Nuestro proceso es riguroso e incluye evaluación psicológica, verificación de antecedentes penales y judiciales, validación de referencias laborales de los últimos 3 empleos y visitas domiciliarias para garantizar la seguridad de su hogar."
+        },
+        {
+          "question": "¿Qué documentos solicitan a las candidatas?",
+          "answer": "Solicitamos DNI vigente, certificados de antecedentes policiales, penales y judiciales, certificados de salud, y constancias de trabajo previas verificables."
+        },
+        {
+          "question": "¿Puedo entrevistar a las candidatas antes de contratar?",
+          "answer": "Sí, coordinamos entrevistas presenciales o por videollamada con las candidatas que mejor se adapten a su perfil para que usted pueda tomar la decisión final con total confianza."
+        }
+      ]
+    },
+    {
+      "title": "Nuestros Servicios",
+      "slug": "servicios",
+      "icon": "heart",
+      "items": [
+        {
+          "question": "¿Qué tipos de servicios ofrecen?",
+          "answer": "Ofrecemos nanas para bebés y niños, técnicas en enfermería para cuidados especiales, empleadas del hogar (cama adentro o cama afuera) y personal de apoyo para adultos mayores."
+        },
+        {
+          "question": "¿Qué sucede si la persona contratada no se adapta?",
+          "answer": "Contamos con una política de garantía de sustitución. Durante el periodo de garantía, realizamos nuevos procesos de selección sin costo adicional si el personal no cumple con sus expectativas o necesidades."
+        },
+        {
+          "question": "¿Ofrecen personal para trabajar en provincias?",
+          "answer": "Sí, contamos con personal dispuesto a trabajar bajo la modalidad de cama adentro en diferentes provincias del Perú, previa coordinación de condiciones de traslado."
+        }
+      ]
+    },
+    {
+      "title": "Pagos y Contratos",
+      "slug": "pagos-contratos",
+      "icon": "file-text",
+      "items": [
+        {
+          "question": "¿Cuál es el costo del servicio de selección?",
+          "answer": "El costo varía según el perfil solicitado y la modalidad de trabajo. Contáctenos para brindarle una cotización personalizada que se ajuste a sus requerimientos específicos."
+        },
+        {
+          "question": "¿Ustedes se encargan del pago de sueldos y beneficios?",
+          "answer": "Nosotros realizamos la selección y colocación. El vínculo laboral y el pago de beneficios de ley (Gratificación, CTS, Vacaciones) corresponde al empleador directo, aunque brindamos asesoría sobre cómo gestionar estos procesos correctamente."
+        }
+      ]
+    }
+  ]
+}
