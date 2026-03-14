@@ -8,9 +8,9 @@ import CopyButton from '@/components/ui/CopyButton.astro';
 
 const links = [
   { label: 'Inicio', href: '/' },
-  { label: 'Servicios', href: '/nuestros-servicios' },
-  { label: 'Nosotros', href: '/quienes-somos' },
-  { label: 'Cómo Trabajamos', href: '/como-trabajamos' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Nosotros', href: '#quienes-somos' },
+  { label: 'Cómo Trabajamos', href: '#como-trabajamos' },
   { label: 'Bolsa de Trabajo', href: '/bolsa-de-trabajo' },
 ];
 
@@ -54,16 +54,7 @@ const phone = siteData.contact.phone;
 
     {/* CTAs y Mobile toggler */}
     <div class="flex items-center gap-4">
-      <div class="hidden sm:flex items-center gap-2 group/nav-phone">
-        <div class="text-brand-alt font-display font-bold">
-          {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
-        </div>
-        <CopyButton 
-          textToCopy={phone.replace(/\s/g, '')} 
-          label="Copiar teléfono" 
-          class="opacity-0 group-hover/nav-phone:opacity-100 transition-opacity"
-        />
-      </div>
+
       <ButtonPrimary label="Contacto" href="/contacto" size="sm" variant="gradient" />
       
       {/* Botón menú mobile */}

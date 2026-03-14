@@ -1,8 +1,9 @@
 ---
 // src/components/ui/ServiceCard.astro
 
-import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
+//import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import type { Servicio } from '@/types';
+import { Icon } from 'astro-icon/components';
 
 /**
  * ServiceCard
@@ -50,7 +51,7 @@ const imagePath = `/src/assets/${servicio.image.localPath.split('/').pop()}`;
     <h3 class="font-body font-semibold text-xl text-brand">{servicio.title}</h3>
     <p class="text-sm text-gray flex-1">{servicio.shortDescription}</p>
     
-    <!-- {servicio.features && servicio.features.length > 0 && (
+   {servicio.features && servicio.features.length > 0 && (
       <ul class="flex flex-col gap-1 mb-2">
         {servicio.features.slice(0, 3).map(feature => (
           <li class="list-feature-item">
@@ -59,10 +60,10 @@ const imagePath = `/src/assets/${servicio.image.localPath.split('/').pop()}`;
           </li>
         ))}
       </ul>
-    )} -->
+    )} 
   </div>
-
+ <!--
   <div class="mt-auto pt-4 border-t border-border flex flex-wrap gap-2 items-center justify-between">
     <ButtonPrimary label="Ver más" href={`/servicios/${servicio.id}`} variant="primary" size="sm" class="font-medium" />
-  </div>
+  </div> -->
 </article>

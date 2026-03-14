@@ -86,6 +86,11 @@ const { seo, title, subtitle, description, requirements, benefits, jobOffers, ap
 
     {/* Job Offers Section */}
     <JobListingSection jobOffers={jobOffers} />
+        <Parallax 
+      imageSrc="/images/enfermerastecnicas.jpg"
+      height="h-[60vh]"
+      imagePosition="center -60%" 
+    />
 
     {/* Application Form Banner (now using CTASection variant) */}
     <CTASection 
@@ -109,13 +114,9 @@ const { seo, title, subtitle, description, requirements, benefits, jobOffers, ap
     />
 
     {/* Footer CTA */}
-    <Parallax 
-      imageSrc="/images/enfermerastecnicas.jpg"
-      height="h-[40vh]"
-      imagePosition="center -60%" 
-    />
 
-    <CTASection />
+
+
   </main>
 
   <Footer />

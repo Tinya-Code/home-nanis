@@ -189,10 +189,10 @@
   }
 
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 font-display font-semibold rounded-full transition-all duration-200 ease-out cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none px-6 py-3 text-white font-bold;
+    @apply inline-flex items-center text-white bg-green-600 justify-center gap-2 font-display font-semibold rounded-full  ;
     min-height: 44px;
     min-width: 44px;
-    background-color: #11ba4f;
+
     &:hover { background-color: #1DAE54; }
   }
 

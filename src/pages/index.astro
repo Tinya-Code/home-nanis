@@ -50,7 +50,7 @@ const homeSchema = buildLocalBusiness(siteData.localSeo.schemaLocalBusiness, {
 
   <main id="main-content" tabindex="-1">
     <HeroSection />
-    <CertBadgesSection />
+
     <ServicesSection servicios={servicios as any[]} />
     <WhyUsSection />
     <ProcessSection />
@@ -64,6 +64,7 @@ const homeSchema = buildLocalBusiness(siteData.localSeo.schemaLocalBusiness, {
     <FounderSection founder={founder} marcelaImg={marcelaImg} />
     <FAQSection faqData={faqData} limit={6} />
     <ContactSection contactData={contactData} />
+        <CertBadgesSection />
   </main>
 
   <Footer />

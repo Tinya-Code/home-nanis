@@ -12,7 +12,7 @@ const { testimonios } = Astro.props;
 const featuredTestimonials = testimonios.slice(0, 3);
 ---
 
-<section class="section-padding bg-light-surface" id="testimonios">
+<section class="section-padding bg-white" id="testimonios">
   <div class="container-site">
     <SectionHeader 
       title="Lo que dicen nuestras Familias" 
@@ -20,6 +20,7 @@ const featuredTestimonials = testimonios.slice(0, 3);
       subtitle="Conoce de primera mano por qué cientos de familias limeñas confían en El Hogar de Nanis para el cuidado de sus seres queridos."
        align="center"
       variant="gradient"
+      showHearts = {true}
     />
 
     <div class="grid-testimonials mt-16">
