@@ -24,6 +24,7 @@
     "astro": "^6.0.4",
     "astro-compress": "^2.3.9",
     "astro-icon": "^1.1.5",
+    "gsap": "^3.14.2",
     "schema-dts": "^1.1.5",
     "sharp": "^0.34.5"
   },

@@ -1,10 +1,24 @@
 {
   "name": "El Hogar de Nanis",
-  "slogan": "Confianza y Seguridad para tu familia. Evaluamos y seleccionamos con criterio profesional.",
+  "slogan": "Evaluamos y seleccionamos con criterio profesional.",
   "shortDescription": "Somos una agencia autorizada especializada en la selección rigurosa de personal doméstico en Lima Central, Sur y Norte: niñeras exclusivas, enfermeras técnicas para adulto mayor y empleadas del hogar.",
   "localSeo": {
-    "targetLocations": ["Lima", "Miraflores", "San Isidro", "Surco", "La Molina", "San Borja", "Pueblo Libre"],
-    "mainKeywords": ["agencia de niñeras", "empleadas del hogar lima", "agencia de empleos domésticos", "cuidado de adulto mayor lima", "nanas cama adentro"],
+    "targetLocations": [
+      "Lima",
+      "Miraflores",
+      "San Isidro",
+      "Surco",
+      "La Molina",
+      "San Borja",
+      "Pueblo Libre"
+    ],
+    "mainKeywords": [
+      "agencia de niñeras",
+      "empleadas del hogar lima",
+      "agencia de empleos domésticos",
+      "cuidado de adulto mayor lima",
+      "nanas cama adentro"
+    ],
     "schemaLocalBusiness": {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
@@ -111,3 +125,4 @@
     }
   ]
 }
+

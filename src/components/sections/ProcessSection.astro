@@ -1,5 +1,6 @@
 ---
 // src/components/sections/ProcessSection.astro
+
 import SectionHeader from '@/components/sections/SectionHeader.astro';
 import StepCard from '@/components/ui/StepCard.astro';
 import { Icon } from 'astro-icon/components';
@@ -8,142 +9,189 @@ import processData from '../../../public/data/como-trabajamos.json';
 const steps = processData.steps;
 ---
 
-<section class="section-padding bg-surface overflow-hidden" id="como-trabajamos">
-  <div class="container-site">
+<section class="section-padding bg-surface overflow-hidden process-section" id="como-trabajamos">
+  <div class="container-site relative">
+
     <SectionHeader 
-      title="Nuestro Proceso de Selección" 
-      eyebrow="Fácil y Seguro" 
+      title={processData.title}
+      eyebrow="Fácil y Seguro"
       subtitle={processData.description}
       showHearts = {true}
       variant="simple"
       align="center"
+      variant="gradient"
     />
 
-    <div class="process-container mt-24 relative min-h-[500px] flex items-center justify-center">
-      <div class="stack-wrapper" id="process-stack">
-        {steps.map((step: any, index: number) => (
-          <div 
-            class={`process-card-animation ${index === 0 ? 'is-active' : 'is-stacked'}`} 
-            data-index={index}
-            style={`--i: ${index};`}
-          >
-            <StepCard 
-              stepNumber={index + 1}
+    <div class="timeline-wrapper mt-24">
+
+      <div class="timeline-line"></div>
+
+      {steps.map((step: any, index: number) => (
+        <div class={`timeline-item step ${index % 2 === 0 ? 'left' : 'right'}`}>
+
+          <div class="timeline-dot">
+            {step.number}
+          </div>
+
+          <div class="timeline-card">
+            <StepCard
               title={step.title}
               description={step.description}
             >
-              <Icon name={step.icon ? (step.icon.includes(':') ? step.icon : `lucide:${step.icon}`) : 'lucide:check-circle'} slot="icon" class="w-10 h-10 text-brand" />
+              <Icon
+                name={step.icon ? (step.icon.includes(':') ? step.icon : `lucide:${step.icon}`) : 'lucide:check-circle'}
+                slot="icon"
+                class="w-10 h-10 text-brand"
+              />
             </StepCard>
           </div>
-        ))}
-      </div>
+
+        </div>
+      ))}
+
     </div>
   </div>
 </section>
 
 <style>
-  .process-container {
-    perspective: 1000px;
+.timeline-wrapper{
+  position:relative;
+  max-width:1100px;
+  margin:auto;
+  padding-top:40px;
+}
+
+.timeline-line{
+  position:absolute;
+  left:50%;
+  top:0;
+  width:3px;
+  height:100%;
+  background:#e5e7eb;
+  transform:translateX(-50%);
+  transform-origin:top;
+}
+
+.timeline-item{
+  position:relative;
+  display:flex;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.timeline-item.left{
+  justify-content:flex-start;
+}
+
+.timeline-item.right{
+  justify-content:flex-end;
+}
+
+.timeline-card{
+  width:42%;
+  transition:transform .3s ease;
+}
+
+.timeline-card:hover{
+  transform:translateY(-6px);
+}
+
+.timeline-dot{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  background:var(--color-brand);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  z-index:20;
+  border:4px solid white;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Tablet */
+
+@media (max-width:1024px){
+  .timeline-card{
+    width:46%;
+  }
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+  .timeline-line{
+    left:24px;
+    transform:none;
   }
 
-  .stack-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .timeline-item{
+    justify-content:flex-start !important;
+    padding-left:70px;
+    margin-bottom:60px;
   }
 
-  .process-card-animation {
-    position: absolute;
-    width: 320px;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-    pointer-events: none;
-    opacity: 0;
+  .timeline-card{
+    width:100%;
   }
 
-  /* Estado ACTIVA: A la derecha y grande */
-  .process-card-animation.is-active {
-    opacity: 1;
-    transform: translateX(180px) scale(1.1);
-    z-index: 50;
-    pointer-events: auto;
+  .timeline-dot{
+    left:24px;
+    transform:none;
   }
 
-  /* Estado APILADA: A la izquierda, apiladas */
-  .process-card-animation.is-stacked {
-    opacity: 1;
-    /* Calculamos posición basada en un índice virtual que daremos en el JS */
-    transform: translateX(-180px) translateY(calc(var(--stack-idx, 0) * 10px)) translateZ(calc(var(--stack-idx, 0) * -20px)) scale(calc(1 - (var(--stack-idx, 0) * 0.05)));
-    z-index: calc(40 - var(--stack-idx, 0));
-    filter: blur(calc(var(--stack-idx, 0) * 1px));
-  }
-
-  /* Ocultar las que están muy atrás en la pila */
-  .process-card-animation.is-hidden {
-    opacity: 0;
-    transform: translateX(-300px) scale(0.5);
-    z-index: 0;
-  }
-
-  @media (max-width: 768px) {
-    .stack-wrapper {
-      height: 500px;
-      flex-direction: column;
-    }
-    .process-card-animation.is-active {
-      transform: translateY(100px) scale(1);
-    }
-    .process-card-animation.is-stacked {
-      transform: translateY(-100px) scale(0.9);
-    }
-  }
+}
 </style>
 
-<script>
-  function initProcessAnimation() {
-    const stack = document.getElementById('process-stack');
-    if (!stack) return;
+<script type="module">
 
-    const cards = Array.from(stack.querySelectorAll('.process-card-animation')) as HTMLElement[];
-    let currentIndex = 0;
+import gsap from "/node_modules/gsap/index.js";
+import ScrollTrigger from "/node_modules/gsap/ScrollTrigger.js";
 
-    function updateStack() {
-      cards.forEach((card, i) => {
-        card.classList.remove('is-active', 'is-stacked', 'is-hidden');
-        
-        if (i === currentIndex) {
-          card.classList.add('is-active');
-          card.style.removeProperty('--stack-idx');
-        } else {
-          // Calculamos la distancia circular desde el índice actual
-          let diff = i - currentIndex;
-          if (diff < 0) diff += cards.length;
-          
-          if (diff > 0 && diff <= 3) { // Mostramos hasta 3 en la pila
-            card.classList.add('is-stacked');
-            card.style.setProperty('--stack-idx', (diff - 1).toString());
-          } else {
-            card.classList.add('is-hidden');
-          }
-        }
-      });
+gsap.registerPlugin(ScrollTrigger);
 
-      currentIndex = (currentIndex + 1) % cards.length;
+function initProcessAnimation(){
+
+  const steps = document.querySelectorAll(".step");
+
+  steps.forEach((step)=>{
+
+    gsap.from(step,{
+      opacity:0,
+      y:60,
+      duration:0.8,
+      ease:"power2.out",
+      scrollTrigger:{
+        trigger:step,
+        start:"top 85%",
+        toggleActions:"play none none reset"
+      }
+    });
+
+  });
+
+  gsap.from(".timeline-line",{
+
+    scaleY:0,
+    transformOrigin:"top",
+
+    scrollTrigger:{
+      trigger:".timeline-wrapper",
+      start:"top 80%",
+      end:"bottom 20%",
+      scrub:true
     }
 
-    // Primera ejecución
-    updateStack();
-    
-    // Intervalo cada 4 segundos
-    setInterval(updateStack, 4500);
-  }
+  });
 
-  // Ejecutar al cargar
-  document.addEventListener('astro:page-load', initProcessAnimation);
-  // Fallback para carga inicial sin View Transitions
-  initProcessAnimation();
+}
+
+window.addEventListener("load", initProcessAnimation);
+
 </script>
