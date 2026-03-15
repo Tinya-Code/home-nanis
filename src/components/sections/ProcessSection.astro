@@ -5,7 +5,7 @@ import SectionHeader from '@/components/sections/SectionHeader.astro';
 import StepCard from '@/components/ui/StepCard.astro';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
-import processData from '../../../public/data/como-trabajamos.json';
+import processData from '@/data/como-trabajamos.json';
 
 // Import process images
 import img1 from '@/assets/proceso1.webp';
@@ -162,53 +162,4 @@ const steps = processData.steps.map((step: any, index: number) => ({
   } else {
     initCustomProcessAnimations();
   }
-
-}
-</style>
-
-<script >
-
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-function initProcessAnimation(){
-
-  const steps = document.querySelectorAll(".step");
-
-  steps.forEach((step)=>{
-    gsap.from(step,{
-      opacity:0,
-      y:60,
-      duration:0.8,
-      ease:"power2.out",
-      scrollTrigger:{
-        trigger:step,
-        start:"top 85%",
-        toggleActions:"play none none reset"
-      }
-    });
-
-  });
-
-  gsap.from(".timeline-line",{
-
-    scaleY:0,
-    transformOrigin:"top",
-
-    scrollTrigger:{
-      trigger:".timeline-wrapper",
-      start:"top 80%",
-      end:"bottom 20%",
-      scrub:true
-    }
-
-  });
-
-}
-
-window.addEventListener("load", initProcessAnimation);
-
-
 </script>

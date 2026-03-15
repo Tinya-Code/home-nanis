@@ -2,8 +2,8 @@
 // src/components/sections/Footer.astro
 
 import { Icon } from 'astro-icon/components';
-import siteDataRaw from '../../../public/data/site.json';
-import footerData from '../../../public/data/footer.json';
+import siteDataRaw from '@/data/site.json';
+import footerData from '@/data/footer.json';
 import type { SiteData } from '@/types';
 import CopyButton from '@/components/ui/CopyButton.astro';
 
@@ -106,13 +106,13 @@ const titleStyles = {
       </div>
 
       {/* Columnas Dinámicas (Enlaces) */}
-      {footerData.columns.map(column => (
+      {footerData.columns.map((column: any) => (
         <div class="text-center sm:text-left">
           <h3 class:list={["font-display font-bold mb-6", titleStyles[variant]]}>
             {column.title}
           </h3>
           <ul class="flex flex-col gap-3">
-            {column.links.map(link => (
+            {column.links.map((link: any) => (
               <li>
                 <a 
                   href={resolveHref(link.href, link.isAnchor)} 
@@ -203,7 +203,7 @@ const titleStyles = {
     <div class:list={["flex flex-col md:flex-row items-center justify-between gap-6 text-xs", variant === 'dark' ? 'text-white/40' : 'text-gray-muted']}>
       <p>&copy; {year} {name}. Todos los derechos reservados.</p>
       <div class="flex flex-wrap items-center justify-center gap-6">
-        {footerData.legal.map(link => (
+        {footerData.legal.map((link: any) => (
           <a href={link.href} class:list={["transition-colors", variant === 'dark' ? 'hover:text-white' : 'hover:text-dark']}>
             {link.label}
           </a>

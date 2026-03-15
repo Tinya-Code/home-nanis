@@ -3,8 +3,8 @@
 
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import { Icon } from 'astro-icon/components';
-import siteData from '../../../public/data/site.json';
-import navData from '../../../public/data/nav.json';
+import siteData from '@/data/site.json';
+import navData from '@/data/nav.json';
 import CopyButton from '@/components/ui/CopyButton.astro';
 
 /**
@@ -59,7 +59,7 @@ const navLinks = navData.links as NavLink[];
 
 // Definir estilos según variante
 const variantStyles = {
-  glass: 'bg-white/90 backdrop-blur-md border-b border-border',
+  glass: 'bg-white backdrop-blur-md border-b border-border',
   light: 'bg-white border-b border-border',
   dark: 'bg-dark text-white border-b border-white/10'
 };
@@ -76,7 +76,7 @@ const variantStyles = {
   ]}
   data-navbar
 >
-  <div class="container-site h-16 md:h-20 flex items-center justify-between">
+  <div class="container-site h-16 md:h-18 flex items-center justify-between">
     
     {/* Logo */}
     <a href="/" class="flex items-center gap-2 group" aria-label={`Ir a inicio de ${siteData.name}`}>

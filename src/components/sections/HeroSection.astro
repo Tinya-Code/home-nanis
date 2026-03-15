@@ -4,12 +4,12 @@ import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import heroBg from '@assets/hero-bg.jpeg';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
-import siteData from '../../../public/data/site.json';
+import siteData from '@/data/site.json';
 const { slogan } = siteData;
 const {
   description = slogan,
   primaryCta = "Contratar Personal",
-  primaryCtaLink = "/contacto",
+  primaryCtaLink = "#contacto",
   secondaryCta = "Nuestros Servicios",
   secondaryCtaLink = "#servicios",
 } = Astro.props;
