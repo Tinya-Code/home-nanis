@@ -12,7 +12,7 @@ const { imageSrc, altText } = Astro.props;
 
 <div class="founder-card group relative">
 
-  <div class="image-wrapper">
+  <div class="image-wrapper rounded-md">
     <Image
       src={imageSrc}
       alt={altText}
@@ -31,7 +31,7 @@ const { imageSrc, altText } = Astro.props;
 
 .image-wrapper{
   overflow:hidden;
-  border-radius:16px;
+
   box-shadow:0 20px 40px rgba(0,0,0,0.12);
   transition:all .35s ease;
 }

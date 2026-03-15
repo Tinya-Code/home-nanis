@@ -2,6 +2,10 @@
 // src/components/sections/HeroSection.astro
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import heroBg from '@assets/hero-bg.jpeg';
+import bannerPrincipal from '@assets/banner-principal.jpeg';
+import bannerSecundario from '@assets/banner-secundario.png';
+import bannerTercero from '@assets/banner-terceario.png';
+import bannerCuarto from '@assets/banner-4.jpeg';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import siteData from '@/data/site.json';
@@ -17,15 +21,15 @@ const {
 <section class="hero-wrapper">
   <div class="hero flex flex-col">
     <!-- Background Image -->
-    <div class="hero-bg">
+    <div class="hero-bg ">
       <Image
-        src={heroBg}
+        src={bannerCuarto}
         alt="Servicios domésticos profesionales"
         width={1920}
         height={1080}
         format="webp"
         quality={85}
-        class="hero-bg-img object-cover"
+        class="hero-bg-img opacity-90 md:opacity-100 object-right left-3 object-cover"
         loading="eager"
         fetchpriority="high"
       />
@@ -230,11 +234,6 @@ const {
   justify-content:center;
 }
 
-.hero-overlay{
-  height:100%;
-  position:absolute;
-  inset:0;
-  background:rgba(255,255,255,0.5);
-}
+
 }
 </style>
