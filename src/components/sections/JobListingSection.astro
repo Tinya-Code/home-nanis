@@ -3,6 +3,7 @@
 import type { JobOffer } from '@/types';
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import { Icon } from 'astro-icon/components';
+import SectionHeader from '@/components/sections/SectionHeader.astro';
 
 interface Props {
   jobOffers: JobOffer[];
@@ -13,16 +14,16 @@ const { jobOffers } = Astro.props;
 
 <section class="section-padding bg-section-alt">
   <div class="container-site">
-    <div class="text-center mb-16">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-widest mb-4">
-        <Icon name="lucide:briefcase" class="w-3.5 h-3.5" />
-        Vacantes Actuales
-      </span>
-      <h2 class="h2 mb-4 section-title-gradient">Últimas Convocatorias</h2>
-      <p class="text-gray-muted text-sm max-w-xl mx-auto">
-        Únete a nuestro equipo y forma parte de la agencia líder en cuidado del hogar en el Perú.
-      </p>
-    </div>
+
+    <SectionHeader
+    title="Últimas Convocatorias"
+    subtitle="Únete a nuestro equipo y forma parte de la agencia líder en cuidado del hogar en el Perú."
+    eyebrow="Vacantes Actuales"
+    align="center"
+    eyebrowIcon="lucide:briefcase"
+    showHearts = {true}
+    variant="gradient"
+    />
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {jobOffers.map((job) => (

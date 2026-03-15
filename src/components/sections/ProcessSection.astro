@@ -4,194 +4,162 @@
 import SectionHeader from '@/components/sections/SectionHeader.astro';
 import StepCard from '@/components/ui/StepCard.astro';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import processData from '../../../public/data/como-trabajamos.json';
 
-const steps = processData.steps;
+// Import process images
+import img1 from '@/assets/proceso1.webp';
+import img2 from '@/assets/proceso2.webp';
+import img3 from '@/assets/proceso3.webp';
+import img4 from '@/assets/proceso4.webp';
+import img5 from '@/assets/proceso5.webp';
+import img6 from '@/assets/proceso6.webp';
+import img7 from '@/assets/proceso7.webp';
+
+const processImages = [img1, img2, img3, img4, img5, img6, img7];
+
+const steps = processData.steps.map((step: any, index: number) => ({
+  ...step,
+  image: processImages[index]
+}));
 ---
 
-<section class="section-padding bg-surface overflow-hidden process-section" id="como-trabajamos">
-  <div class="container-site relative">
+<section class="px-4 py-8 sm:px-6 sm:py-16 lg:px-8 lg:py-20 xl:px-12 xl:py-24 bg-surface overflow-hidden" id="como-trabajamos" data-process-section>
+  <div class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative">
 
     <SectionHeader 
       title={processData.title}
       eyebrow="Fácil y Seguro"
       subtitle={processData.description}
-      showHearts = {true}
-      variant="simple"
+      showHearts={true}
       align="center"
       variant="gradient"
     />
 
-    <div class="timeline-wrapper mt-24">
+    <div class="relative max-w-[1200px] mx-auto mt-16 md:mt-24 pt-10" data-timeline-container>
 
-      <div class="timeline-line"></div>
+      {/* Vertical Timeline Line */}
+      <div class="absolute left-6 md:left-1/2 top-0 w-0.5 h-full bg-gray-200 -translate-x-1/2 opacity-30"></div>
+      
+      {/* Growing Timeline Line */}
+      <div 
+        class="absolute left-6 md:left-1/2 top-0 w-1 bg-linear-to-b from-brand to-brand-alt -translate-x-1/2 transition-all duration-150 ease-out" 
+        style="height: 0%;"
+        data-timeline-progress-line
+      ></div>
 
-      {steps.map((step: any, index: number) => (
-        <div class={`timeline-item step ${index % 2 === 0 ? 'left' : 'right'}`}>
+      {steps.map((step: any, index: number) => {
+        const isEven = index % 2 === 0;
+        return (
+          <div 
+            class="relative flex items-center mb-16 md:mb-24 w-full last:mb-0 opacity-0 translate-y-12 transition-all duration-1000 ease-out data-[visible=true]:opacity-100 data-[visible=true]:translate-y-0"
+            data-timeline-item
+          >
+            
+            {/* Timeline Dot */}
+            <div class="absolute left-6 md:left-1/2 top-0 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 w-10 md:w-12 h-10 md:h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-base md:text-lg z-20 border-4 border-white shadow-md transition-transform duration-500 delay-300 scale-0 data-[visible=true]:scale-100" data-timeline-dot>
+              {step.number}
+            </div>
 
-          <div class="timeline-dot">
-            {step.number}
+            <div class={`flex flex-col md:flex-row items-center w-full gap-6 md:gap-16 pl-12 sm:pl-16 md:pl-0 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+              
+              {/* Content Side */}
+              <div class={`w-full md:w-1/2 flex justify-center ${isEven ? 'md:justify-end md:pr-12' : 'md:justify-start md:pl-12'}`}>
+                <div class="max-w-[400px] w-full">
+                  <StepCard
+                    title={step.title}
+                    description={step.description}
+                  >
+                    <Icon
+                      name={step.icon ? (step.icon.includes(':') ? step.icon : `lucide:${step.icon}`) : 'lucide:check-circle'}
+                      slot="icon"
+                      class="w-8 md:w-10 h-8 md:h-10 text-brand"
+                    />
+                  </StepCard>
+                </div>
+              </div>
+
+              {/* Image Side */}
+              <div class={`w-full md:w-1/2 flex justify-center ${isEven ? 'md:justify-start md:pl-12' : 'md:justify-end md:pr-12'}`}>
+                <div class="w-full max-w-[500px]">
+                  <Image 
+                    src={step.image} 
+                    alt={step.title}
+                    width={600}
+                    height={400}
+                    class="w-full h-auto object-cover transition-all duration-700"
+                  />
+                </div>
+              </div>
+
+            </div>
           </div>
-
-          <div class="timeline-card">
-            <StepCard
-              title={step.title}
-              description={step.description}
-            >
-              <Icon
-                name={step.icon ? (step.icon.includes(':') ? step.icon : `lucide:${step.icon}`) : 'lucide:check-circle'}
-                slot="icon"
-                class="w-10 h-10 text-brand"
-              />
-            </StepCard>
-          </div>
-
-        </div>
-      ))}
+        );
+      })}
 
     </div>
   </div>
 </section>
 
-<style>
-.timeline-wrapper{
-  position:relative;
-  max-width:1100px;
-  margin:auto;
-  padding-top:40px;
-}
+<script>
+  function initCustomProcessAnimations() {
+    const section = document.querySelector('[data-process-section]');
+    const container = document.querySelector('[data-timeline-container]');
+    const progressLine = document.querySelector('[data-timeline-progress-line]') as HTMLElement;
+    const items = document.querySelectorAll('[data-timeline-item]');
 
-.timeline-line{
-  position:absolute;
-  left:50%;
-  top:0;
-  width:3px;
-  height:100%;
-  background:#e5e7eb;
-  transform:translateX(-50%);
-  transform-origin:top;
-}
+    if (!section || !container || !items.length) return;
 
-.timeline-item{
-  position:relative;
-  display:flex;
-  align-items:center;
-  margin-bottom:20px;
-}
+    // 1. Reveal Elements on Scroll using Intersection Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
 
-.timeline-item.left{
-  justify-content:flex-start;
-}
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const target = entry.target as HTMLElement;
+          target.setAttribute('data-visible', 'true');
+          const dot = target.querySelector('[data-timeline-dot]');
+          if (dot) dot.setAttribute('data-visible', 'true');
+          revealObserver.unobserve(target);
+        }
+      });
+    }, observerOptions);
 
-.timeline-item.right{
-  justify-content:flex-end;
-}
+    items.forEach(item => revealObserver.observe(item));
 
-.timeline-card{
-  width:42%;
-  transition:transform .3s ease;
-}
+    // 2. Progressive Timeline Line Growth (All Screen Sizes)
+    if (progressLine) {
+      const updateTimelineProgress = () => {
+        const rect = container.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Calculate progress based on container position in viewport
+        const startOffset = windowHeight * 0.7; // Start growing when 70% down viewport
+        const totalHeight = rect.height;
+        const currentPos = startOffset - rect.top;
+        
+        let progress = (currentPos / totalHeight) * 100;
+        progress = Math.max(0, Math.min(100, progress));
+        
+        progressLine.style.height = `${progress}%`;
+      };
 
-.timeline-card:hover{
-  transform:translateY(-6px);
-}
-
-.timeline-dot{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  width:44px;
-  height:44px;
-  border-radius:999px;
-  background:var(--color-brand);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-  z-index:20;
-  border:4px solid white;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Tablet */
-
-@media (max-width:1024px){
-  .timeline-card{
-    width:46%;
-  }
-}
-
-/* Mobile */
-
-@media (max-width:768px){
-
-  .timeline-line{
-    left:24px;
-    transform:none;
-  }
-
-  .timeline-item{
-    justify-content:flex-start !important;
-    padding-left:70px;
-    margin-bottom:60px;
-  }
-
-  .timeline-card{
-    width:100%;
-  }
-
-  .timeline-dot{
-    left:24px;
-    transform:none;
-  }
-
-}
-</style>
-
-<script type="module">
-
-import gsap from "/node_modules/gsap/index.js";
-import ScrollTrigger from "/node_modules/gsap/ScrollTrigger.js";
-
-gsap.registerPlugin(ScrollTrigger);
-
-function initProcessAnimation(){
-
-  const steps = document.querySelectorAll(".step");
-
-  steps.forEach((step)=>{
-
-    gsap.from(step,{
-      opacity:0,
-      y:60,
-      duration:0.8,
-      ease:"power2.out",
-      scrollTrigger:{
-        trigger:step,
-        start:"top 85%",
-        toggleActions:"play none none reset"
-      }
-    });
-
-  });
-
-  gsap.from(".timeline-line",{
-
-    scaleY:0,
-    transformOrigin:"top",
-
-    scrollTrigger:{
-      trigger:".timeline-wrapper",
-      start:"top 80%",
-      end:"bottom 20%",
-      scrub:true
+      window.addEventListener('scroll', updateTimelineProgress, { passive: true });
+      window.addEventListener('resize', updateTimelineProgress, { passive: true });
+      updateTimelineProgress(); // Initial call
     }
+  }
 
-  });
-
-}
-
-window.addEventListener("load", initProcessAnimation);
-
+  // Support Astro View Transitions
+  document.addEventListener('astro:page-load', initCustomProcessAnimations);
+  
+  // Fallback
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCustomProcessAnimations);
+  } else {
+    initCustomProcessAnimations();
+  }
 </script>

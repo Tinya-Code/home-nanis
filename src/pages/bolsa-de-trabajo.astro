@@ -3,13 +3,14 @@
 import Layout from '@/layouts/Layout.astro';
 import Footer from '@/components/sections/Footer.astro';
 import PageHeader from '@/components/sections/PageHeader.astro';
-import JobBenefit from '@/components/ui/JobBenefit.astro';
 import JobListingSection from '@/components/sections/JobListingSection.astro';
 import CTASection from '@/components/sections/CTASection.astro';
 import Parallax from '@/components/ui/Parallax.astro';
-import { Icon } from 'astro-icon/components';
 import type { JobBoardData } from '@/types';
+import bannerBolsaTrabajo from '@/assets/banner-bolsa-trabajo.webp'
 import dataRaw from '../../public/data/empleo.json';
+import JobRequirementsBenefits from '@/components/sections/JobRequirementsBenefits.astro';
+import bannerParalax from '@/assets/banner-paralax-2.webp'
 
 const data = dataRaw as unknown as JobBoardData;
 const { seo, title, subtitle, description, requirements, benefits, jobOffers, applicationForm } = data;
@@ -23,7 +24,7 @@ const { seo, title, subtitle, description, requirements, benefits, jobOffers, ap
       subtitle={subtitle} 
       variant="image"
       align="left"
-      backgroundImage="images/hogarNanis.jpg"
+      backgroundImage={bannerBolsaTrabajo}
       breadcrumbs={[{ label: 'Bolsa de Trabajo' }]}
     />
 
@@ -39,57 +40,16 @@ const { seo, title, subtitle, description, requirements, benefits, jobOffers, ap
     </section>
 
     {/* Requirements & Benefits */}
-    <section class="pb-24 pt-12 bg-white overflow-hidden relative">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
-      
-       <div class="container-site">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-             
-             {/* Requirements */}
-             <div class="space-y-8 animate-fade-up">
-                <div class="flex items-center gap-4">
-                   <div class="w-12 h-12 rounded-2xl bg-brand/10 flex items-center justify-center text-brand">
-                      <Icon name="lucide:clipboard-check" class="w-7 h-7" />
-                   </div>
-                   <h2 class="text-2xl font-bold text-dark">Requisitos del Puesto</h2>
-                </div>
-                <ul class="grid grid-cols-1 gap-3">
-                   {requirements.map((req) => (
-                      <li class="flex gap-4 p-4 rounded-xl bg-surface border border-border hover:border-brand/30 transition-all group">
-                         <div class="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-0.5 group-hover:bg-brand group-hover:text-white transition-colors">
-                            <Icon name="lucide:check" class="w-3.5 h-3.5" />
-                         </div>
-                         <span class="text-sm text-gray font-medium leading-relaxed">{req}</span>
-                      </li>
-                   ))}
-                </ul>
-             </div>
-
-             {/* Benefits */}
-             <div class="space-y-8 animate-fade-up [animation-delay:200ms]">
-                <div class="flex items-center gap-4">
-                   <div class="w-12 h-12 rounded-2xl bg-brand-alt/10 flex items-center justify-center text-brand-alt">
-                      <Icon name="lucide:sparkles" class="w-7 h-7" />
-                   </div>
-                   <h2 class="text-2xl font-bold text-dark">¿Por qué trabajar con nosotros?</h2>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                   {benefits.map((benefit) => (
-                      <JobBenefit benefit={benefit} />
-                   ))}
-                </div>
-             </div>
-
-          </div>
-       </div>
-    </section>
+    <JobRequirementsBenefits 
+      requirements={requirements}
+      benefits={benefits}
+    />
 
     {/* Job Offers Section */}
     <JobListingSection jobOffers={jobOffers} />
         <Parallax 
-      imageSrc="/images/enfermerastecnicas.jpg"
+      imageSrc={bannerParalax}
       height="h-[60vh]"
-      imagePosition="center -60%" 
     />
 
     {/* Application Form Banner (now using CTASection variant) */}

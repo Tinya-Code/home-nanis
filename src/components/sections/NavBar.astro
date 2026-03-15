@@ -4,45 +4,109 @@
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import { Icon } from 'astro-icon/components';
 import siteData from '../../../public/data/site.json';
+import navData from '../../../public/data/nav.json';
 import CopyButton from '@/components/ui/CopyButton.astro';
 
-const links = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Nosotros', href: '#quienes-somos' },
-  { label: 'Cómo Trabajamos', href: '#como-trabajamos' },
-  { label: 'Bolsa de Trabajo', href: '/bolsa-de-trabajo' },
-];
+/**
+ * NavBar
+ * ─────────────────
+ * Descripción: Barra de navegación altamente configurable con lógica inteligente de anclas.
+ * Principios: SOLID, Liskov Substitution (abierto a variantes).
+ */
+
+interface NavLink {
+  label: string;
+  href: string;
+  isAnchor?: boolean;
+}
+
+interface Props {
+  isSticky?: boolean;
+  isTransparent?: boolean;
+  showCTA?: boolean;
+  variant?: 'light' | 'dark' | 'glass';
+  className?: string;
+}
+
+const { 
+  isSticky = true, 
+  isTransparent = false, 
+  showCTA = true,
+  variant = 'glass',
+  className = ''
+} = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const phone = siteData.contact.phone;
+
+// Lógica inteligente para resolver enlaces (anchors funcionan entre páginas)
+const resolveHref = (link: NavLink) => {
+  if (link.isAnchor) {
+    // Si estamos en el home, el ancla funciona directo. Si no, anteponemos /
+    return currentPath === '/' ? link.href : `/${link.href}`;
+  }
+  return link.href;
+};
+
+// Determinar si un enlace es el actual
+const isLinkActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  if (href.startsWith('#')) return false; // Los fragmentos no marcan "active" por ruta
+  return currentPath.startsWith(href);
+};
+
+const navLinks = navData.links as NavLink[];
+
+// Definir estilos según variante
+const variantStyles = {
+  glass: 'bg-white/90 backdrop-blur-md border-b border-border',
+  light: 'bg-white border-b border-border',
+  dark: 'bg-dark text-white border-b border-white/10'
+};
 ---
 
 <header-nav class="contents">
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-border transition-colors duration-300">
-  <div class="container-site h-20 flex items-center justify-between">
+<header 
+  class:list={[
+    'w-full transition-all duration-300 z-50',
+    { 'sticky top-0': isSticky },
+    { 'absolute top-0 bg-transparent': isTransparent },
+    variantStyles[variant],
+    className
+  ]}
+  data-navbar
+>
+  <div class="container-site h-16 md:h-20 flex items-center justify-between">
     
     {/* Logo */}
-    <a href="/" class="flex items-center  group" aria-label={`Ir a inicio de ${siteData.name}`}>
-  <img src ="images/logo2.webp" alt="Logo El Hogar de Nanis" class="w-12 h-12"/>
-      <span class="font-display leading-none w-15 font-semibold text-sm text-dark group-hover:text-brand-alt transition-colors hidden sm:flex">
-        El Hogar de Nanis
+    <a href="/" class="flex items-center gap-2 group" aria-label={`Ir a inicio de ${siteData.name}`}>
+      <img src="/images/logo2.webp" alt="Logo El Hogar de Nanis" class="w-10 h-10 md:w-12 md:h-12"/>
+      <span class:list={[
+        "font-display leading-tight font-bold text-sm md:text-base group-hover:text-brand-alt transition-colors hidden sm:inline-block max-w-[120px]",
+        variant === 'dark' ? 'text-white' : 'text-dark'
+      ]}>
+        {siteData.name}
       </span>
     </a>
 
     {/* Menú Desktop */}
     <nav class="hidden lg:flex items-center gap-6" aria-label="Navegación principal">
-      <ul class="flex items-center gap-1">
-        {links.map(link => {
-          // Normalize paths for matching
-          const isCurrent = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+      <ul class="flex items-center gap-2">
+        {navLinks.map(link => {
+          const href = resolveHref(link);
+          const active = isLinkActive(link.href);
           
           return (
             <li>
               <a 
-                href={link.href} 
-                class="nav-link" 
-                aria-current={isCurrent ? 'page' : undefined}
+                href={href} 
+                class:list={[
+                  "nav-link text-sm font-medium px-4 py-2 rounded-full transition-all  hover:text-brand",
+                  { "text-brand ": active },
+                  { "text-dark/80": !active && variant !== 'dark' },
+                  { "text-white/80": !active && variant === 'dark' }
+                ]}
+                aria-current={active ? 'page' : undefined}
               >
                 {link.label}
               </a>
@@ -53,20 +117,28 @@ const phone = siteData.contact.phone;
     </nav>
 
     {/* CTAs y Mobile toggler */}
-    <div class="flex items-center gap-4">
-
-      <ButtonPrimary label="Contacto" href="/contacto" size="sm" variant="gradient" />
+    <div class="flex items-center gap-3 md:gap-4">
       
-      {/* Botón menú mobile */}
-      <button 
-        id="mobile-menu-button"
-        class="lg:hidden p-2 text-dark hover:text-brand-alt transition-colors" 
-        aria-label="Abrir menú" 
-        aria-expanded="false" 
-        aria-controls="mobile-menu"
-      >
-        <Icon name="lucide:menu" class="w-6 h-6" />
-      </button>
+      {showCTA && (
+        <div class="hidden sm:block">
+          <ButtonPrimary label="Contacto" href="/contacto" size="sm" variant="gradient" />
+        </div>
+      )}
+      
+      <div class="flex items-center lg:hidden">
+         <button 
+          id="mobile-menu-button"
+          class:list={[
+            "p-2 rounded-lg transition-colors",
+            variant === 'dark' ? 'text-white hover:bg-white/10' : 'text-dark hover:bg-black/5'
+          ]}
+          aria-label="Abrir menú" 
+          aria-expanded="false" 
+          aria-controls="mobile-menu"
+        >
+          <Icon name="lucide:menu" class="w-6 h-6" />
+        </button>
+      </div>
     </div>
 
   </div>
@@ -75,38 +147,45 @@ const phone = siteData.contact.phone;
   {/* Mobile Menu Drawer */}
   <div 
     id="mobile-menu-overlay" 
-    class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+    class="fixed inset-0 bg-dark/60 backdrop-blur-sm z-60 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
     aria-hidden="true"
   ></div>
 
   <div 
     id="mobile-menu" 
-    class="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-white z-50 translate-x-full transition-transform duration-300 ease-spring lg:hidden border-l border-border flex flex-col shadow-2xl"
+    class="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[340px] bg-white z-70 translate-x-full transition-transform duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden border-l border-border flex flex-col shadow-2xl"
     aria-labelledby="mobile-menu-title"
     role="dialog"
     aria-modal="true"
   >
-    <div class="h-20 flex items-center justify-between px-6 border-b border-border bg-light-surface/50">
-      <span id="mobile-menu-title" class="font-display font-bold text-brand uppercase tracking-wider">Menú</span>
+    <div class="h-16 md:h-20 flex items-center justify-between px-6 border-b border-border bg-light-surface/50">
+      <div class="flex items-center gap-2">
+        <img src="/images/logo2.webp" alt="" class="w-8 h-8" />
+        <span id="mobile-menu-title" class="font-display font-bold text-dark text-lg">Menú</span>
+      </div>
       <button 
         id="mobile-menu-close" 
-        class="p-2 text-gray-muted hover:text-brand-alt transition-colors" 
+        class="p-2 text-gray hover:text-brand transition-colors rounded-full hover:bg-brand/5" 
         aria-label="Cerrar menú"
       >
         <Icon name="lucide:x" class="w-6 h-6" />
       </button>
     </div>
 
-    <nav class="flex-1 overflow-y-auto py-6 px-6">
-      <ul class="flex flex-col gap-4">
-        {links.map(link => {
-          const isCurrent = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+    <nav class="flex-1 overflow-y-auto py-8 px-6">
+      <ul class="flex flex-col gap-2">
+        {navLinks.map(link => {
+          const href = resolveHref(link);
+          const active = isLinkActive(link.href);
           return (
             <li>
               <a 
-                href={link.href} 
-                class={`flex items-center py-2 text-lg font-medium transition-colors ${isCurrent ? 'text-brand-alt' : 'text-gray hover:text-brand-alt'}`}
-                aria-current={isCurrent ? 'page' : undefined}
+                href={href} 
+                class:list={[
+                  "flex items-center px-4 py-3 rounded-xl text-lg font-medium transition-all",
+                  active ? "bg-brand/10 text-brand" : "text-gray-700 hover:bg-gray-50 hover:text-brand"
+                ]}
+                aria-current={active ? 'page' : undefined}
               >
                 {link.label}
               </a>
@@ -115,21 +194,21 @@ const phone = siteData.contact.phone;
         })}
       </ul>
       
-      <div class="mt-8 pt-8 border-t border-border flex flex-col gap-6">
-        <div class="flex items-center justify-between group/mobile-phone">
-          <div class="flex flex-col gap-1">
-            <span class="text-xs font-bold text-gray-muted uppercase tracking-widest">Llámanos</span>
-            <a href={`tel:${phone}`} class="text-lg font-display font-bold text-dark">
-              {phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3')}
+      <div class="mt-8 pt-8 border-t border-border flex flex-col gap-8">
+        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
+          <div class="flex flex-col">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Expertos en Lima</span>
+            <a href={`tel:${phone}`} class="text-lg font-display font-bold text-brand hover:text-brand-alt transition-colors">
+              {phone}
             </a>
           </div>
           <CopyButton 
             textToCopy={phone.replace(/\s/g, '')} 
-            label="Copiar teléfono" 
-            size="md"
+            label="Copiar" 
+            size="sm"
           />
         </div>
-        <ButtonPrimary label="Contacto" href="/contacto" variant="gradient" fullWidth />
+        <ButtonPrimary label="Contactar Ahora" href="/contacto" variant="gradient" fullWidth />
       </div>
     </nav>
   </div>
@@ -143,6 +222,7 @@ const phone = siteData.contact.phone;
       const closeBtn = this.querySelector('#mobile-menu-close') as HTMLButtonElement | null;
       const menu = this.querySelector('#mobile-menu') as HTMLElement | null;
       const overlay = this.querySelector('#mobile-menu-overlay') as HTMLElement | null;
+      const navbar = this.querySelector('[data-navbar]') as HTMLElement | null;
       
       if (!button || !menu || !overlay || !closeBtn) return;
 
@@ -152,7 +232,6 @@ const phone = siteData.contact.phone;
           menu.classList.remove('translate-x-full');
           overlay.classList.remove('opacity-0', 'pointer-events-none');
           document.body.style.overflow = 'hidden';
-          // Manejo de foco para accesibilidad
           setTimeout(() => closeBtn.focus(), 100);
         } else {
           menu.classList.add('translate-x-full');
@@ -181,8 +260,45 @@ const phone = siteData.contact.phone;
       navLinks.forEach(link => {
         link.addEventListener('click', () => toggleMenu(false));
       });
+
+      // Efecto de scroll (si es transparente)
+      if (navbar && navbar.classList.contains('absolute')) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 20) {
+            navbar.classList.remove('bg-transparent', 'absolute');
+            navbar.classList.add('sticky', 'bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+          } else {
+            navbar.classList.add('bg-transparent', 'absolute');
+            navbar.classList.remove('sticky', 'bg-white/95', 'backdrop-blur-md', 'shadow-sm');
+          }
+        }, { passive: true });
+      }
     }
   }
 
   customElements.define('header-nav', HeaderNav);
 </script>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: var(--color-brand);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+</style>

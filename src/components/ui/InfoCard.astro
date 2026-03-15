@@ -8,26 +8,51 @@ interface Props {
   icon?: string;
   variant?: 'light' | 'dark' | 'accent' | 'primary';
   centered?: boolean;
+  padding?: string;
+  minHeight?: string;
+  iconSize?: string;
+  titleSize?: string;
+  class?: string;
 }
 
-const { title, description, icon, variant = 'light', centered = false } = Astro.props;
+const { 
+  title, 
+  description, 
+  icon, 
+  variant = 'light', 
+  centered = false,
+  padding = '40px 24px',
+  minHeight = '300px',
+  iconSize = 'w-10 h-10',
+  titleSize = 'text-xl md:text-lg',
+  class: className = ''
+} = Astro.props;
 ---
 
-<div class:list={[
-  'card-feature',
-  variant,"group",
-  { 'centered': centered }
-]}>
+<div 
+  class:list={[
+    'card-feature',
+    variant,
+    "group",
+    { 'centered': centered },
+    className
+  ]}
+  style={`--card-padding: ${padding}; --card-min-height: ${minHeight};`}
+>
   <div class="overlay"></div>
   
   {icon && (
     <div class="circle">
-      <Icon name={icon.includes(':') ? icon : `lucide:${icon}`} class="w-10 h-10 relative z-10" />
+      <Icon name={icon.includes(':') ? icon : `lucide:${icon}`} class:list={[iconSize, "relative z-10"]} />
     </div>
   )}
 
   <div class:list={["content-wrapper z-10", { "items-center text-center": centered }]}>
-    <h3 class=" text-xl md:text-lg !font-bold group-hover:text-white transition-colors duration-300  font-display bg-gradient-to-r from-brand to-brand-alt bg-clip-text text-transparent">{title}</h3>
+    {title && (
+      <h3 class:list={[titleSize, "!font-bold group-hover:text-white transition-colors duration-300 font-display bg-gradient-to-r from-brand to-brand-alt bg-clip-text text-transparent"]}>
+        {title}
+      </h3>
+    )}
     <p class="card-description">
       {description}
     </p>
@@ -43,7 +68,7 @@ const { title, description, icon, variant = 'light', centered = false } = Astro.
     
     width: 100%;
     /* max-width: 280px; Removing fixed max-width to let grid control it */
-    min-height: 300px;
+    min-height: var(--card-min-height);
     background: #ffffff;
     border-radius: var(--radius-sm);
     border: 1px solid var(--color-border);
@@ -52,7 +77,7 @@ const { title, description, icon, variant = 'light', centered = false } = Astro.
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 40px 24px;
+    padding: var(--card-padding);
     position: relative;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease-out;

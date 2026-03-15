@@ -24,6 +24,7 @@ import testimoniosData from '../../public/data/testimonios.json';
 import contactDataRaw from '../../public/data/contacto.json';
 import quienesSomosRaw from '../../public/data/quienes-somos.json';
 import faqsDataRaw from '../../public/data/faqs.json';
+import bannerParalax from '@/assets/banner-paralax-1.webp'
 
 // Assets
 import marcelaImg from '@/assets/marcelacubillos.jpg';
@@ -56,7 +57,7 @@ const homeSchema = buildLocalBusiness(siteData.localSeo.schemaLocalBusiness, {
     <ProcessSection />
     <VideoSection videos={siteData.videos} />
     <Parallax 
-      imageSrc="/images/hogarNanis.jpg"
+      imageSrc={bannerParalax}
       class="h-[60vh]" 
     />
     <TestimonialsSection testimonios={testimoniosData.reviews} />

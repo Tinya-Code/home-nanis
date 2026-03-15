@@ -1,0 +1,28 @@
+{
+  "columns": [
+    {
+      "title": "Enlaces Rápidos",
+      "links": [
+        { "label": "Inicio", "href": "/", "isAnchor": false },
+        { "label": "Servicios", "href": "#servicios", "isAnchor": true },
+        { "label": "Quiénes Somos", "href": "#quienes-somos", "isAnchor": true },
+        { "label": "Bolsa de Trabajo", "href": "/bolsa-de-trabajo", "isAnchor": false },
+        { "label": "Contacto", "href": "/contacto", "isAnchor": false }
+      ]
+    },
+    {
+      "title": "Servicios",
+      "links": [
+        { "label": "Niñeras y Nanas", "href": "/#servicios", "isAnchor": true },
+        { "label": "Empleadas del Hogar", "href": "/#servicios", "isAnchor": true },
+        { "label": "Enfermeras Técnicas", "href": "/#servicios", "isAnchor": true },
+        { "label": "Personal Doméstico", "href": "/#servicios", "isAnchor": true }
+      ]
+    }
+  ],
+  "legal": [
+    { "label": "Política de cookies", "href": "/politicas-de-cookies" },
+    { "label": "Privacidad", "href": "/privacidad" },
+    { "label": "Términos", "href": "/terminos" }
+  ]
+}

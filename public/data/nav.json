@@ -1,0 +1,9 @@
+{
+  "links": [
+    { "label": "Inicio", "href": "/", "isAnchor": false },
+    { "label": "Servicios", "href": "#servicios", "isAnchor": true },
+    { "label": "Nosotros", "href": "#quienes-somos", "isAnchor": true },
+    { "label": "Cómo Trabajamos", "href": "#como-trabajamos", "isAnchor": true },
+    { "label": "Bolsa de Trabajo", "href": "/bolsa-de-trabajo", "isAnchor": false }
+  ]
+}
