@@ -19,12 +19,12 @@ const {
 } = Astro.props;
 ---
 
-<section id="contacto" class={`section-padding ${bgClass} relative overflow-hidden`}>
+<section id="contacto" class={`section-padding py-6 ${bgClass} relative overflow-hidden`}>
   <div class="container-site relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       
       {/* Column Left: Map & Info */}
-      <div class="lg:col-span-5 xl:col-span-4 space-y-8" data-aos="fade-right">
+      <div class="lg:col-span-6  xl:col-span-6 space-y-8" data-aos="fade-right">
         <div class="mb-2">
           <h2 class="text-3xl sm:text-4xl font-display font-bold text-dark mb-4 leading-tight">
             {title}
@@ -41,7 +41,7 @@ const {
       </div>
 
       {/* Column Right: Form */}
-      <div class="lg:col-span-7 xl:col-span-8" data-aos="fade-left">
+      <div class="lg:col-span-6 xl:col-span-6 md:border-l border-gray-200" data-aos="fade-left">
         <ContactForm 
           title="Envíanos un mensaje"
           subtitle="Completa este formulario y una asesora experta se comunicará contigo en la brevedad."

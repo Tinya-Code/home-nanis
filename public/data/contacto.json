@@ -16,22 +16,6 @@
       "link": "tel:+5112282987"
     },
     {
-      "id": "celulares-nacionales",
-      "type": "Mobile",
-      "label": "Celulares",
-      "value": "941 141 780 / 967 247 519",
-      "icon": "smartphone",
-      "link": "tel:+51941141780"
-    },
-    {
-      "id": "whatsapp-atencion",
-      "type": "WhatsApp",
-      "label": "Atención Inmediata WhatsApp",
-      "value": "941 141 780",
-      "icon": "message-circle",
-      "link": "https://wa.me/51941141780?text=Hola,%20busco%20personal%20dom%C3%A9stico%20en%20Lima"
-    },
-    {
       "id": "correo-oficial",
       "type": "Email",
       "label": "Correo de Recursos Humanos",

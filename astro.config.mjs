@@ -6,21 +6,20 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.elhogardenanis.com',
+  site: process.env.NODE_ENV === 'development' ? 'http://localhost:4321' : 'https://www.elhogardenanis.com',
   trailingSlash: 'never',
   output: 'static',
   
   // Soluciona los bloqueos de "Sec-Fetch-Site: cross-site" en el entorno de desarrollo
-  server: {
-    cors: true,
-  },
-  
   security: {
     checkOrigin: false,
   },
 
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      cors: true,
+    },
   },
 
   integrations: [

@@ -1,0 +1,100 @@
+---
+// src/components/sections/JobRequirementsBenefits.astro
+import { Icon } from 'astro-icon/components';
+import InfoCard from '@/components/ui/InfoCard.astro';
+
+interface Props {
+  requirements: string[];
+  benefits: string[];
+  titleRequirements?: string;
+  titleBenefits?: string;
+}
+
+const { 
+  requirements, 
+  benefits, 
+  titleRequirements = "Requisitos del Puesto",
+  titleBenefits = "¿Por qué trabajar con nosotros?"
+} = Astro.props;
+
+/**
+ * Maps benefit text to a relevant Lucide icon.
+ */
+function getBenefitIcon(benefit: string): string {
+  const text = benefit.toLowerCase();
+  
+  if (text.includes('sueldo') || text.includes('pago') || text.includes('remuneración') || text.includes('ingreso')) 
+    return 'lucide:banknote';
+  if (text.includes('seguro') || text.includes('salud') || text.includes('essalud') || text.includes('médico')) 
+    return 'lucide:shield-plus';
+  if (text.includes('ambiente') || text.includes('clima') || text.includes('equipo')) 
+    return 'lucide:sun';
+  if (text.includes('capacitación') || text.includes('aprendizaje') || text.includes('formación')) 
+    return 'lucide:graduation-cap';
+  if (text.includes('crecimiento') || text.includes('oportunidad') || text.includes('línea de carrera')) 
+    return 'lucide:trending-up';
+  if (text.includes('contrato') || text.includes('legal') || text.includes('ley')) 
+    return 'lucide:file-text';
+  if (text.includes('alimentación') || text.includes('comida') || text.includes('almuerzo')) 
+    return 'lucide:utensils';
+  if (text.includes('flexible') || text.includes('horario')) 
+    return 'lucide:clock';
+  if (text.includes('bonos') || text.includes('incentivos') || text.includes('premios')) 
+    return 'lucide:award';
+  
+  return 'lucide:sparkles';
+}
+---
+
+<section class="pb-24 pt-12 bg-white overflow-hidden relative">
+  <div class="absolute top-0 right-0 w-64 h-64 bg-brand/5 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+  
+  <div class="container-site">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      
+      {/* Requirements */}
+      <div class="space-y-8 animate-fade-up">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand/10 flex items-center justify-center text-brand">
+            <Icon name="lucide:clipboard-check" class="w-7 h-7" />
+          </div>
+          <h2 class="text-2xl font-bold text-dark">{titleRequirements}</h2>
+        </div>
+        <ul class="grid grid-cols-1 gap-2">
+          {requirements.map((req) => (
+            <li class="flex gap-4 p-4 rounded-xl transition-all group   ">
+              <div class="shrink-0 w-6 h-6 rounded-full bg-brand/10 flex items-center justify-center text-brand mt-0.5 group-hover:bg-brand group-hover:text-white transition-colors">
+                <Icon name="lucide:check" class="w-3.5 h-3.5" />
+              </div>
+              <span class="text-sm text-gray font-medium leading-relaxed">{req}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Benefits */}
+      <div class="space-y-8 animate-fade-up [animation-delay:200ms]">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-alt/10 flex items-center justify-center text-brand-alt">
+            <Icon name="lucide:sparkles" class="w-7 h-7" />
+          </div>
+          <h2 class="text-2xl font-bold text-dark">{titleBenefits}</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {benefits.map((benefit) => (
+            <InfoCard 
+              title="" 
+              description={benefit} 
+              icon={getBenefitIcon(benefit)}
+              minHeight="200px"
+              padding="24px"
+              titleSize="hidden"
+              centered
+            />
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

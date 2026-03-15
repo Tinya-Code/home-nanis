@@ -2,6 +2,8 @@
 // src/components/sections/PageHeader.astro
 import { Icon } from 'astro-icon/components';
 
+import type { ImageMetadata } from 'astro';
+
 interface Breadcrumb {
   label: string;
   href?: string;
@@ -13,7 +15,7 @@ interface Props {
   variant?: 'default' | 'image' | 'dark' | 'simple' | 'gradient-bg';
   align?: 'left' | 'center' | 'right';
   size?: 'sm' | 'md' | 'lg';
-  backgroundImage?: string;
+  backgroundImage?: string | ImageMetadata;
   breadcrumbs?: Breadcrumb[];
   overlayOpacity?: number;
 }
@@ -51,15 +53,18 @@ const variantClasses = {
 
 // Check if we should use the gradient title (standard for this site)
 const useGradientTitle = variant !== 'image' && variant !== 'gradient-bg';
+
+// Logic to extract background image URL
+const bgImageUrl = typeof backgroundImage === 'object' ? backgroundImage.src : backgroundImage;
 ---
 
 <header 
   class:list={[
-    'page-header relative overflow-hidden', 
+    'min-h-[70svh] max-h-100 bg-position-[center_bottom] relative overflow-hidden', 
     variantClasses[variant], 
     sizeClasses[size]
   ]}
-  style={variant === 'image' && backgroundImage ? `background-image: url('${backgroundImage}'); background-size:cover; background-position:center;` : ''}
+  style={variant === 'image' && bgImageUrl ? `background-image: url('${bgImageUrl}');  background-size:cover; background-position:center;` : ''}
 >
   {variant === 'image' && (
     <div 
@@ -82,7 +87,7 @@ const useGradientTitle = variant !== 'image' && variant !== 'gradient-bg';
               {crumb.href ? (
                 <a href={crumb.href} class="text-white/60 hover:text-white transition-colors">{crumb.label}</a>
               ) : (
-                <span class="text-brand-alt">{crumb.label}</span>
+                <span class="text-brand-alt text-body font-semibold">{crumb.label}</span>
               )}
             </li>
           ))}
@@ -100,8 +105,8 @@ const useGradientTitle = variant !== 'image' && variant !== 'gradient-bg';
 
     {subtitle && (
       <p class:list={[
-        'animate-fade-up [animation-delay:200ms] leading-relaxed max-w-2xl',
-        variant === 'simple' ? 'text-gray italic text-lg' : 'text-white/90 text-lg md:text-xl',
+        'animate-fade-up text-body [animation-delay:200ms] leading-relaxed max-w-2xl',
+        variant === 'simple' ? 'text-gray  text-lg' : 'text-white/90 text-lg md:text-xl',
         { 'mx-auto': align === 'center' }
       ]}>
         {subtitle}

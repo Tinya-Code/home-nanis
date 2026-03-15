@@ -34,14 +34,14 @@ const {
     ></iframe>
   </div>
 
-  <div class="grid grid-cols-1 gap-3">
+  <div class="grid grid-cols-1 sm:grid-cols-2  gap-3">
     {contactDetails.map((item: ContactItem) => (
-      <div class="flex items-center justify-between p-3 rounded-xl bg-surface border border-border hover:border-brand/30 transition-all duration-300 shadow-sm hover:shadow-md group/item">
-        <div class="flex items-center gap-3">
+      <div class="grid grid-cols-7 gap-1 overflow-hidden items-center justify-between p-3 rounded-xl bg-surface border border-border hover:border-brand/30 transition-all duration-300 shadow-sm hover:shadow-md group/item">
+        <div class="flex col-span-6 overflow-hidden items-center gap-3">
           <div class="w-9 h-9 flex-shrink-0 rounded-full bg-brand/5 flex items-center justify-center text-brand group-hover/item:bg-brand group-hover/item:text-white transition-colors duration-300">
             <Icon name={`lucide:${item.icon}`} class="w-4.5 h-4.5" />
           </div>
-          <div>
+          <div class="">
             <p class="text-[10px] font-bold text-gray-muted uppercase tracking-wider leading-none mb-0.5">{item.label}</p>
             <a 
               href={item.link} 
@@ -54,13 +54,13 @@ const {
         </div>
 
         {/* Botón de copiar para Email, Phone, Mobile */}
-        {(item.type === 'Email' || item.type === 'Phone' || item.type === 'Mobile') && (
+  
           <CopyButton 
             textToCopy={item.value.split('/')[0].trim()} 
             label={`Copiar ${item.label}`}
-            class="opacity-100 lg:opacity-0 lg:group-hover/item:opacity-100 focus-within:opacity-100 transition-opacity"
+            class="opacity-100 col-span-1 lg:opacity-0 lg:group-hover/item:opacity-100 focus-within:opacity-100 transition-opacity"
           />
-        )}
+
       </div>
     ))}
 

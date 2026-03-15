@@ -1,9 +1,9 @@
 ---
 // src/components/ui/Parallax.astro
-
+import type { ImageMetadata } from 'astro';
 interface Props {
   /** URL de la imagen de fondo */
-  imageSrc: string;
+  imageSrc: string | ImageMetadata;
   /** Altura del bloque (ej: 'h-[400px]', 'h-[60vh]', etc.) */
   height?: string;
   /** Posición de la imagen de fondo (ej: 'center', 'top', 'bottom', 'center 20%') */
@@ -28,6 +28,8 @@ const {
   class: className = '',
 } = Astro.props;
 
+const bgUrl = typeof imageSrc === 'object' ? imageSrc.src : imageSrc;
+
 const overlayStyle = {
   backgroundColor: overlayColor,
   opacity: overlayOpacity,
@@ -50,7 +52,7 @@ const overlayStyle = {
     <div 
       class="bg-image"
       style={{
-        backgroundImage: `url('${imageSrc}')`,
+        backgroundImage: `url('${bgUrl}')`,
         backgroundPosition: imagePosition
       }}
     ></div>

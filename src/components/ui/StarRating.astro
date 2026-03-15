@@ -19,12 +19,18 @@ const { rating, maxStars = 5 } = Astro.props;
 const safeRating = Math.max(0, Math.min(maxStars, Math.round(rating)));
 ---
 
-<div class="flex items-center gap-1" aria-label={`Calificación de ${safeRating} sobre ${maxStars} estrellas`}>
-  {Array.from({ length: maxStars }).map((_, i) => (
-    <Icon 
-      name="lucide:star" 
-      class={`w-5 h-5 ${i < safeRating ? 'star-filled fill-current' : 'star-empty'}`} 
-      aria-hidden="true"
-    />
-  ))}
+<div class="flex items-center gap-0.5" aria-label={`Calificación de ${safeRating} sobre ${maxStars} estrellas`}>
+  {Array.from({ length: maxStars }).map((_, i) => {
+    const isFilled = i < safeRating;
+    return (
+      <Icon 
+        name="lucide:star" 
+        class:list={[
+          "w-4 h-4 transition-all duration-300",
+          isFilled ? "text-amber-400 fill-amber-400" : "text-gray-200"
+        ]} 
+        aria-hidden="true"
+      />
+    );
+  })}
 </div>

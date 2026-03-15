@@ -6,10 +6,11 @@ import Footer from '@/components/sections/Footer.astro';
 import PageHeader from '@/components/sections/PageHeader.astro';
 import ContactForm from '@/components/sections/ContactForm.astro';
 import ContactInfo from '@/components/sections/ContactInfo.astro';
+import contactoBanner from '@/assets/contacto-banner.webp'
 import type { ContactData } from '@/types';
 
 const data = dataRaw as unknown as ContactData;
-const { seo, title, subtitle, description, contactDetails, businessHours } = data;
+const { seo, title, subtitle,  contactDetails, businessHours } = data;
 ---
 
 <Layout title={seo.title} description={seo.description}>
@@ -17,10 +18,10 @@ const { seo, title, subtitle, description, contactDetails, businessHours } = dat
   <main id="main-content">
     <PageHeader 
       title={title} 
-      subtitle={`${subtitle} ${description}`} 
+      subtitle={`${subtitle} `} 
       variant="image"
       align="left" 
-      backgroundImage="images/hogarNanis.jpg"
+      backgroundImage={contactoBanner}
       breadcrumbs={[
         { label: 'Contacto' }
       ]}

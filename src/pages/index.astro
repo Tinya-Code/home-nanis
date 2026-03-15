@@ -19,11 +19,15 @@ import Parallax from '@/components/ui/Parallax.astro';
 import type { ContactData, FAQData, SiteData } from '@/types';
 import contactDataRaw from '../../public/data/contacto.json';
 import faqsDataRaw from '../../public/data/faqs.json';
+
+import bannerParalax from '@/assets/banner-paralax-1.webp'
+
 import quienesSomosRaw from '../../public/data/quienes-somos.json';
 import serviciosRaw from '../../public/data/servicios.json';
 import siteDataRaw from '../../public/data/site.json';
 import testimoniosData from '../../public/data/testimonios.json';
 const siteData = siteDataRaw as SiteData;
+
 
 // Assets
 import marcelaImg from '@/assets/marcelacubillos.png';
@@ -56,7 +60,7 @@ const homeSchema = buildLocalBusiness(siteData.localSeo.schemaLocalBusiness, {
     <ProcessSection />
     <VideoSection videos={siteData.videos} />
     <Parallax 
-      imageSrc="/images/hogarNanis.jpg"
+      imageSrc={bannerParalax}
       class="h-[60vh]" 
     />
     <TestimonialsSection testimonios={testimoniosData.reviews} />

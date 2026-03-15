@@ -1,12 +1,11 @@
 ---
 // src/components/ui/TestimonialCard.astro
-import { Icon } from 'astro-icon/components';
 import StarRating from '@/components/ui/StarRating.astro';
 
 /**
  * TestimonialCard
  * ─────────────────
- * Descripción: Muestra un testimonio con estrellas de valoración.
+ * Descripción: Muestra un testimonio interactivo con efecto de expansión.
  * Props obligatorias: author, text, rating
  */
 
@@ -18,29 +17,199 @@ interface Props {
 }
 
 const { author, role, text, rating } = Astro.props;
+/* Determinar si el texto es lo suficientemente largo para expandirse */
+const isLongText = text.length > 150;
 ---
 
-<article class="card-testimonial group">
-  <div class="flex items-center justify-between mb-4">
-    <div class="flex items-center gap-3">
-      <div class="w-12 h-12 rounded-full bg-brand/20 flex flex-shrink-0 items-center justify-center text-brand-alt font-bold text-lg">
-        {author.charAt(0).toUpperCase()}
+<article class="card-testimonial group" data-testimonial-card>
+  <div class="content">
+    <div class="header">
+      <div class="flex flex-col gap-1">
+        <strong class="font-display text-xl text-dark leading-tight">{author}</strong>
+        {role && <p class="para opacity-70 text-sm italic leading-tight">{role}</p>}
       </div>
-      <div>
-        <p class="font-display font-bold text-white text-base leading-tight">{author}</p>
-        {role && <p class="text-xs text-gray-muted mt-0.5">{role}</p>}
+      <div class="mt-3">
+        <StarRating rating={rating} />
       </div>
     </div>
     
-    <!-- Quotes icon decoration -->
-    <Icon name="lucide:quote" class="w-8 h-8 text-border opacity-50 group-hover:text-brand/30 transition-colors" />
+    <div class="footer">
+      <svg viewBox="0 0 24 24" class="quotes">
+        <path
+          d="M4.58341 17.3211C3.55316 16.2274 3 15 3 13.0103C3 9.51086 5.45651 6.37366 9.03059 4.82318L9.92328 6.20079C6.58804 8.00539 5.93618 10.346 5.67564 11.822C6.21263 11.5443 6.91558 11.4466 7.60471 11.5105C9.40908 11.6778 10.8312 13.159 10.8312 15C10.8312 16.933 9.26416 18.5 7.33116 18.5C6.2581 18.5 5.23196 18.0095 4.58341 17.3211ZM14.5834 17.3211C13.5532 16.2274 13 15 13 13.0103C13 9.51086 15.4565 6.37366 19.0306 4.82318L19.9233 6.20079C16.588 8.00539 15.9362 10.346 15.6756 11.822C16.2126 11.5443 16.9156 11.4466 17.6047 11.5105C19.4091 11.6778 20.8312 13.159 20.8312 15C20.8312 16.933 19.2642 18.5 17.3312 18.5C16.2581 18.5 15.232 18.0095 14.5834 17.3211Z"
+        ></path>
+      </svg>
+      <div class="testimonial-wrapper transition-all duration-500 overflow-hidden" style="max-height: 120px;">
+        <p class="para text-base leading-relaxed line-clamp-4 testimonial-text">
+          {text}
+        </p>
+      </div>
+      
+      {isLongText && (
+        <button class="expand-button button focus-visible:outline-none" aria-expanded="false">
+          <span class="view-text">Ver más</span>
+        </button>
+      )}
+    </div>
   </div>
-
-  <div class="mb-4">
-    <StarRating rating={rating} />
-  </div>
-
-  <blockquote class="text-sm text-gray italic">
-    "{text}"
-  </blockquote>
 </article>
+
+<style>
+.card-testimonial {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+  padding: 32px;
+  border-radius: 24px;
+  overflow: hidden;
+  line-height: 1.6;
+  border: 1px solid var(--color-border);
+  background: white;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-testimonial:hover {
+  box-shadow: 8px 8px var(--color-brand);
+  border-color: var(--color-brand);
+  transform: translate(-8px, -8px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--color-dark);
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content .quotes {
+  width: 48px;
+  height: 48px;
+  fill: var(--color-brand);
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.card-testimonial:hover .quotes {
+  opacity: 1;
+}
+
+.content .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.content .para {
+  z-index: 1;
+  opacity: 0.8;
+  font-size: 16px;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button {
+  position: relative;
+  font-family: inherit;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  padding: 4px 0px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-brand);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.button .view-text {
+  transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button::before {
+  position: absolute;
+  content: "";
+  width: 112%;
+  height: 2px;
+  left: 0%;
+  bottom: 0%;
+  background: var(--color-brand);
+  pointer-events: none;
+  margin: auto;
+  transition: transform 0.64s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.button:active {
+  scale: 0.95;
+}
+
+/* Logic for expanded state */
+.card-testimonial.is-expanded {
+  min-height: auto;
+}
+
+.card-testimonial.is-expanded .testimonial-wrapper {
+  max-height: 2000px !important; /* Increased to avoid cutting off long text */
+}
+
+.card-testimonial.is-expanded .testimonial-text {
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+}
+
+</style>
+
+<script>
+  function initTestimonialExpansion() {
+    // Avoid double initialization
+    const cards = document.querySelectorAll('[data-testimonial-card]:not([data-initialized])');
+    
+    cards.forEach(card => {
+      const btn = card.querySelector('.expand-button');
+      if (!btn) return;
+      
+      const viewText = btn.querySelector('.view-text');
+      
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isExpanded = card.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', isExpanded.toString());
+        
+        if (viewText) {
+          viewText.textContent = isExpanded ? 'Ver menos' : 'Ver más';
+        }
+      });
+      
+      // Mark as initialized
+      card.setAttribute('data-initialized', 'true');
+    });
+  }
+
+  // Support Astro View Transitions and regular page load
+  document.addEventListener('astro:page-load', initTestimonialExpansion);
+  
+  // Fallback for initial load or if View Transitions are not used
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTestimonialExpansion);
+  } else {
+    initTestimonialExpansion();
+  }
+</script>
