@@ -198,21 +198,21 @@
 
   /* CARDS */
   .card {
-    @apply bg-white rounded-sm p-6 border border-border transition-all duration-200;
+    @apply bg-white rounded-md p-6 border border-border transition-all duration-200;
   }
 
 
 
   .card-service {
-    @apply bg-white rounded-sm p-6 border border-border transition-all duration-200 hover:border-brand hover:shadow-md shrink-0 flex flex-col gap-4;
+    @apply bg-white rounded-md overflow-hidden border border-border transition-all duration-200 hover:border-brand hover:shadow-md shrink-0 flex flex-col gap-4;
   }
 
   .card-testimonial {
-    @apply bg-white rounded-sm p-6 lg:p-8 border border-border shadow-sm;
+    @apply bg-white rounded-md p-6 lg:p-8 border border-border shadow-sm;
   }
 
   .card-accent {
-    @apply bg-white p-6 border border-border border-l-4 border-l-brand rounded-sm;
+    @apply bg-white p-6 border border-border border-l-4 border-l-brand rounded-md;
   }
 
   /* BADGES */
@@ -449,7 +449,7 @@
     @apply grid gap-6
            grid-cols-1
            sm:grid-cols-2
-           lg:grid-cols-4;
+           xl:grid-cols-4;
   }
 
   .grid-testimonials {

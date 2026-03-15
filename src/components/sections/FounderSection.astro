@@ -6,7 +6,6 @@ interface Props {
   founder: {
     name: string;
     role: string;
-    bio: string;
     image: {
       alt: string;
     };
@@ -17,24 +16,104 @@ interface Props {
 const { founder, marcelaImg } = Astro.props;
 ---
 
-<section class="section-padding pt-30 md:pt-20 bg-light-surface ">
+<section class="section-padding bg-light-surface">
   <div class="container-site">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-16  items-center">
-      <div class="flex  justify-center relative">
-        
+    <!-- QUIÉNES SOMOS -->
+    <div class="mx-auto text-center mb-14 ">
+      <h2 class="font-display font-semibold leading-tight tracking-tight relative z-10 text-3xl md:text-4xl lg:text-5xl text-dark bg-gradient-to-r from-brand to-brand-alt bg-clip-text text-transparent">
+        Quiénes Somos
+      </h2>
+
+      <p class="md:text-lg text-gray leading-relaxed mt-6 text-left md:text-center">
+        En <strong>El Hogar de Nanis</strong> ayudamos a las familias a encontrar 
+        personal confiable para el cuidado del hogar y de sus seres queridos. 
+        Ofrecemos un servicio profesional y personalizado que entiende que 
+        cada familia tiene necesidades únicas en diferentes momentos.
+      </p>
+
+    </div>
+
+    <!-- FUNDADORA -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-20 items-center">
+
+      <!-- FOTO -->
+      <div class="flex justify-center lg:justify-start md:justify-center col-span-1 founder-photo">
         <FounderCard imageSrc={marcelaImg} altText={founder.image.alt} />
       </div>
-      <div class="flex flex-col gap-6 text-center md:text-left">
-        <span class="section-eyebrow">Nuestro Liderazgo</span>
-        <h2 class="section-title text-dark">Una visión de madre y profesional</h2>
-        <p class="text-lg text-gray leading-relaxed italic">
-          "{founder.bio}"
+
+      <!-- CONTENIDO -->
+      <div class="flex flex-col gap-6 text-left col-span-1 md:col-span-2 max-w-2xl mx-auto lg:mx-0">
+
+        <h3 class="section-eyebrow text-xl md:text-xl founder-title">
+          Una visión de madre y profesional
+        </h3>
+
+        <!-- FRASE -->
+        <p class="md:text-lg  italic text-gray/80 leading-relaxed border-l-4 border-brand pl-5 max-w-xl founder-quote">
+          “Entiendo que cada familia es única y tiene diferentes necesidades 
+          en diferentes momentos.”
         </p>
-        <div class="h-1 w-20 bg-brand/50 rounded-full"></div>
-        <p class="text-gray font-medium">
-          "Entiendo que cada familia es única y tiene diferentes necesidades en diferentes momentos."
+
+        <!-- BIO -->
+        <p class="md:text-lg text-gray leading-relaxed founder-text">
+          Marcela Cubillos Forero, psicóloga graduada de la Universidad Católica 
+          de Colombia y exgerente de Recursos Humanos en empresas internacionales.
+        </p>
+
+        <p class="md:text-lg text-gray leading-relaxed founder-text">
+          Comprende personalmente las necesidades de cada familia y propone 
+          únicamente candidatas que ella misma elegiría para su propio hogar.
         </p>
       </div>
     </div>
   </div>
 </section>
+
+
+<script>
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener("astro:page-load", () => {
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".founder-photo",
+      start: "top 75%",
+    }
+  });
+
+  tl.from(".founder-photo", {
+    opacity: 0,
+    y: 100,
+    scale: 0.92,
+    duration: 1.1,
+    ease: "power3.out"
+  })
+
+  .from(".founder-title", {
+    opacity: 0,
+    y: 40,
+    duration: 0.7,
+    ease: "power2.out"
+  }, "-=0.5")
+
+  .from(".founder-quote", {
+    opacity: 0,
+    x: -30,
+    duration: 0.7,
+    ease: "power2.out"
+  }, "-=0.4")
+
+  .from(".founder-text", {
+    opacity: 0,
+    y: 20,
+    stagger: 0.2,
+    duration: 0.6,
+    ease: "power2.out"
+  }, "-=0.3");
+
+});
+</script>

@@ -1,26 +1,21 @@
 ---
 // src/components/sections/HeroSection.astro
-
 import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import heroBg from '@assets/hero-bg.jpeg';
+import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import siteData from '../../../public/data/site.json';
-
 const { slogan } = siteData;
-
 const {
   description = slogan,
   primaryCta = "Contratar Personal",
   primaryCtaLink = "/contacto",
   secondaryCta = "Nuestros Servicios",
-  secondaryCtaLink = "/nuestros-servicios",
+  secondaryCtaLink = "#servicios",
 } = Astro.props;
 ---
-
 <section class="hero-wrapper">
-
-  <div class="hero flex flex-col ">
-
+  <div class="hero flex flex-col">
     <!-- Background Image -->
     <div class="hero-bg">
       <Image
@@ -36,18 +31,19 @@ const {
       />
       <div class="hero-overlay"></div>
     </div>
-
-    <div class=" relative w-full  max-w-7xl mx-auto z-2 md:px-16  flex justify-start h-full flex-1 items-center">
-      <!-- TEXT -->
-      <div class="hero-content  flex flex-col gap-4">
-        <h1 class="hero-title">
+    <div class="relative w-full max-w-7xl mx-auto z-2 md:px-16 flex justify-start h-full flex-1 items-center">
+      <div class="hero-content flex flex-col gap-4">
+        <!-- TITLE -->
+        <h1 class="hero-title hero-anim hero-anim-title font-display font-semibold leading-tight tracking-tight relative z-10 text-3xl md:text-4xl lg:text-5xl text-dark bg-gradient-to-r from-brand to-brand-alt bg-clip-text text-transparent">
           Confianza y Seguridad
           <span>para tu Familia</span>
         </h1>
-        <p class="hero-description">
+        <!-- DESCRIPTION -->
+        <p class="hero-description hero-anim hero-anim-desc">
           {description}
         </p>
-        <div class="hero-buttons">
+        <!-- BUTTONS -->
+        <div class="hero-buttons hero-anim hero-anim-buttons">
           <ButtonPrimary
             label={primaryCta}
             href={primaryCtaLink}
@@ -63,33 +59,19 @@ const {
             class="font-medium"
           />
         </div>
-
-        <!-- Trust indicators -->
-
-        <div class="hero-trust">
-
+        <!-- TRUST -->
+        <div class="hero-trust hero-anim hero-anim-trust">
           <div class="trust-item">
-
             <div class="trust-icon">
-
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2"/>
-              </svg>
-
+              <Icon name="lucide:check-circle" class="w-5 h-5 text-brand" aria-hidden="true"/>
             </div>
-
-            <span>Personal verificado</span>
-
+            <span class="font-semibold">Personal verificado</span>
           </div>
-
           <div class="trust-item">
-
             <div class="trust-icon">
-              <svg viewBox="0 0 24 24" fill="none">
-                <path d="M12 3l8 4v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="2"/>
-              </svg>
+              <Icon name="lucide:shield-check" class="w-5 h-5 text-brand" aria-hidden="true"/>
             </div>
-            <span>Garantía de servicio</span>
+            <span class="font-semibold">Garantía de servicio</span>
           </div>
         </div>
       </div>
@@ -99,11 +81,9 @@ const {
 
 <style>
 
-/* WRAPPER (MARCO BLANCO) */
-
+/* WRAPPER */
 .hero-wrapper{
   background:white;
-
 }
 
 /* HERO */
@@ -136,28 +116,37 @@ const {
   font-size:clamp(2.6rem,4vw,3.8rem);
   font-weight:800;
   line-height:1.1;
-  color:var(--color-dark);
   margin-bottom:20px;
 }
 .hero-title span{
   display:block;
   color:var(--color-brand);
 }
+
 /* DESCRIPTION */
 .hero-description{
   font-size:1.15rem;
   line-height:1.7;
   color:var(--color-gray);
   margin-bottom:34px;
+  font-weight:500;
 }
 
 /* BUTTONS */
-
 .hero-buttons{
   display:flex;
   gap:16px;
   flex-wrap:wrap;
   margin-bottom:32px;
+}
+
+/* BOTON HOVER */
+.hero-buttons a{
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.hero-buttons a:hover{
+  transform:translateY(-2px);
 }
 
 /* TRUST */
@@ -184,7 +173,6 @@ const {
   align-items:center;
   justify-content:center;
   background:#f3f4f6;
-  color:var(--color-brand);
 }
 
 .trust-icon svg{
@@ -192,45 +180,61 @@ const {
   height:18px;
 }
 
-/* RESPONSIVE */
+/* HERO ANIMATIONS */
+.hero-anim{
+  opacity:0;
+  transform:translateY(30px);
+  animation:heroFadeUp .8s ease forwards;
+}
 
+.hero-anim-title{
+  animation-delay:.2s;
+}
+
+.hero-anim-desc{
+  animation-delay:.4s;
+}
+
+.hero-anim-buttons{
+  animation-delay:.6s;
+}
+
+.hero-anim-trust{
+  animation-delay:.8s;
+}
+
+@keyframes heroFadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
 @media(max-width:768px){
-  .hero{
-    min-height:70vh;
-  }
-  .hero-content{
-    text-align:center;
-    margin:auto;
-  }
 
-  .hero-buttons{
-    justify-content:center;
-  }
-  .hero-trust{
-    justify-content:center;
-  }
-
-  .hero-overlay{
-    height:100%;
-    position:absolute;
-    inset:0;
-    background:
-    rgba(255,255,255,0.5); 
-  }
-
-  .hero-wrapper{
-  background:white;
-  padding:0px;
-}
-
-/* HERO */
 .hero{
-  position:relative;
-  min-height:85vh;
-
-  overflow:hidden;
-}
+  min-height:70vh;
 }
 
+.hero-content{
+  text-align:center;
+  margin:auto;
+}
 
+.hero-buttons{
+  justify-content:center;
+}
+
+.hero-trust{
+  justify-content:center;
+}
+
+.hero-overlay{
+  height:100%;
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.5);
+}
+}
 </style>
