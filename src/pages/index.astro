@@ -1,32 +1,32 @@
 ---
 // src/pages/index.astro
-import Layout from '@/layouts/Layout.astro';
 import Footer from '@/components/sections/Footer.astro';
+import Layout from '@/layouts/Layout.astro';
 // Home Sections
-import HeroSection from '@/components/sections/HeroSection.astro';
 import CertBadgesSection from '@/components/sections/CertBadgesSection.astro';
-import ServicesSection from '@/components/sections/ServicesSection.astro';
-import WhyUsSection from '@/components/sections/WhyUsSection.astro';
-import ProcessSection from '@/components/sections/ProcessSection.astro';
-import TestimonialsSection from '@/components/sections/TestimonialsSection.astro';
-import CTASection from '@/components/sections/CTASection.astro';
-import FounderSection from '@/components/sections/FounderSection.astro';
-import Parallax from '@/components/ui/Parallax.astro';
-import VideoSection from '@/components/sections/VideoSection.astro';
-import FAQSection from '@/components/sections/FAQSection.astro';
 import ContactSection from '@/components/sections/ContactSection.astro';
+import CTASection from '@/components/sections/CTASection.astro';
+import FAQSection from '@/components/sections/FAQSection.astro';
+import FounderSection from '@/components/sections/FounderSection.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import ProcessSection from '@/components/sections/ProcessSection.astro';
+import ServicesSection from '@/components/sections/ServicesSection.astro';
+import TestimonialsSection from '@/components/sections/TestimonialsSection.astro';
+import VideoSection from '@/components/sections/VideoSection.astro';
+import WhyUsSection from '@/components/sections/WhyUsSection.astro';
+import Parallax from '@/components/ui/Parallax.astro';
 // Data
-import siteDataRaw from '../../public/data/site.json';
-import type { SiteData, ContactData, FAQData } from '@/types';
-const siteData = siteDataRaw as SiteData;
-import serviciosRaw from '../../public/data/servicios.json';
-import testimoniosData from '../../public/data/testimonios.json';
+import type { ContactData, FAQData, SiteData } from '@/types';
 import contactDataRaw from '../../public/data/contacto.json';
-import quienesSomosRaw from '../../public/data/quienes-somos.json';
 import faqsDataRaw from '../../public/data/faqs.json';
+import quienesSomosRaw from '../../public/data/quienes-somos.json';
+import serviciosRaw from '../../public/data/servicios.json';
+import siteDataRaw from '../../public/data/site.json';
+import testimoniosData from '../../public/data/testimonios.json';
+const siteData = siteDataRaw as SiteData;
 
 // Assets
-import marcelaImg from '@/assets/marcelacubillos.jpg';
+import marcelaImg from '@/assets/marcelacubillos.png';
 
 import { buildLocalBusiness } from '@/lib/jsonld';
 

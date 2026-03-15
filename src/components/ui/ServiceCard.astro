@@ -27,7 +27,7 @@ const imagePath = `/src/assets/${servicio.image.localPath.split('/').pop()}`;
 
 <article class="card-service group">
   {/* Img container */}
-  <div class="relative w-full aspect-video rounded overflow-hidden bg-surface-alt">
+  <div class="relative w-full aspect-video overflow-hidden bg-surface-alt">
     {images[imagePath] ? (
       <Image 
         src={images[imagePath]()} 
@@ -47,7 +47,7 @@ const imagePath = `/src/assets/${servicio.image.localPath.split('/').pop()}`;
     )}
   </div>
 
-  <div class="flex flex-col flex-1 gap-3">
+  <div class="flex flex-col flex-1 gap-3 px-4 pt-2 pb-4">
     <h3 class="font-body font-semibold text-xl text-brand">{servicio.title}</h3>
     <p class="text-sm text-gray flex-1">{servicio.shortDescription}</p>
     

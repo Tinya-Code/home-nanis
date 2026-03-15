@@ -2,7 +2,6 @@
 // src/components/sections/ServicesSection.astro
 import SectionHeader from '@/components/sections/SectionHeader.astro';
 import ServiceCard from '@/components/ui/ServiceCard.astro';
-import ButtonPrimary from '@/components/ui/ButtonPrimary.astro';
 import type { Servicio } from '@/types/servicio';
 
 interface Props {
@@ -18,7 +17,7 @@ const featuredServices = servicios.slice(0, 4);
 <section class="section-padding bg-light-surface" id="servicios">
   <div class="container-site">
     <SectionHeader 
-      title="Nuestros Servicios de Personal Doméstico" 
+      title="Nuestros Servicios" 
       eyebrow="Especialistas en Lima" 
       subtitle="Ofrecemos soluciones integrales y seguras para el cuidado de tu familia y hogar, con personal rigurosamente evaluado."
       align="center"
